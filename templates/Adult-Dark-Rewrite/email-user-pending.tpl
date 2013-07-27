@@ -1,0 +1,1 @@
+a:2:{s:7:"subject";s:44:"[{$g_config.site_name}] User Account Pending";s:7:"message";s:277:"Thank you for registering an account at {$g_config.site_name}.&nbsp; To maintain the quality of<br />our site we require that all accounts be manually approved by an administrator.&nbsp; Once your<br />account has been processed, you will be contacted with further information!";}

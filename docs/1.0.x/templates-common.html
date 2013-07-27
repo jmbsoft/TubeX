@@ -1,0 +1,379 @@
+<html>
+<head>
+    <title>TubeX Documentation</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <style>
+    ul b {
+      width: 30%;
+    }
+
+    ul span {
+      width: 69%;
+    }
+    </style>
+</head>
+
+<body>
+
+  <div class="main-content">
+
+    <div class="header-main">Common Template Variables</div>
+
+    <div class="toc-link"><a href="index.html">Table of Contents</a></div>
+
+    <a name="g_config" class="header-section">Software Settings</a>
+    <div class="section">
+      Software settings are always accessed through the $g_config template variable.  The following values are available:
+
+      <br />
+
+      <ul>
+        <b>$g_config.site_name -</b> <span>Site Name</span><br />
+        <b>$g_config.meta_description -</b> <span>Meta Description</span><br />
+        <b>$g_config.meta_keywords -</b> <span>Meta Keywords</span><br />
+        <b>$g_config.flag_using_cron -</b> <span>Using cron for stats rollover, conversion queue, etc (1 or 0)</span><br />
+        <b>$g_config.document_root -</b> <span>Document Root</span><br />
+        <b>$g_config.base_url -</b> <span>TubeX URL</span><br />
+        <b>$g_config.base_uri -</b> <span>Virtual path to the TubeX installation</span><br />
+        <b>$g_config.template_uri -</b> <span>Virtual path to the base directory of the selected template set</span><br />
+        <b>$g_config.no_preview -</b> <span>No Thumbnail URL</span><br />
+        <b>$g_config.cookie_domain -</b> <span>Cookie Domain</span><br />
+        <b>$g_config.cookie_path -</b> <span>Cookie Path</span><br />
+        <b>$g_config.flag_mod_rewrite -</b> <span>Use mod_rewrite for search engine friendly URLs (1 or 0)</span><br />
+        <b>$g_config.email_address -</b> <span>E-mail Address</span><br />
+        <b>$g_config.email_name -</b> <span>E-mail Name</span><br />
+        <b>$g_config.date_format -</b> <span>Date Format</span><br />
+        <b>$g_config.time_format -</b> <span>Time Format</span><br />
+        <b>$g_config.dec_point -</b> <span>Decimal Point</span><br />
+        <b>$g_config.thousands_sep -</b> <span>Thousands Separator</span><br />
+        <b>$g_config.avatar_dimensions -</b> <span>Avatar Dimensions</span><br />
+        <b>$g_config.avatar_filesize -</b> <span>Avatar Filesize</span><br />
+        <b>$g_config.avatar_extensions -</b> <span>Avatar Extensions</span><br />
+        <b>$g_config.flag_user_confirm_email -</b> <span>All new user accounts must be confirmed by e-mail</span><br />
+        <b>$g_config.flag_user_strip_tags -</b> <span>Strip HTML tags from submitted account information</span><br />
+        <b>$g_config.video_extensions -</b> <span>File Extensions</span><br />
+        <b>$g_config.video_format -</b> <span>Video Format</span><br />
+        <b>$g_config.video_size -</b> <span>Video Size</span><br />
+        <b>$g_config.video_bitrate -</b> <span>Video Bitrate</span><br />
+        <b>$g_config.audio_bitrate -</b> <span>Audio Bitrate</span><br />
+        <b>$g_config.thumb_size -</b> <span>Thumbnail Size</span><br />
+        <b>$g_config.thumb_quality -</b> <span>Thumbnail Quality</span><br />
+        <b>$g_config.thumb_amount -</b> <span>Thumbnail Amount</span><br />
+        <b>$g_config.flag_allow_uploads -</b> <span>Allow users to upload videos</span><br />
+        <b>$g_config.flag_upload_reject_duplicates -</b> <span>Do not allow the same video file to be uploaded more than once</span><br />
+        <b>$g_config.flag_upload_allow_private -</b> <span>Allow users to make their uploaded videos private</span><br />
+        <b>$g_config.flag_upload_convert -</b> <span>Convert uploaded videos (not recommended for shared servers)</span><br />
+        <b>$g_config.flag_upload_review -</b> <span>Review uploaded videos before displaying on site</span><br />
+        <b>$g_config.upload_extensions -</b> <span>Allowed Extensions</span><br />
+        <b>$g_config.max_upload_size -</b> <span>Maximum Size</span><br />
+        <b>$g_config.max_upload_duration -</b> <span>Maximum Duration</span><br />
+        <b>$g_config.title_min_length -</b> <span>Title Length (minimum)</span><br />
+        <b>$g_config.title_max_length -</b> <span>Title Length (maximum)</span><br />
+        <b>$g_config.description_min_length -</b> <span>Description Length (minimum)</span><br />
+        <b>$g_config.description_max_length -</b> <span>Description Length (maximum)</span><br />
+        <b>$g_config.tags_min -</b> <span>Tags Required (minimum)</span><br />
+        <b>$g_config.tags_max -</b> <span>Tags Required (maximum)</span><br />
+        <b>$g_config.flag_video_strip_tags -</b> <span>Strip HTML tags from submitted video information</span><br />
+        <b>$g_config.comment_max_length -</b> <span>Maximum Length (comments)</span><br />
+        <b>$g_config.comment_throttle_period -</b> <span>Throttle Period</span><br />
+        <b>$g_config.flag_comment_strip_tags -</b> <span>Strip HTML tags from comment text</span><br />
+        <b>$g_config.captcha_min_length -</b> <span>String Length (minimum)</span><br />
+        <b>$g_config.captcha_max_length -</b> <span>String Length (maximum)</span><br />
+        <b>$g_config.flag_captcha_words -</b> <span>Use words file for CAPTCHA strings</span><br />
+        <b>$g_config.flag_captcha_on_signup -</b> <span>Use CAPTCHA on user signup form</span><br />
+        <b>$g_config.flag_captcha_on_upload -</b> <span>Use CAPTCHA on video upload form</span><br />
+        <b>$g_config.flag_captcha_on_comment -</b> <span>Use CAPTCHA on video comment form</span><br />
+        <b>$g_config.cache_main -</b> <span>Main Page (cache)</span><br />
+        <b>$g_config.cache_search -</b> <span>Search Page (cache)</span><br />
+        <b>$g_config.cache_categories -</b> <span>Categories Page (cache)</span><br />
+        <b>$g_config.cache_browse -</b> <span>Browse Videos Page (cache)</span><br />
+        <b>$g_config.cache_video -</b> <span>Video Page (cache)</span><br />
+        <b>$g_config.cache_profile -</b> <span>Profile Page (cache)</span><br />
+        <b>$g_config.cache_comments -</b> <span>Comments Page (cache)</span><br />
+      </ul>
+
+    </div>
+
+
+
+    <a name="video" class="header-section">Video</a>
+    <div class="section">
+      Assuming the video is being accessed through a template variable named $video, the following values are available:
+
+      <br />
+
+      <ul>
+        <b>$video.video_id -</b> <span>The ID number assigned to the video</span><br />
+        <b>$video.username -</b> <span>The username of the account that uploaded the video, if any</span><br />
+        <b>$video.title -</b> <span>The video title</span><br />
+        <b>$video.description -</b> <span>The video description</span><br />
+        <b>$video.tags -</b> <span>The video's tags</span><br />
+        <b>$video.date_added -</b> <span>The date and time the video was added</span><br />
+        <b>$video.date_recorded -</b> <span>The date the video was recorded, if specified</span><br />
+        <b>$video.location_recorded -</b> <span>The location the video was recorded, if specified</span><br />
+        <b>$video.status -</b> <span>The video status (one of Pending, Queued, Active, Disabled)</span><br />
+        <b>$video.duration -</b> <span>The video duration, in seconds</span><br />
+        <b>$video.category_id -</b> <span>The ID number of the category associated with the video</span><br />
+        <b>$video.sponsor_id -</b> <span>The ID number of the sponsor associated with the video</span><br />
+        <b>$video.is_private -</b> <span>Flag indicating if the video is private (1 = private, 0 = not private)</span><br />
+        <b>$video.is_featured -</b> <span>Flag indicating if the video is featured (1 = featured, 0 = not featured)</span><br />
+        <b>$video.date_last_featured -</b> <span>The date and time the video was last featured</span><br />
+        <b>$video.num_thumbnails -</b> <span>The number of thumbnail preview images there are for the video</span><br />
+        <b>$video.display_thumbnail -</b> <span>The ID number of the thumbnail preview image selected for display</span><br />
+        <b>$video.allow_comments -</b> <span>Flag indicating if ratings are allowed (one of No, Yes - Add Immediately, Yes - Require Approval)</span><br />
+        <b>$video.allow_ratings -</b> <span>Flag indicating if ratings are allowed (1 = allowed, 0 = not allowed)</span><br />
+        <b>$video.allow_embedding -</b> <span>Flag indicating if embedding is allowed (1 = allowed, 0 = not allowed)</span><br />
+        <b>$video.is_user_submitted -</b> <span>Flag indicating if the video was submitted by a user (1 = user submitted, 0 = not user submitted)</span><br />
+        <b>$video.conversion_failed -</b> <span>Flag indicating if the video conversion failed (1 = failed, 0 = not failed)</span><br />
+        <b>$video.thumbnail -</b> <span>The URL to the thumbnail preview image for the video</span><br />
+        <b>$video.date_last_view -</b> <span>The date and time the video was last watched</span><br />
+        <b>$video.today_num_views -</b> <span>Number of views today</span><br />
+        <b>$video.today_num_flagged -</b> <span>Number of times flagged today</span><br />
+        <b>$video.today_num_featured -</b> <span>Number of times marked to be featured today</span><br />
+        <b>$video.today_num_comments -</b> <span>Number of comments today</span><br />
+        <b>$video.today_num_favorited -</b> <span>Number of times favorited today</span><br />
+        <b>$video.today_num_ratings -</b> <span>Number of ratings today</span><br />
+        <b>$video.today_sum_of_ratings -</b> <span>Sum of all ratings today</span><br />
+        <b>$video.today_avg_rating -</b> <span>Average of all ratings today</span><br />
+        <b>$video.week_num_views -</b> <span>Number of views this week</span><br />
+        <b>$video.week_num_flagged -</b> <span>Number of times flagged this week</span><br />
+        <b>$video.week_num_featured -</b> <span>Number of times marked to be featured this week</span><br />
+        <b>$video.week_num_comments -</b> <span>Number of comments this week</span><br />
+        <b>$video.week_num_favorited -</b> <span>Number of times favorited this week</span><br />
+        <b>$video.week_num_ratings -</b> <span>Number of ratings this week</span><br />
+        <b>$video.week_sum_of_ratings -</b> <span>Sum of all ratings this week</span><br />
+        <b>$video.week_avg_rating -</b> <span>Average of all ratings this week</span><br />
+        <b>$video.month_num_views -</b> <span>Number of views this month</span><br />
+        <b>$video.month_num_flagged -</b> <span>Number of times flagged this month</span><br />
+        <b>$video.month_num_featured -</b> <span>Number of times marked to be featured this month</span><br />
+        <b>$video.month_num_comments -</b> <span>Number of comments this month</span><br />
+        <b>$video.month_num_favorited -</b> <span>Number of times favorited this month</span><br />
+        <b>$video.month_num_ratings -</b> <span>Number of ratings this month</span><br />
+        <b>$video.month_sum_of_ratings -</b> <span>Sum of all ratings this month</span><br />
+        <b>$video.month_avg_rating -</b> <span>Average of all ratings this month</span><br />
+        <b>$video.total_num_views -</b> <span>Number of views total</span><br />
+        <b>$video.total_num_flagged -</b> <span>Number of times flagged total</span><br />
+        <b>$video.total_num_featured -</b> <span>Number of times marked to be featured total</span><br />
+        <b>$video.total_num_comments -</b> <span>Number of comments total</span><br />
+        <b>$video.total_num_favorited -</b> <span>Number of times favorited total</span><br />
+        <b>$video.total_num_ratings -</b> <span>Number of ratings total</span><br />
+        <b>$video.total_sum_of_ratings -</b> <span>Sum of all ratings total</span><br />
+        <b>$video.total_avg_rating -</b> <span>Average of all ratings total</span><br />
+      </ul>
+
+      <div class="message-notice">
+        In addition to the default template variables, the custom database fields that you setup will also be accessible.  For example, if you setup a database
+        field named "storage" you will be able to access this value through $video.storage
+      </div>
+    </div>
+
+
+
+    <a name="clip" class="header-section">Clip</a>
+    <div class="section">
+      Assuming the clip is being accessed through a template variable named $clip, the following values are available:
+
+      <br />
+
+      <ul>
+        <b>$clip.video_id -</b> <span>The ID number of the video this clip is associated with</span><br />
+        <b>$clip.type -</b> <span>A string indicating the clip type, either Embed or URL</span><br />
+        <b>$clip.clip -</b> <span>The clip URL or embed code</span><br />
+        <b>$clip.filesize -</b> <span>The filesize (in bytes) of the clip.  Only valid for locally hosted video files.</span><br />
+      </ul>
+    </div>
+
+
+
+    <a name="user" class="header-section">User</a>
+    <div class="section">
+      Assuming the user account is being accessed through a template variable named $user, the following values are available:
+
+      <br />
+
+      <ul>
+        <b>$user.username -</b> <span>The account username</span><br />
+        <b>$user.email -</b> <span>The e-mail address associated with the account</span><br />
+        <b>$user.date_created -</b> <span>The date and time the account was created</span><br />
+        <b>$user.status -</b> <span>The user account status (one of Submitted, Pending, Active, or Disabled</span><br />
+        <b>$user.name -</b> <span>The user's name</span><br />
+        <b>$user.date_birth -</b> <span>The user's date of birth</span><br />
+        <b>$user.gender -</b> <span>The user's gender (one of Male or Female)</span><br />
+        <b>$user.relationship -</b> <span>The user's relationship status (one of Single, Taken, or Open)</span><br />
+        <b>$user.about -</b> <span>About the user</span><br />
+        <b>$user.website_url -</b> <span>The user's website URL</span><br />
+        <b>$user.hometown -</b> <span>The user's hometown</span><br />
+        <b>$user.current_city -</b> <span>The user's current city</span><br />
+        <b>$user.postal_code -</b> <span>The user's postal code</span><br />
+        <b>$user.current_country -</b> <span>The user's current country</span><br />
+        <b>$user.occupations -</b> <span>The user's occupations</span><br />
+        <b>$user.companies -</b> <span>Companies the user has worked for</span><br />
+        <b>$user.schools -</b> <span>Schools the user has attended</span><br />
+        <b>$user.hobbies -</b> <span>The user's hobbies</span><br />
+        <b>$user.movies -</b> <span>Movies and TV shows the user likes</span><br />
+        <b>$user.music -</b> <span>Music the user likes</span><br />
+        <b>$user.books -</b> <span>Books the user likes</span><br />
+        <b>$user.uri -</b> <span>The virtual path to the user's avatar, if any</span><br />
+        <b>$user.date_last_login -</b> <span>The date and time the user last logged in</span><br />
+        <b>$user.today_video_views -</b> <span>The number of views this user's videos have received today</span><br />
+        <b>$user.today_profile_views -</b> <span>The number of views this user's profile has received today</span><br />
+        <b>$user.today_videos_watched -</b> <span>The number of videos the user has watched today</span><br />
+        <b>$user.today_bandwidth_used -</b> <span>The bandwidth used by the user today (locally hosted videos only)</span><br />
+        <b>$user.today_videos_uploaded -</b> <span>The number of videos the user has uploaded today</span><br />
+        <b>$user.today_comments_submitted -</b> <span>The number of comments the user has submitted today</span><br />
+        <b>$user.week_video_views -</b> <span>The number of views this user's videos have received this week</span><br />
+        <b>$user.week_profile_views -</b> <span>The number of views this user's profile has received this week</span><br />
+        <b>$user.week_videos_watched -</b> <span>The number of videos the user has watched this week</span><br />
+        <b>$user.week_bandwidth_used -</b> <span>The bandwidth used by the user this week (locally hosted videos only)</span><br />
+        <b>$user.week_videos_uploaded -</b> <span>The number of videos the user has uploaded this week</span><br />
+        <b>$user.week_comments_submitted -</b> <span>The number of comments the user has submitted this week</span><br />
+        <b>$user.month_video_views -</b> <span>The number of views this user's videos have received this month</span><br />
+        <b>$user.month_profile_views -</b> <span>The number of views this user's profile has received this month</span><br />
+        <b>$user.month_videos_watched -</b> <span>The number of videos the user has watched this month</span><br />
+        <b>$user.month_bandwidth_used -</b> <span>The bandwidth used by the user this month (locally hosted videos only)</span><br />
+        <b>$user.month_videos_uploaded -</b> <span>The number of videos the user has uploaded this month</span><br />
+        <b>$user.month_comments_submitted -</b> <span>The number of comments the user has submitted this month</span><br />
+        <b>$user.total_video_views -</b> <span>The number of views this user's videos have received total</span><br />
+        <b>$user.total_profile_views -</b> <span>The number of views this user's profile has received total</span><br />
+        <b>$user.total_videos_watched -</b> <span>The number of videos the user has watched total</span><br />
+        <b>$user.total_bandwidth_used -</b> <span>The bandwidth used by the user total (locally hosted videos only)</span><br />
+        <b>$user.total_videos_uploaded -</b> <span>The number of videos the user has uploaded total</span><br />
+        <b>$user.total_comments_submitted -</b> <span>The number of comments the user has submitted total</span><br />
+      </ul>
+
+      <div class="message-notice">
+        In addition to the default template variables, the custom database fields that you setup will also be accessible.  For example, if you setup a database
+        field named "storage" you will be able to access this value through $user.storage
+      </div>
+    </div>
+
+
+
+    <a name="sponsor" class="header-section">Sponsor</a>
+    <div class="section">
+      Assuming the sponsor is being accessed through a template variable named $sponsor, the following values are available:
+
+      <br />
+
+      <ul>
+        <b>$sponsor.sponsor_id -</b> <span>The ID number associated with the sponsor</span><br />
+        <b>$sponsor.name -</b> <span>The sponsor's name</span><br />
+        <b>$sponsor.url -</b> <span>The sponsor's main site URL</span><br />
+        <b>$sponsor.us2257_url -</b> <span>The sponsor's 2257 URL (useful for adult sites)</span><br />
+        <b>$sponsor.videos -</b> <span>The number of videos associated with the sponsor</span><br />
+      </ul>
+
+      <div class="message-notice">
+        In addition to the default template variables, the custom database fields that you setup will also be accessible.  For example, if you setup a database
+        field named "storage" you will be able to access this value through $sponsor.storage
+      </div>
+    </div>
+
+
+
+    <a name="comment" class="header-section">Comment</a>
+    <div class="section">
+      Assuming the comment is being accessed through a template variable named $comment, the following values are available:
+
+      <br />
+
+      <ul>
+        <b>$comment.comment_id -</b> <span>The ID number assigned to the comment</span><br />
+        <b>$comment.video_id -</b> <span>The ID number of the video the comment is associated with</span><br />
+        <b>$comment.username -</b> <span>The username of the account that submitted the comment</span><br />
+        <b>$comment.date_commented -</b> <span>The date and time the comment was submitted</span><br />
+        <b>$comment.status -</b> <span>The comment status (will only be Active)</span><br />
+        <b>$comment.comment -</b> <span>The comment itself</span><br />
+      </ul>
+    </div>
+
+
+
+    <a name="category" class="header-section">Category</a>
+    <div class="section">
+      Assuming the category is being accessed through a template variable named $category, the following values are available:
+
+      <br />
+
+      <ul>
+        <b>$category.category_id -</b> <span>The ID number assigned to the category</span><br />
+        <b>$category.name -</b> <span>The name of the category</span><br />
+        <b>$category.url_name -</b> <span>The URL name of the category</span><br />
+        <b>$category.description -</b> <span>The description assigned to the category</span><br />
+        <b>$category.meta_description -</b> <span>The meta description assigned to the category</span><br />
+        <b>$category.meta_keywords -</b> <span>The meta keywords assigned to the category</span><br />
+        <b>$category.auto_category_term -</b> <span>The auto category term value assigned to the category</span><br />
+        <b>$category.num_videos -</b> <span>The number of active videos in the category</span><br />
+        <b>$category.uri -</b> <span>If the category has an associated image, the virtual path to that image for use in an &lt;img&gt; tag</span><br />
+      </ul>
+
+      <div class="message-notice">
+        In addition to the default template variables, the custom database fields that you setup will also be accessible.  For example, if you setup a database
+        field named "storage" you will be able to access this value through $category.storage
+      </div>
+    </div>
+
+
+
+    <a name="category" class="header-section">Rating</a>
+    <div class="section">
+      Assuming the rating is being accessed through a template variable named $rating, the following values are available:
+
+      <br />
+
+      <ul>
+        <b>$rating.username -</b> <span>The username of the account that submitted the rating</span><br />
+        <b>$rating.video_id -</b> <span>The ID number of the video associated with the rating</span><br />
+        <b>$rating.rating -</b> <span>The rating the user gave</span><br />
+        <b>$rating.date_rated -</b> <span>The date and time the rating was submitted</span><br />
+      </ul>
+    </div>
+
+
+
+    <a name="category" class="header-section">Reason</a>
+    <div class="section">
+      Assuming the reason is being accessed through a template variable named $reason, the following values are available:
+
+      <br />
+
+      <ul>
+        <b>$reason.reason_id -</b> <span>The ID number assigned to the reason</span><br />
+        <b>$reason.type -</b> <span>The type of reason (either Flag or Feature)</span><br />
+        <b>$reason.short_name -</b> <span>The short name assigned to the reason</span><br />
+        <b>$reason.description -</b> <span>The description assigned to the reason</span><br />
+      </ul>
+    </div>
+
+
+    <a name="category" class="header-section">Search Term</a>
+    <div class="section">
+      Assuming the search term is being accessed through a template variable named $term, the following values are available:
+
+      <br />
+
+      <ul>
+        <b>$term.term_id -</b> <span>The ID number assigned to the search term</span><br />
+        <b>$term.term -</b> <span>The search term itself</span><br />
+        <b>$term.frequency -</b> <span>The number of times the search term has been used</span><br />
+      </ul>
+    </div>
+
+
+    <a name="category" class="header-section">Tag</a>
+    <div class="section">
+      Assuming the tag is being accessed through a template variable named $tag, the following values are available:
+
+      <br />
+
+      <ul>
+        <b>$tag.tag -</b> <span>The tag itself</span><br />
+        <b>$tag.frequency -</b> <span>The number of times the tag is used in currently active videos</span><br />
+      </ul>
+    </div>
+
+
+  </div>
+
+</body>
+</html>

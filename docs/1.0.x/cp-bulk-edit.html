@@ -1,0 +1,176 @@
+<html>
+<head>
+    <title>TubeX Documentation</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+
+<body>
+
+  <div class="main-content">
+
+    <div class="header-main">Bulk Editing</div>
+
+    <div class="toc-link"><a href="index.html">Table of Contents</a></div>
+
+    <span class="header-section">Making Bulk Edits</span>
+    <div class="section">
+      The Bulk Editing feature of TubeX will allow you to quickly make multiple changes to multiple items with only a few keyboard strokes and mouse clicks.
+      All of the search interfaces offer the ability to bulk edit the items you are searching.  When you click on the Edit icon in the toolbar, a dialog window
+      will appear that looks like this:
+
+      <br /><br />
+
+      <div class="centered">
+        <img src="images/cp-bulk-edit.png" title="Bulk Edit" />
+      </div>
+
+      <ul>
+        <b>Apply To -</b> <span>This will tell you what items the edits will be applied to.  Before you open the bulk editing interface, make sure you have
+                          selected the items that you want to edit either by checking their checkboxes (selected items) or doing a search (matching items) that
+                          returns only the items you want to modify.</span><br />
+
+        <b>Field -</b> <span>Select the field which you want to modify</span><br />
+
+        <b>Action -</b> <span>Select the action to apply to the field.  Not all actions can be applied to all fields.  Below is a complete list of the actions
+                        that can be performed.
+
+                        <br /><br />
+
+                        <div class="bold">Set</div>
+                        This will set the value of the field you selected to the string that you enter in the Value box.  The original contents of the
+                        field will be completely overwritten.
+                        <br /><br />
+
+                        <div class="bold">Append</div>
+                        This will append the string you enter in the Value box to the end of the value of the field you selected.
+                        <br /><br />
+
+                        <div class="bold">Prepend</div>
+                        This will prepend the string you enter in the Value box to the end of the value of the field you selected.
+                        <br /><br />
+
+                        <div class="bold">Add</div>
+                        This will add the number you enter in the Value box to the value of the field you selected.
+                        <br /><br />
+
+                        <div class="bold">Subtract</div>
+                        This will subtract the number you enter in the Value box from the value of the field you selected.
+                        <br /><br />
+
+                        <div class="bold">Increment</div>
+                        This will increment (increase by 1) the field you selected.
+                        <br /><br />
+
+                        <div class="bold">Decrement</div>
+                        This will decrement (decrease by 1) the field you selected.
+                        <br /><br />
+
+                        <div class="bold">Replace</div>
+                        This will replace one value with another in the field you selected.  In the Value box you will need to enter two string seprated by a comma.  The
+                        first string will be the search string, and the second string will be the replacement string.
+                        <br /><br />
+
+                        <div class="bold">Trim</div>
+                        This will remove whitespace from the beginning and end of the value of the field you selected.
+                        <br /><br />
+
+                        <div class="bold">Clear</div>
+                        This will empty the field you selected.
+                        <br /><br />
+
+                        <div class="bold">Truncate</div>
+                        This will truncate the value in the field you selected.  In the Value box enter a number which specifies the length that the value should be truncated to.
+                        <br /><br />
+
+                        <div class="bold">Uppercase All</div>
+                        This will convert all alphabetic characters in the value of the field you selected to upper case.
+                        <br /><br />
+
+                        <div class="bold">Uppercase First</div>
+                        This will convert the first character in the value of the field you selected to upper case.  It will have no affect if the first character is not alphabetic.
+                        <br /><br />
+
+                        <div class="bold">Lowercase All</div>
+                        This will convert all alphabetic characters in the value of the field you selected to lower case.
+                        <br /><br />
+
+                        <div class="bold">Raw SQL</div>
+                        This allows you to enter a raw SQL string in the Value box which will be assigned to the value of the field you selected.
+                        </span><br />
+
+        <b>Value -</b> <span>The Value you enter will depend on the action:
+
+                       <br /><br />
+
+                       <div class="bold">Set</div>
+                        Enter the exact string that you want the field to be set to
+                        <br /><br />
+
+                        <div class="bold">Append</div>
+                        Enter the string that you want appended to the value of the field
+                        <br /><br />
+
+                        <div class="bold">Prepend</div>
+                        Enter the string that you want prepended to the value of the field
+                        <br /><br />
+
+                        <div class="bold">Add</div>
+                        Enter a numeric value that you want added to the value of the field
+                        <br /><br />
+
+                        <div class="bold">Subtract</div>
+                        Enter a numeric value that you want subtracted from the value of the field
+                        <br /><br />
+
+                        <div class="bold">Increment</div>
+                        LEAVE BLANK
+                        <br /><br />
+
+                        <div class="bold">Decrement</div>
+                        LEAVE BLANK
+                        <br /><br />
+
+                        <div class="bold">Replace</div>
+                        Enter two string seprated by a comma.  The first string will be the search string, and the second string will be the replacement string.
+                        <br /><br />
+
+                        <div class="bold">Trim</div>
+                        LEAVE BLANK
+                        <br /><br />
+
+                        <div class="bold">Clear</div>
+                        LEAVE BLANK
+                        <br /><br />
+
+                        <div class="bold">Truncate</div>
+                        Enter a numeric value which is the length that you want the value of the field truncated to
+                        <br /><br />
+
+                        <div class="bold">Uppercase All</div>
+                        LEAVE BLANK
+                        <br /><br />
+
+                        <div class="bold">Lowercase First</div>
+                        LEAVE BLANK
+                        <br /><br />
+
+                        <div class="bold">Lowercase All</div>
+                        LEAVE BLANK
+                        <br /><br />
+
+                        <div class="bold">Raw SQL</div>
+                        Enter a valid SQL string that can appear on the right side of an assignment operator
+
+                       </span><br />
+
+        <b><img src="../images/add-16x16.png" /> -</b> <span>Click this to add another set of edits.  You can add as many edits as you like to make several changes to multiple items at once.</span><br />
+
+        <b><img src="../images/remove-16x16.png" /> -</b> <span>Click this to remove the set of edits to the left of this icon.</span><br />
+
+      </ul>
+    </div>
+
+  </div>
+
+</body>
+</html>

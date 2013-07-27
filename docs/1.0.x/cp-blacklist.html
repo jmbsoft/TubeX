@@ -1,0 +1,109 @@
+<html>
+<head>
+    <title>TubeX Documentation</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body>
+  <div class="main-content">
+    <div class="header-main">Blacklist Items</div>
+
+    <div class="toc-link"><a href="index.html">Table of Contents</a></div>
+
+
+    <span class="header-section">Managing Blacklist Items</span>
+    <div class="section">
+      Managing blacklist items is done by accessing the Settings &gt; Blacklist &gt; Search Blacklist Items function in the control panel menu.
+      From this interface you can add new blacklist items and search, edit, or delete the existing blacklist items.  For an overview of searching,
+      adding, editing, and deleting items, please see the <a href="cp-basics.html">Control Panel Basics</a> section of this software manual.
+    </div>
+
+
+    <span class="header-section">Database Fields</span>
+    <div class="section">
+      Blacklist Items have the following fields associated with them:
+
+      <ul>
+        <b>Type -</b> <span>
+                        The type of blacklist item.  The avaialble types are:
+
+                        <br /><br />
+
+                        <div class="bold">Submitter IP</div>
+                        This will search the IP address of the user when they are creating or editing an account, uploading a video, or submitting a comment
+
+                        <br /><br />
+
+                        <div class="bold">E-mail Address</div>
+                        This will search the e-mail address of the user when they are creating or editing their account
+
+                        <br /><br />
+
+                        <div class="bold">Domain/URL</div>
+                        This will search the Website URL value submitted by a user when editing their account
+
+                        <br /><br />
+
+                        <div class="bold">Domain IP</div>
+                        NOT CURRENTLY USED
+
+                        <br /><br />
+
+                        <div class="bold">Word</div>
+                        This will search for words that have been submitted for the following:
+
+                        <br /><br />
+
+                        <ul>
+                          <div class="bold">Comments</div>
+                          The comment text
+                          <br /><br />
+
+                          <div class="bold">Videos</div>
+                          Title, description, tags, and location recorded
+                          <br /><br />
+
+                          <div class="bold">Users</div>
+                          Username, name, about me, hometown, current city, current country, occupations, companies,
+                          schools, hobbies, movies, music, and books
+                        </ul>
+
+                        <br />
+
+                        <div class="bold">HTML</div>
+                        NOT CURRENTLY USED
+
+                        <br /><br />
+
+                        <div class="bold">HTTP Header</div>
+                        NOT CURRENTLY USED
+
+                        <br /><br />
+
+                        <div class="bold">DNS Server</div>
+                        NOT CURRENTLY USED
+                      </span><br />
+
+        <b>Regular expression -</b> <span>
+                                      Check this box if the value is a regular expression.  Regular expressions are more complex than standard searches that simply look
+                                      for the item as-is, but they add a great amount of flexibility.  In TubeX the Perl Compatible Regular Expressions format is used for regular expressions.  If you are not familiar
+                                      with regular expressions, please see the <a href="http://us2.php.net/manual/en/reference.pcre.pattern.syntax.php">Pattern Syntax portion of the PHP manual</a> for additional
+                                      information.  If you check the Regular Expression box on the blacklist add/edit form, the item(s) you enter will be treated as regular expressions and used to match against the
+                                      values that are submitted by the user.
+
+                                      <br /><br />
+
+                                      If the values you enter are not regular expressions, be sure to leave that box unchecked.  This will cause a normal search to occur which will match the item you enter anywhere within
+                                      the field that is being searched.  For example, if you enter the word "car" as a blacklisted word and someone submits a description of "Carpool to work to save gas", this will match the
+                                      "car" blacklist word item since it appears in the description.  Note that the search is case-insensitive and will match not only exact words, but also portions of words.
+                                    </span><br />
+
+        <b>Value -</b> <span>The value you want to add to the blacklist.</span><br />
+
+        <b>Reason -</b> <span>Enter a reason why you are blacklisting this item, if you wish.  This will help you keep track of why a specific item has been blacklisted.</span><br />
+      </ul>
+    </div>
+
+  </div>
+
+</body>
+</html>

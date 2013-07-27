@@ -1,0 +1,84 @@
+<html>
+<head>
+    <title>TubeX Documentation</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body>
+  <div class="main-content">
+    <div class="header-main">Video Comments</div>
+
+    <div class="toc-link"><a href="index.html">Table of Contents</a></div>
+
+    <span class="header-section">Managing Video Comments</span>
+    <div class="section">
+      Managing video comments is done by accessing the Videos &gt; Video Comments &gt; Search Video Comments function in the control panel menu.
+      From this interface you can add new video comments and search, edit, or delete the existing video comments.  For an overview of searching,
+      adding, editing, and deleting items, please see the <a href="cp-basics.html">Control Panel Basics</a> section of this software manual.
+    </div>
+
+
+    <span class="header-section">Database Fields</span>
+    <div class="section">
+      Video Comments have the following fields associated with them:
+      <ul>
+        <b>Username -</b> <span>The username of the account which submitted this comment.</span><br />
+
+        <b>Date -</b> <span>The date and time the comment was added.</span><br />
+
+        <b>Status -</b> <span>The status of the comment
+
+                        <br /><br />
+
+                        <div class="bold">Pending</div>
+                        The comment is still waiting to be approved by an administrator and will not appear on your site.
+
+                        <br /><br />
+
+                        <div class="bold">Active</div>
+                        The comment is active and will appear on your site.
+                        </span><br />
+
+        <b>Comment -</b> <span>The comment itself.</span><br />
+      </ul>
+    </div>
+
+
+
+    <span class="header-section">Individual Functions</span>
+    <div class="section">
+      Besides the <a href="cp-common-functions.html">Common Functions</a> available for most items, video comments also have some custom functions that can be run.  The icons that appear for each comment in
+      the Search Comments interface are described below.
+
+      <ul>
+        <b><img src="../images/video-22x22.png" /> -</b> <span>View the video associated with this comment.  This will take you to the Search Videos interface which will display
+                                                            only the video that is associated with this comment.</span><br />
+
+        <b><img src="../images/approve-22x22.png" /> -</b> <span>Approve this comment.  This will only be available for comments with Pending status.  Approving a comment will change
+                                                           it's status to Active and the comment will then be visible on your site.</span><br />
+
+        <b><img src="../images/reject-22x22.png" /> -</b> <span>Reject this comment.  This will only be available for comments with Pending status.  Rejecting a comment will delete the comment
+                                                          from the database permanently.
+                                                          </span><br />
+      </ul>
+    </div>
+
+
+
+    <span class="header-section">Bulk Functions</span>
+    <div class="section">
+      Besides the <a href="cp-common-functions.html">Common Functions</a> available for most items, video comments also have some custom functions that can be run.  The icons that appear in the toolbar
+      which can be run on multiple comments at once are covered below.
+
+      <ul>
+
+        <b><img src="../images/approve-32x32.png" /> -</b> <span>Approve the checked or matching comments.  Only comments with Pending status will be affected by this function.
+                                                           Approving a comment will change the comments's status to Active and make it visible on your site</span><br />
+
+        <b><img src="../images/reject-32x32.png" /> -</b> <span>Reject the checked or matching comments.  Only comments with Pending status will be affected by this function.
+                                                          Rejecting a comment will delete the comment from the database permanently.
+                                                          </span><br />
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

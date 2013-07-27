@@ -1,0 +1,104 @@
+<html>
+<head>
+    <title>TubeX Documentation</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body>
+  <div class="main-content">
+    <div class="header-main">Video Feeds</div>
+
+    <div class="toc-link"><a href="index.html">Table of Contents</a></div>
+
+    <span class="header-section">Managing Video Feeds</span>
+    <div class="section">
+      Managing video feeds is done by accessing the Videos &gt; Video Feeds &gt; Search Feeds function in the control panel menu.
+      From this interface you can add new video feeds and search, edit, or delete the existing video feeds.  For an overview of searching,
+      adding, editing, and deleting items, please see the <a href="cp-basics.html">Control Panel Basics</a> section of this software manual.
+    </div>
+
+
+    <span class="header-section">Database Fields</span>
+    <div class="section">
+      Video Feeds have the following fields associated with them:
+
+      <ul>
+        <b>Feed Name -</b> <span>A name for the feed, for easier identification</span><br />
+
+        <b>Feed URL -</b> <span>The full URL to the feed</span><br />
+
+        <b>Feed Type -</b> <span>
+                             The type of feed.  The following feed types are supported:
+
+                             <br /><br />
+
+                             <div class="bold">XML Videos Feed</div>
+                             This is a feed that meets <a href="xml-videos-feed.html" target="_blank">this specification</a>.  These types of
+                             feeds are often offered by adult sponsors.  A list of sponsors that offer these feeds is maintained in the
+                             <a href="http://www.jmbsoft.com/support/viewtopic/5410/" target="_blank">TubeX forum</a>.
+
+                             <br /><br />
+
+                             When videos are imported from this type of feed, the actual video clips will be hotlinked from the remote server so
+                             it won't use any of your bandwidth.  The preview thumbnail images will be downloaded to your server, resized if possible,
+                             and used as the preview images for this video.
+
+                             <br /><br />
+
+                             <div class="bold">YouTube</div>
+                             This is a feed that uses the <a href="http://code.google.com/apis/youtube/2.0/developers_guide_protocol_video_feeds.html" target="_blank">YouTube Data API</a>.
+                             Videos imported from a YouTube feed will use the embed code provided by YouTube.  This will display the YouTube player, and the video will be loaded from
+                             YouTube's servers so it won't use your bandwidth.
+
+                             <br /><br />
+
+                             The preview thumbnail images for the video will be downloaded to your server and used as the preview images for imported videos.
+
+                           </span><br />
+
+        <b>Sponsor -</b> <span>The sponsor associated with this feed.  All videos imported from this feed will be assigned this sponsor.</span><br />
+
+        <b>Category -</b> <span>
+                            The default category to use for videos imported from this feed.  Videos which cannot be categorized using the
+                            <a href="cp-category.html#automatic-categorization" target="_blank">Automatic Categorization</a> feature will be assigned to this category.</span><br />
+
+        <b>Username -</b> <span>The username to set for videos imported from this feed</span><br />
+
+        <b>Status -</b> <span>The status to set for videos imported from this feed</span><br />
+
+        <b>Comments Allowed -</b> <span>Indicates if comments are allowed for this video</span><br />
+
+        <b>Allow ratings -</b> <span>Indicates if ratings are allowed for this video</span><br />
+
+        <b>Allow embedding -</b> <span>Indicates if this video can be embedded in remote sites</span><br />
+
+        <b>Make private -</b> <span>Set videos imported from this feed as private</span><br />
+      </ul>
+    </div>
+
+
+    <span class="header-section">Individual Functions</span>
+    <div class="section">
+      Besides the <a href="cp-common-functions.html">Common Functions</a> available for most items, video feeds also have some custom functions that can be run.  The icons that appear for each
+      video feed in the Search Feeds interface are described below.
+
+      <ul>
+        <b><img src="../images/feed-read-22x22.png" /> -</b> <span>Click this to have the software read the feed and import the videos it finds in the feed.  The software will keep track of what videos
+                                                             were imported from each feed to prevent duplicates from being imported.  Because of this, it will not be too uncommon to receive a message
+                                                             that 0 videos were imported from the feed when running this function.
+
+                                                             <br /><br />
+
+                                                             <div class="message-notice">
+                                                               Videos can also be imported from feeds using <a href="cron.html" target="_blank">cron</a>.  This will allow you to have videos imported
+                                                               from your feeds automatically without any interaction from an administrator.
+                                                             </div>
+                                                             </span><br />
+
+        <b><img src="../images/approve-22x22.png" /> -</b> <span>Click this icon to test the feed.  This will check that a valid feed URL was provided, and that the feed is a valid feed of the
+                                                           type you selected.</span><br />
+      </ul>
+    </div>
+  </div>
+
+</body>
+</html>

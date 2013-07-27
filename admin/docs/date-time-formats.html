@@ -1,0 +1,128 @@
+<html>
+<head>
+    <title>TubeX Documentation</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+
+<body>
+
+  <div class="main-content">
+
+    <div class="header-main">Software Settings</div>
+
+    <div class="toc-link"><a href="index.html">Table of Contents</a></div>
+
+    <span class="header-section">Introduction</span>
+
+    <div class="section">
+      TubeX allows you to set the format that you want dates and times displayed in.  Many countries use differing formats to display
+      their dates and times, so this feature will allow you to have your dates and times in a format that the majority of your visitors
+      will understand.  The date and time format system used by TubeX is based on the date and time format feature of PHP.  If you have
+      experience working with PHP date and time formats, you'll have no problem with these.  Even if you don't, these formats are very
+      straight forward and easy to understand.
+    </div>
+
+
+
+    <span class="header-section">Changing Formats</span>
+    <div class="section">
+      The date and time formats you want to use are configured through the TubeX Global Settings interface.  In the control panel, select
+      the Global Settings option from the Settings menu.  The Global Settings pop window will display, and in the Localization Settings section you will
+      find the Date Format and Time Format fields. This is where you will make the changes to your date and time formats.  Once you have made the
+      changes you want, press the Apply Changes button to save your new settings.
+
+      <br />
+      <br />
+
+      Date and time format specifiers consist of a series of characters.  You can find a complete list of these characters below for both dates and
+      times.  Using a combination of these specifiers you can create complete date and time formats.  Note that TubeX will only pay attention to
+      the defined characters; all other characters in your date or time format will be left alone.  This allows you to use separators such as forward-slashes,
+      dashes, and colons as you like.
+    </div>
+
+
+
+    <span class="header-section">Date Formats</span>
+
+    <div class="section">
+      <pre>
+      d - day of the month, 2 digits with leading zeros; i.e. "01" to "31"
+      j - day of the month without leading zeros; i.e. "1" to "31"
+      D - day of the week, textual, 3 letters; i.e. "Fri"
+      l - day of the week, textual, long; i.e. "Friday"
+      M - month, textual, 3 letters; i.e. "Jan"
+      F - month, textual, long; i.e. "January"
+      m - month, 2 digits with leading zeros; i.e. "01" to "12"
+      n - month without leading zeros; i.e. "1" to "12"
+      Y - year, 4 digits; i.e. "1999"
+      y - year, 2 digits; i.e. "99"
+      </pre>
+    </div>
+
+
+
+    <span class="header-section">Time Formats</span>
+
+    <div class="section">
+      <pre>
+      a - "am" or "pm"
+      A - "AM" or "PM"
+      h - hour, 12-hour format; i.e. "01" to "12"
+      H - hour, 24-hour format; i.e. "00" to "23"
+      g - hour, 12-hour format without leading zeros; i.e. "1" to "12"
+      G - hour, 24-hour format without leading zeros; i.e. "0" to "23"
+      i - minutes; i.e. "00" to "59"
+      s - seconds; i.e. "00" to "59"
+      </pre>
+    </div>
+
+
+
+    <span class="header-section">Date and Time Formats For {datelocale}</span>
+
+    <div class="section">
+      For any purposes other than the {datelocale} template function you will use the date and time formats listed above.  However, when you are using the
+      {datelocale} function the formats listed below must be used instead.
+
+      <pre>
+      %a - abbreviated weekday name according to the current locale
+      %A - full weekday name according to the current locale
+      %b - abbreviated month name according to the current locale
+      %B - full month name according to the current locale
+      %c - preferred date and time representation for the current locale
+      %C - century number (the year divided by 100 and truncated to an integer, range 00 to 99)
+      %d - day of the month as a decimal number (range 01 to 31)
+      %D - same as %m/%d/%y
+      %e - day of the month as a decimal number, a single digit is preceded by a space (range ' 1' to '31')
+      %g - like %G, but without the century.
+      %G - The 4-digit year corresponding to the ISO week number
+      %h - same as %b
+      %H - hour as a decimal number using a 24-hour clock (range 00 to 23)
+      %I - hour as a decimal number using a 12-hour clock (range 01 to 12)
+      %j - day of the year as a decimal number (range 001 to 366)
+      %m - month as a decimal number (range 01 to 12)
+      %M - minute as a decimal number
+      %n - newline character
+      %p - either `am' or `pm' according to the given time value, or the corresponding strings for the current locale
+      %r - time in a.m. and p.m. notation
+      %R - time in 24 hour notation
+      %S - second as a decimal number
+      %t - tab character
+      %T - current time, equal to %H:%M:%S
+      %u - weekday as a decimal number [1,7], with 1 representing Monday
+      %U - week number of the current year as a decimal number, starting with the first Sunday as the first day of the first week
+      %W - week number of the current year as a decimal number, starting with the first Monday as the first day of the first week
+      %w - day of the week as a decimal, Sunday being 0
+      %x - preferred date representation for the current locale without the time
+      %X - preferred time representation for the current locale without the date
+      %y - year as a decimal number without a century (range 00 to 99)
+      %Y - year as a decimal number including the century
+      %Z or %z - time zone or name or abbreviation
+      %% - a literal `%' character
+      </pre>
+    </div>
+
+</div>
+
+</body>
+</html>

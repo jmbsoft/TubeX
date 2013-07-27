@@ -1,0 +1,743 @@
+<html>
+<head>
+    <title>TubeX Documentation</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+
+<body>
+
+  <div class="main-content">
+
+    <div class="header-main">Site Template Functions</div>
+
+    <div class="toc-link"><a href="index.html">Table of Contents</a></div>
+
+    <span class="header-section">Template Functions</span>
+    <div class="section">
+      In addition to supporting all of the <a href="templates.html#stock">Stock Template Functions</a> there are several additional template functions that you
+      can use on the Site Templates.  Those are documented below.
+
+
+      <ul>
+        <div class="bold large">{banner}</div>
+        <ul>
+          <xmp>{banner zone="Horizontal 468x60" sort="`times_displayed` ASC"}</xmp>
+
+          This template function is used to display banners that have been configured through the control panel interface.  Each instance of this function
+          will be replaced by a single banner in it's exact location in the template code.  The following attributes are available for this function:
+
+          <br /><br />
+
+          <b>sort -</b> <span>
+                          The sorting method to use when selecting which banner to display.  Any of the following can be used:
+
+                          <br /><br />
+
+                          <div class="bold">times_displayed</div>
+                          The number of times the banner has been selected for display
+
+                          <br /><br />
+
+                          <div class="bold">RAND()</div>
+                          Random
+                        </span><br />
+
+          <b>sponsor -</b> <span>
+                             Limit the banners which can be selected for display to those of a specific sponsor.  The sponsor can be specified in
+                             one of three ways:
+
+                             <br /><br />
+
+                             <div class="bold">Template variable</div>
+                             A template variable that contains the sponsor ID number
+
+                             <br /><br />
+
+                             <div class="bold">Sponsor ID</div>
+                             The ID number assigned to the sponsor
+
+                             <br /><br />
+
+                             <div class="bold">Sponsor Name</div>
+                             The name of the sponsor, exactly as it appears in the control panel interface
+                           </span><br />
+
+          <b>tags -</b> <span>
+                          Limit the banners which can be selected for display to those that match the boolean mode search supplied for this attribute.  Examples:
+
+                          <br /><br />
+
+                          <div class="bold">tags="image"</div>
+                          Banners that have image in their tags
+                          <br /><br />
+
+                          <div class="bold">tags="image flash"</div>
+                          Banners that have either image or flash in their tags
+                          <br /><br />
+
+                          <div class="bold">tags="+image +flash"</div>
+                          Banners that have both image and flash in their tags
+                          <br /><br />
+
+                          <div class="bold">tags="image -flash"</div>
+                          Banners that have image but not flash in their tags
+                        </span><br />
+
+          <b>zone -</b> <span>
+                          Limit the banners which can be selected for display to those that match the zone value supplied for this attribute.
+                        </span><br />
+
+        </ul>
+
+
+
+        <div class="bold large mt">{categories}</div>
+        <ul>
+          <xmp>{categories var=$categories sort="`name` ASC"}</xmp>
+
+          This template function is used to load categories into a template variable.  You can then use that template variable with a {foreach} template function to display
+          the categories on the page in the format you like.  The template variable will contain an array of categories, and each category will contain all of the data that can be accessed
+          through normal Category template variables, as covered in the <a href="templates-common.html#category">Common Template Variables</a> documentation.  The following
+          attributes are available for this function:
+
+          <br /><br />
+
+          <b>amount -</b> <span>A numerical value specifying the number of categories to load into the template variable.  Do not include this attribute if you would like
+                          all of your categories to be loaded.</span><br />
+
+          <b>startswith -</b> <span>Specify a single character which will limit the categories that are loaded to those that start with the character you specify.</span><br />
+
+          <b>alphabetize -</b> <span>true or false.  If set to true, the categories will be alphabetized, overriding the sort option.  If set to false or not included,
+                               the categories will be sorted by the sort value.</span><br />
+
+          <b>sort -</b> <span>
+                          The sorting method to use when pulling the categories from the database.  Any of the following can be used:
+
+                          <br /><br />
+
+                          <div class="bold">name</div>
+                          The category's name
+
+                          <br /><br />
+
+                          <div class="bold">url_name</div>
+                          The category's URL name
+
+                          <br /><br />
+
+                          <div class="bold">num_videos</div>
+                          The number of videos in the category
+
+                          <br /><br />
+
+                          <div class="bold">RAND()</div>
+                          Random
+                        </span><br />
+
+          <b>var -</b> <span>Specify the template variable into which the categories will be loaded</span><br />
+
+        </ul>
+
+
+
+        <div class="bold large mt">{category}</div>
+        <ul>
+          <xmp>{category var=$category id=$video.category_id}</xmp>
+
+          This template function is used to load a single category into a template variable.  The template variable will contain all of the data that can be accessed
+          through normal Category template variables, as covered in the <a href="templates-common.html#category">Common Template Variables</a> documentation.  The following
+          attributes are available for this function:
+
+          <br /><br />
+
+          <b>id -</b> <span>The ID number of the category to load (cannot be used in combination with the url attribute)</span><br />
+
+          <b>url -</b> <span>The URL name of the category to load (cannot be used in combination with the id attribute)</span><br />
+
+          <b>var -</b> <span>The template variable in which the category information will be stored</span><br />
+
+        </ul>
+
+
+
+        <div class="bold large mt">{clips}</div>
+        <ul>
+          <xmp>{clips var=$clips videoid=$g_video_id}</xmp>
+
+          This template function is used to load information about the clips associated with a video (each video can have multiple clips).  You can then use that
+          template variable with a {foreach} template function to display or otherwise process the clips.  The template variable will contain an array of clips, and each clip
+          will contain all of the data that can be accessed through normal Clip template variables, as covered in the
+          <a href="templates-common.html#clip">Common Template Variables</a> documentation.  The following attributes are available for this function:
+
+          <br /><br />
+
+          <b>sort -</b> <span>
+                          The sorting method to use when pulling the clips from the database.  Any of the following can be used:
+
+                          <br /><br />
+
+                          <div class="bold">clip_id</div>
+                          The ID number assigned to the clip.
+
+                          <br /><br />
+
+                          <div class="bold">RAND()</div>
+                          Random
+                        </span><br />
+
+          <b>var -</b> <span>The template variable into which the clips will be loaded</span><br />
+
+          <b>videoid -</b> <span>The ID number of the video who's clips will be loaded.  This can either be provided as an actual numerical value or as a template variable
+                           that contains the video ID.</span><br />
+
+        </ul>
+
+
+
+        <div class="bold large mt">{comments}</div>
+        <ul>
+          <xmp>{comments
+var=$comments
+videoid=$g_video_id
+amount=100
+page=$g_page_number
+pagination=$pagination
+sort="`date_commented` DESC"}</xmp>
+
+          This template function is used to load comments associated with a specific video.   You can then use that template variable with a {foreach} template function to display
+          or otherwise process the comments.  The template variable will contain an array of comments, and each comment will contain all of the data that can be accessed through normal
+          Comment template variables, as covered in the <a href="templates-common.html#comment">Common Template Variables</a> documentation.  The following attributes are available for
+          this function:
+
+          <br /><br />
+
+          <b>amount -</b> <span>A numeric value specifying the number of comments to load.  If using pagination, this will specify the number to display per page.</span><br />
+
+          <b>paginate -</b> <span>true or false.  true to paginate the comments, false otherwise</span><br />
+
+          <b>page -</b> <span>The page number that the user is viewing (most often set to $g_page_number)</span><br />
+
+          <b>sort -</b> <span>
+                          The sorting method to use when pulling the comments from the database.  Any of the following can be used:
+
+                          <br /><br />
+
+                          <div class="bold">comment_id</div>
+                          The ID number assigned to the comment.
+
+                          <br /><br />
+
+                          <div class="bold">date_commented</div>
+                          The date and time the comment was submitted
+
+                          <br /><br />
+
+                          <div class="bold">RAND()</div>
+                          Random
+                        </span><br />
+
+          <b>var -</b> <span>The template variable into which the comments will be loaded</span><br />
+
+          <b>videoid -</b> <span>The ID number of the video who's comments will be loaded.  This can either be provided as an actual numerical value or as a template variable
+                           that contains the video ID.</span><br />
+        </ul>
+
+
+
+        <div class="bold large mt">{options}</div>
+        <ul>
+          <xmp>{options}</xmp>
+
+          some text
+
+          from
+          key
+          value
+          selected
+
+        </ul>
+
+
+
+        <div class="bold large mt">{player}</div>
+        <ul>
+          <xmp>{player
+clips=$clips
+flv="video-player-flash.tpl"
+wmv="video-player-silverlight.tpl"
+qt="video-player-quicktime.tpl"
+other="video-player-other.tpl"}</xmp>
+
+          This template function is used to display the correct video player based on the video file extension.  The HTML code for the video player will be placed in the exact
+          location of this template function.  The following attributes are available for this function:
+
+          <br /><br />
+
+          <b>clips -</b> <span>This must be set to a template variable that was previously used as the var attribute of a {clips} template function</span><br />
+
+          <b>qt -</b> <span>The filename of the template to use for videos played with the Quicktime player</span><br />
+
+          <b>wmv -</b> <span>The filename of the template to use for videos played with the Silverlight player</span><br />
+
+          <b>flv -</b> <span>The filename of the template to use for videos played with the Flash player</span><br />
+
+          <b>other -</b> <span>The filename of the template to use for videos played with the Windows Media player</span><br />
+
+        </ul>
+
+
+
+        <div class="bold large mt">{ratings}</div>
+        <ul>
+          <xmp>{ratings var=$ratings amount=4 videoid=$video.video_id sort="`date_rated` DESC"}</xmp>
+
+          This template function is used to load ratings for a specific video.  You can then use that template variable with a {foreach} template function to display
+          or otherwise process the ratings.  The template variable will contain an array of ratings, and each rating will contain all of the data that can be accessed through normal
+          Rating template variables, as covered in the <a href="templates-common.html#rating">Common Template Variables</a> documentation.  The following attributes are available for
+          this function:
+
+          <br /><br />
+
+          <b>amount -</b> <span>A numeric value specifying the number of ratings to load.</span><br />
+
+          <b>sort -</b> <span>
+                          The sorting method to use when pulling the comments from the database.  Any of the following can be used:
+
+                          <br /><br />
+
+                          <div class="bold">rating</div>
+                          The rating that was given to the video
+
+                          <br /><br />
+
+                          <div class="bold">date_rated</div>
+                          The date and time the rating was submitted
+
+                          <br /><br />
+
+                          <div class="bold">RAND()</div>
+                          Random
+                        </span><br />
+
+          <b>var -</b> <span>The template variable into which the ratings will be loaded</span><br />
+
+          <b>videoid -</b> <span>The ID number of the video who's ratings will be loaded.  This can either be provided as an actual numerical value or as a template variable
+                           that contains the video ID.</span><br />
+        </ul>
+
+
+
+        <div class="bold large mt">{reasons}</div>
+        <ul>
+          <xmp>{reasons}</xmp>
+
+          This template function is used to load reasons that have been configured through the control panel interface.  You can then use that template variable with a {foreach} template
+          function to display or otherwise process the reasons.  The template variable will contain an array of reasons, and each reason will contain all of the data that can be accessed
+          through normal Reason template variables, as covered in the <a href="templates-common.html#reason">Common Template Variables</a> documentation.  The following attributes are
+          available for this function:
+
+          <br /><br />
+
+          <b>var -</b> <span>The template variable into which the reasons will be loaded</span><br />
+
+          <b>type -</b> <span>The type of reasons to load.  Can be one of the following:
+
+                        <br /><br />
+
+                        <div class="bold">Flag</div>
+                        Reasons for flagging a video
+
+                        <br /><br />
+
+                        <div class="bold">Feature</div>
+                        Reasons for featuring a video
+
+                        </span><br />
+
+        </ul>
+
+
+
+        <div class="bold large mt">{searchterms}</div>
+        <ul>
+          <xmp>{searchterms
+var=$terms
+sort="frequency DESC"
+alphabetize=true
+amount=50
+minscore=100
+maxscore=200}</xmp>
+
+          This template function is used to load search terms that users have submitted.  You can then use that template variable with a {foreach} template
+          function to display or otherwise process the search terms.  The template variable will contain an array of search terms, and each search term will contain all of the data that can be accessed
+          through normal Search Term template variables, as covered in the <a href="templates-common.html#search-term">Common Template Variables</a> documentation.  The following attributes are
+          available for this function:
+
+          <br /><br />
+
+          <b>minscore -</b> <span>The minimum score that can be assigned to a search term.  Scores are based on frequency, and are useful for generating different font sizes for
+                            tag clouds.  100 is recommended for this value.</span><br />
+
+          <b>maxscore -</b> <span>The maximum score that can be assigned to a search term.  Scores are based on frequency, and are useful for generating different font sizes for
+                            tag clouds.  200 is recommended for this value.</span><br />
+
+          <b>alphabetize -</b> <span>true or false.  If set to true, the search terms will be alphabetized, overriding the sort option.  If set to false or not included,
+                               the search terms will be sorted by the sort value.</span><br />
+
+          <b>sort -</b> <span>
+                          The sorting method to use when pulling the search terms from the database.  Any of the following can be used:
+
+                          <br /><br />
+
+                          <div class="bold">term</div>
+                          The search term itself
+
+                          <br /><br />
+
+                          <div class="bold">frequency</div>
+                          The number of times this search term has been used
+
+                          <br /><br />
+
+                          <div class="bold">RAND()</div>
+                          Random
+                        </span><br />
+
+          <b>amount -</b> <span>The number of search terms to load</span><br />
+
+          <b>var -</b> <span>The template variable into which the search terms will be loaded</span><br />
+
+        </ul>
+
+
+
+        <div class="bold large mt">{sponsor}</div>
+        <ul>
+          <xmp>{sponsor var=$sponsor sponsorid=$video.sponsor_id}</xmp>
+
+          This template function is used to load a single sponsor into a template variable.  The template variable will contain all of the data that can be accessed
+          through normal Sponsor template variables, as covered in the <a href="templates-common.html#sponsor">Common Template Variables</a> documentation.  The following
+          attributes are available for this function:
+
+
+          <b>var -</b> <span>The template variable into which the sponsor data will be loaded</span><br />
+          <b>sponsorid -</b> <span>The ID number of the sponsor.  This can either be provided as an actual numerical value or as a template variable
+                           that contains the sponsor ID.</span><br />
+
+        </ul>
+
+
+
+        <div class="bold large mt">{sponsors}</div>
+        <ul>
+          <xmp>{sponsors var=$sponsors sort="`name` ASC"}</xmp>
+
+          This template function is used to load sponsors into a template variable.  You can then use that template variable with a {foreach} template function to display
+          the sponsors on the page in the format you like.  The template variable will contain an array of sponsors, and each sponsor will contain all of the data that can be accessed
+          through normal Sponsor template variables, as covered in the <a href="templates-common.html#sponsor">Common Template Variables</a> documentation.  The following
+          attributes are available for this function:
+
+          <br /><br />
+
+          <b>amount -</b> <span>A numerical value specifying the number of sponsors to load into the template variable.  Do not include this attribute if you would like
+                          all of your sponsors to be loaded.</span><br />
+
+          <b>startswith -</b> <span>Specify a single character which will limit the sponsors that are loaded to those that start with the character you specify.</span><br />
+
+          <b>alphabetize -</b> <span>true or false.  If set to true, the sponsors will be alphabetized, overriding the sort option.  If set to false or not included,
+                               the sponsors will be sorted by the sort value.</span><br />
+
+          <b>sort -</b> <span>
+                          The sorting method to use when pulling the categories from the database.  Any of the following can be used:
+
+                          <br /><br />
+
+                          <div class="bold">name</div>
+                          The sponsor's name
+
+                          <br /><br />
+
+                          <div class="bold">url</div>
+                          The sponsor's URL
+
+                          <br /><br />
+
+                          <div class="bold">num_videos</div>
+                          The number of videos assigned to the sponsor
+
+                          <br /><br />
+
+                          <div class="bold">RAND()</div>
+                          Random
+                        </span><br />
+
+          <b>var -</b> <span>Specify the template variable into which the sponsors will be loaded</span><br />
+
+        </ul>
+
+
+
+        <div class="bold large mt">{stats}</div>
+        <ul>
+          <xmp>{stats var=$stats}</xmp>
+
+          Use this template function to load some global site stats into a template variable.  The following attributes are available for this function:
+
+          <br /><br />
+
+          <b>var -</b> <span>The template variable into which the stats will be loaded</span><br />
+
+          The template variable will have the following values:
+
+          <br /><br />
+
+          <b>$stats.users -</b> <span>The total number of active users</span><br />
+          <b>$stats.videos -</b> <span>The total number of active videos</span><br />
+          <b>$stats.categories -</b> <span>The total number of categories</span><br />
+          <b>$stats.comments -</b> <span>The total number of comments</span><br />
+        </ul>
+
+
+        <div class="bold large mt">{tags}</div>
+        <ul>
+          <xmp>{tags
+var=$tags
+sort="frequency DESC"
+alphabetize=true
+amount=50
+minscore=100
+maxscore=200}</xmp>
+
+          This template function is used to load tags associated with videos.  You can then use that template variable with a {foreach} template
+          function to display or otherwise process the tags.  The template variable will contain an array of tags, and each tag will contain all of the data that can be accessed
+          through normal Tag template variables, as covered in the <a href="templates-common.html#tag">Common Template Variables</a> documentation.  The following attributes are
+          available for this function:
+
+          <br /><br />
+
+          <b>minscore -</b> <span>The minimum score that can be assigned to a search term.  Scores are based on frequency, and are useful for generating different font sizes for
+                            tag clouds.  100 is recommended for this value.</span><br />
+
+          <b>maxscore -</b> <span>The maximum score that can be assigned to a search term.  Scores are based on frequency, and are useful for generating different font sizes for
+                            tag clouds.  200 is recommended for this value.</span><br />
+
+          <b>alphabetize -</b> <span>true or false.  If set to true, the tags will be alphabetized, overriding the sort option.  If set to false or not included,
+                               the tags will be sorted by the sort value.</span><br />
+          <b>sort -</b> <span>
+                          The sorting method to use when pulling the tags from the database.  Any of the following can be used:
+
+                          <br /><br />
+
+                          <div class="bold">tag</div>
+                          The tag itself
+
+                          <br /><br />
+
+                          <div class="bold">frequency</div>
+                          The number of times this search term has been used
+
+                          <br /><br />
+
+                          <div class="bold">RAND()</div>
+                          Random
+                        </span><br />
+
+          <b>amount -</b> <span>The number of tags to load</span><br />
+
+          <b>var -</b> <span>The template variable into which the tags will be loaded</span><br />
+
+        </ul>
+
+
+
+        <div class="bold large mt">{user}</div>
+        <ul>
+          <xmp>{user var=$user username=$video.username}</xmp>
+
+          This template function is used to load a single user into a template variable.  The template variable will contain all of the data that can be accessed
+          through normal User template variables, as covered in the <a href="templates-common.html#user">Common Template Variables</a> documentation.  The following
+          attributes are available for this function:
+
+          <br /><br />
+
+          <b>var -</b> <span>The template variable into which the user data will be loaded</span><br />
+          <b>username -</b> <span>The username of the account.  This can either be provided as an actual string value or as a template variable
+                            that contains the username.</span><br />
+
+        </ul>
+
+
+
+        <div class="bold large mt">{video}</div>
+        <ul>
+          <xmp>{video var=$video videoid=$g_video_id}</xmp>
+
+          This template function is used to load a single video into a template variable.  The template variable will contain all of the data that can be accessed
+          through normal Video template variables, as covered in the <a href="templates-common.html#video">Common Template Variables</a> documentation.  The following
+          attributes are available for this function:
+
+          <br /><br />
+
+          <b>var -</b> <span>The template variable into which the video data will be loaded</span><br />
+          <b>username -</b> <span>The ID number of the video.  This can either be provided as an actual numeric value or as a template variable
+                            that contains the video ID.</span><br />
+
+        </ul>
+
+
+
+        <div class="bold large mt">{videos}</div>
+        <ul>
+          <xmp>{videos}</xmp>
+
+          This template function is used to load videos into a template variable.   You can then use that template variable with a {foreach} template function to display
+          or otherwise process the videos.  The template variable will contain an array of videos, and each video will contain all of the data that can be accessed through normal
+          Video template variables, as covered in the <a href="templates-common.html#video">Common Template Variables</a> documentation.  The following attributes are available for
+          this function:
+
+          <br /><br />
+
+          <b>amount -</b> <span>A numeric value specifying the number of comments to load.  If using pagination, this will specify the number to display per page.</span><br />
+
+          <b>featured -</b> <span>true or false.  true to only select featured videos, false to only select non-featured videos.</span><br />
+
+          <b>category -</b> <span>
+                              Limit the videos which can be selected to those of a specific category.  The category can be specified in
+                              one of three ways:
+
+                              <br /><br />
+
+                              <div class="bold">Template variable</div>
+                              A template variable that contains the category ID number
+
+                              <br /><br />
+
+                              <div class="bold">Category ID</div>
+                              The ID number assigned to the category
+
+                              <br /><br />
+
+                              <div class="bold">Category Name</div>
+                              The name of the category, exactly as it appears in the control panel interface.
+                            </span>
+
+          <b>sponsor -</b> <span>
+                              Limit the videos which can be selected to those of a specific sponsor.  The sponsor can be specified in
+                              one of three ways:
+
+                              <br /><br />
+
+                              <div class="bold">Template variable</div>
+                              A template variable that contains the sponsor ID number
+
+                              <br /><br />
+
+                              <div class="bold">Sponsor ID</div>
+                              The ID number assigned to the sponsor
+
+                              <br /><br />
+
+                              <div class="bold">Sponsor Name</div>
+                              The name of the sponsor, exactly as it appears in the control panel interface.
+                            </span>
+
+          <b>tags -</b> <span>
+                          Limit the videos which can be selected to those that match the boolean mode search supplied for this attribute.  Examples:
+
+                          <br /><br />
+
+                          <div class="bold">tags="funny"</div>
+                          Videos that have funny in their tags
+                          <br /><br />
+
+                          <div class="bold">tags="funny cartoon"</div>
+                          Videos that have either funny or cartoon in their tags
+                          <br /><br />
+
+                          <div class="bold">tags="+funny +cartoon"</div>
+                          Videos that have both funny and cartoon in their tags
+                          <br /><br />
+
+                          <div class="bold">tags="funny -cartoon"</div>
+                          Videos that have funny but not cartoon in their tags
+                        </span><br />
+
+          <b>username -</b> <span>
+                              Limit the videos which can be selected to those of a specific user.  The user can be specified in
+                              one of two ways:
+
+                              <br /><br />
+
+                              <div class="bold">Template variable</div>
+                              A template variable that contains the account username
+
+                              <br /><br />
+
+                              <div class="bold">Username</div>
+                              The account username, exactly as it appears in the control panel interface
+                            </span>
+
+          <b>related -</b> <span>If provided, this must be a template variable that contains a video</span><br />
+
+          <b>favorites -</b> <span>true or false.  true to select only videos that are favorites for a specific user, false otherwise.  Only meaningful on the
+                             user-favorites.tpl template.</span><br />
+
+          <b>not -</b> <span>If provided, this must be a video ID number which cannot be included in the videos that are selected.  The video ID can be specified in
+                             one of two ways:
+
+                             <br /><br />
+
+                             <div class="bold">Template variable</div>
+                             A template variable that contains the video ID number
+
+                             <br /><br />
+
+                             <div class="bold">Video ID</div>
+                             The ID number assigned to the video</span><br />
+
+          <b>private -</b> <span>true or false.  true to select private videos, false to select non-private videos</span><br />
+
+          <b>paginate -</b> <span>true or false.  true to paginate the videos, false otherwise</span><br />
+
+          <b>page -</b> <span>The page number that the user is viewing (most often set to $g_page_number)</span><br />
+
+          <b>searchterm -</b> <span>Limit the videos selected based on a search term</span><br />
+
+          <b>emptysearch -</b> <span>true or false.  true to allow empty search terms, false otherwise.  Only meaningful on the user-my-videos.tpl template.</span><br />
+
+          <b>sort -</b> <span>
+                          The sorting method to use when pulling the videos from the database.  Any of the following can be used:
+
+                          <br /><br />
+
+                          <div class="bold">video_id</div>
+                          The ID number assigned to the video.
+
+                          <br /><br />
+
+                          <div class="bold">date_added</div>
+                          The date and time the video was submitted
+
+                          <br /><br />
+
+                          <div class="bold">duration</div>
+                          The length of the video in seconds
+
+                          <br /><br />
+
+                          <div class="bold">RAND()</div>
+                          Random
+                        </span><br />
+
+          <b>var -</b> <span>The template variable into which the videos will be loaded</span><br />
+        </ul>
+
+      </ul>
+
+
+    </div>
+
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,3 @@
+RedirectMatch /tubex/templates/_cache /tubex/
+RedirectMatch /tubex/templates/_compiled /tubex/
+RedirectMatch /tubex/templates/.*/.*\.tpl$ /tubex/

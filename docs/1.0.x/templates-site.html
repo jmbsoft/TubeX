@@ -1,0 +1,601 @@
+<html>
+<head>
+    <title>TubeX Documentation</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+
+<body>
+
+  <div class="main-content">
+
+    <div class="header-main">Site Templates</div>
+
+    <div class="toc-link"><a href="index.html">Table of Contents</a></div>
+
+    <span class="header-section">Template Editing Interface</span>
+    <div class="section">
+      Editing the site templates is done through the Templates &gt; Site Templates function in the control panel.  That interface will look
+      something like this:
+
+      <br /><br />
+
+      <div class="centered">
+        <img src="images/cp-templates-site.png" title="Site Templates" />
+      </div>
+
+      <ul>
+        <b>Available Templates -</b> <span>This section will list all of the available site templates that you can edit.  When you first access
+                                     the page, only this section will be shown.  Click on a template name to load that template for editing.</span><br />
+
+        <b>Code Editor -</b> <span>This is the text input box where you can make modifications to the template code.  When you first access this interface,
+                             this field will not be visisble.  Click on one of the available templates to load that template and make the code editor visible.</span><br />
+
+        <b>Toolbar Functions -</b> <span>Use the toolbar functions to peform the following actions:
+
+                                   <br /><br />
+
+                                   <img src="../images/search-replace-32x32.png" />
+                                   <span>Click this icon to bring up the Search and Replace dialog where you can perform a search and replace on many templates at once.</span><br />
+
+
+                                   <img src="../images/save-32x32.png" />
+                                   <span>Click this icon to save the currently loaded template</span><br />
+
+                                   <img src="../images/reload-32x32.png" />
+                                   <span>Click this icon to reload the template code for the currently loaded template.  This is useful when you do a search and replace which
+                                   affects the current template you are editing.</span><br />
+
+                                   <img src="../images/help-32x32.png" />
+                                   <span>Click this icon to access this documentation file</span>
+                                   </span>
+      </ul>
+    </div>
+
+
+    <span class="header-section">Search and Replace</span>
+    <div class="section">
+      TubeX allows you to make quick changes to your templates in bulk with the Search and Replace function.  When you access the Search and Replace function a dialog will appear that will allow you
+      to select the templates that you want to perform this action on, the code to search for in the template, and the replacement code to use.  Multiple templates can be selected by holding down the shift or ctrl
+      keys on your keyboard as you click on templates in the selection list.  Once you have selected the templates and entered the search and replacement code, press the Apply Changes button to start the task.
+      Once completed a notification message will be displayed letting you know how many replacements were made.
+    </div>
+
+
+    <span class="header-section">Custom Templates</span>
+    <div class="section">
+      In addition to the default templates shipped with the software, it is also possible to create custom templates that you can use to display any information that you like.  The software ships with an example
+      custom template named custom-rss-feed-newest.tpl which generates an RSS feed of the most recently added videos.  Custom templates can be used for any purpose that you like.
+
+      <br /><br />
+
+      <div class="bold large">Naming</div>
+      Custom templates will need to be named using the following format:
+
+      <ul class="mono">custom-TEMPLATE_NAME.tpl</ul>
+
+      Where TEMPLATE_NAME is the unique name you want to use for the template.  The template filenames may contain only English letters, numbers, and the dash (-) character.  So, for example, if you wanted to
+      create a custom template to generate an RSS feed of the top rated videos you might use this for the filename:
+
+      <ul class="mono">custom-rss-feed-top-rated.tpl</ul>
+
+
+      <div class="bold large">Creating</div>
+      Once you have determined the filename you want to use for the custom template, you can simply create an empty file with that name and upload it to the directory containing the template set you have selected.
+      For example, if you are using the Default-Blue-Rewrite template set, you would upload the custom template file to the templates/Default-Blue-Rewrite directory of your TubeX installation.  Once the file is uploaded,
+      set it's permissions to 666 which will allow you to edit that file through the control panel interface.
+
+      <br /><br />
+
+      <div class="bold large">Viewing</div>
+      Now that the custom template file has been created, you will need to setup the HTML and template code.  This can be done just like you were editing any other template file.  Before you can view the output from
+      the template it will be necessary to load and save the template so it can be processed and compiled for use by the software.
+
+      <br /><br />
+
+      The custom.php script is responsible for displaying the custom template pages, and accepts the <b><i>t=</i></b> parameter as the template name.  To view the example custom template custom-rss-feed-newest.tpl you
+      would use this URL format:
+
+      <ul class="mono">http://www.yoursite.com/tubex/custom.php?t=rss-feed-newest</ul>
+
+      <div class="message-notice">Note that you only include the unique portion of the template filename (rss-feed-newest) and not the entire filename for the <b><i>t=</i></b> parameter.</div>
+
+      <br />
+
+      It is also possible to use mod_rewrite rules to create search-engine friendly URLs for your custom templates.  The default .htaccess file included with the software gives an example of how this can be done
+      for the custom-rss-feed-newest.tpl custom template:
+
+      <br /><br />
+
+      <div class="code">RewriteRule ^feeds/newest/?([0-9]+)?/?$ custom.php?t=rss-feed-newest&p=$2 [L]</div>
+
+      <br />
+
+      You can add as many mod_rewrite rules to the .htaccess file as you need!
+    </div>
+
+
+    <span class="header-section">Templates &amp; Their Variables</span>
+    <div class="section">
+      All of the site templates will have the following two variables set:
+
+      <ul>
+        <b>$g_logged_in -</b> <span class="nmb">This will be true if the user viewing the page is an authenticated user, or false otherwise</span><br />
+        <b>$g_config -</b> <span class="nmb">The software settings (see <a href="templates-common.html#g_config" target="_blank">Common Template Variables</a>)</span><br />
+      </ul>
+
+      Below you will find a list of all the site templates shipped with the software, a description of when the template is used, and details on the template variables
+      available (if any) on that template.
+
+      <br /><br />
+
+      <div class="bold large">categories.tpl</div>
+      <ul>
+        This template is used for the categories page which will display a list of your categories.  Your users will be able to click on the category links to browse
+        the videos in the category they select.
+
+        <br /><br />
+
+        <b>$g_loc_categories -</b> <span class="nmb">This will be set to true only for this template to indicate that the categories page is being viewed</span><br />
+      </ul>
+
+
+      <div class="bold large mt">global-categories.tpl</div>
+      <ul>
+        This template is designed to be used with the {template} function, and contains the template code necessary to display a list of your categories in the sidebar
+        (or any location you choose) of your site.
+      </ul>
+
+
+      <div class="bold large mt">global-footer.tpl</div>
+      <ul>
+        This template is designed to be used with the {template} function, and contains the template code that will be used as the footer for all of the site pages
+      </ul>
+
+
+      <div class="bold large mt">global-header.tpl</div>
+      <ul>
+        This template is designed to be used with the {template} function, and contains the template code that will be used as the header for all of the site pages
+      </ul>
+
+
+      <div class="bold large mt">global-pagination-js.tpl</div>
+      <ul>
+        This template is designed to be used with the {template} function, and contains the template code that will be used to generate pagination links for paginated
+        interfaces that require JavaScript to jump between the pages (currently only user-my-videos.tpl).
+      </ul>
+
+
+      <div class="bold large mt">global-pagination.tpl</div>
+      <ul>
+        This template is designed to be used with the {template} function, and contains the template code that will be used to generate pagination links for paginated
+        interfaces.
+      </ul>
+
+
+      <div class="bold large mt">global-search-terms.tpl</div>
+      <ul>
+        This template is designed to be used with the {template} function, and contains the template code necessary to display a tag cloud of popular search terms in the
+        sidebar (or any location you choose) of your site.
+      </ul>
+
+
+      <div class="bold large mt">global-tags.tpl</div>
+      <ul>
+        This template is designed to be used with the {template} function, and contains the template code necessary to display a tag cloud of popular tags in the
+        sidebar (or any location you choose) of your site.
+      </ul>
+
+
+      <div class="bold large mt">index.tpl</div>
+      <ul>
+        This template controls the main page of your TubeX site.
+
+        <br /><br />
+
+        <b>$g_loc_home -</b> <span class="nmb">This will be set to true only for this template to indicate that the main page is being viewed</span><br />
+      </ul>
+
+
+      <div class="bold large mt">style.css</div>
+      <ul>
+        This is not actually a template, but can still be edited through the template editor.  This is the style sheet that is used for all of the site templates.
+      </ul>
+
+
+      <div class="bold large mt">upload-complete.tpl</div>
+      <ul>
+        This template will be displayed when a user finishes uploading a video.  Note that this template is used only for uploads where the user has to use a standard upload
+        form and not the recommended Flash based upload.
+
+        <br /><br />
+
+        <b>$g_loc_upload -</b> <span class="nmb">This will be set to true only for this template to indicate that the upload page is being viewed</span><br />
+        <b>$g_video -</b> <span class="nmb">This will contain the video information (see <a href="templates-common.html#video" target="_blank">Common Template Variables</a>)</span><br />
+        <b>$g_form -</b> <span class="nmb">Identical to $g_video</span><br />
+      </ul>
+
+
+      <div class="bold large mt">upload-disabled.tpl</div>
+      <ul>
+        This template will be displayed when a user tries to access the upload interface but video uploads have been disabled by the administrator
+
+        <br /><br />
+
+        <b>$g_loc_upload -</b> <span class="nmb">This will be set to true only for this template to indicate that the upload page is being viewed</span><br />
+      </ul>
+
+
+      <div class="bold large mt">upload-flash-complete.tpl</div>
+      <ul>
+        This template will be displayed when a user finishes uploading a video using the Flash based upload system.  Note that this template does not include the HTML code necessary
+        for a full page (i.e. no &lt;html&gt;, &lt;head&gt;, or &lt;body&gt; tags) since the code from this template will be inserted into the already visible page after the upload completes.
+
+        <br /><br />
+
+        <b>$g_loc_upload -</b> <span class="nmb">This will be set to true only for this template to indicate that the upload page is being viewed</span><br />
+        <b>$g_video -</b> <span class="nmb">This will contain the video information (see <a href="templates-common.html#video" target="_blank">Common Template Variables</a>)</span><br />
+        <b>$g_form -</b> <span class="nmb">Identical to $g_video</span><br />
+      </ul>
+
+
+      <div class="bold large mt">upload-flash-errors.tpl</div>
+      <ul>
+        This template will be displayed when a user uploads a video using the Flash based upload system but there are errors with the data they submitted.  Note that this template does
+        not include the HTML code necessary for a full page (i.e. no &lt;html&gt;, &lt;head&gt;, or &lt;body&gt; tags) since the code from this template will be inserted into the already
+        visible page after the upload completes.
+
+        <br /><br />
+
+        <b>$g_loc_upload -</b> <span class="nmb">This will be set to true only for this template to indicate that the upload page is being viewed</span><br />
+        <b>$g_errors -</b> <span class="nmb">This will an array of error messages</span><br />
+      </ul>
+
+
+      <div class="bold large mt">upload-step-one.tpl</div>
+      <ul>
+        This template controls step one of the video upload process and will gather the initial video information (title, description, etc) from the user.  This template will also be
+        re-displayed if the user submits invalid data.
+
+        <br /><br />
+
+        <b>$g_loc_upload -</b> <span class="nmb">This will be set to true only for this template to indicate that the upload page is being viewed</span><br />
+        <b>$g_errors -</b> <span class="nmb">An array of error messages if the data submitted contained invalid information, empty otherwise</span><br />
+        <b>$g_tag_min_length -</b> <span class="nmb">The minimum length allowed for each tag that is submitted</span><br />
+        <b>$g_custom_fields -</b> <span class="nmb">An array containing the custom database fields for videos, if any have been created</span><br />
+        <b>$g_year -</b> <span class="nmb">The current year</span><br />
+        <b>$g_form -</b> <span class="nmb">The data that the user submitted if it is necessary to redisplay this page, empty otherwise</span><br />
+      </ul>
+
+
+      <div class="bold large mt">upload-step-two.tpl</div>
+      <ul>
+        This template controls step two of the video upload process where the user will actually select the video file they want to upload.  This template will also be redisplayed if
+        the Flash based upload system isn't used and errors are encountered with the uploaded video.
+
+        <br /><br />
+
+        <b>$g_loc_upload -</b> <span class="nmb">This will be set to true only for this template to indicate that the upload page is being viewed</span><br />
+        <b>$g_errors -</b> <span class="nmb">An array of error messages if the data submitted contained invalid information, empty otherwise</span><br />
+        <b>$g_form -</b> <span class="nmb">The data that the user submitted if it is necessary to redisplay this page, empty otherwise</span><br />
+        <b>$g_file_types -</b> <span class="nmb">A string to specify what video file extensions are allowed (passed to the Flash upload system)</span><br />
+        <b>$g_cookie -</b> <span class="nmb">The user's login cookie (passed to the Flash upload system)</span><br />
+      </ul>
+
+
+      <div class="bold large mt">user-avatar.tpl</div>
+      <ul>
+        This template will be displayed when a user wishes to modify their avatar image.  It is also re-displayed both for a successful and un-successful avatar upload.
+
+        <br /><br />
+
+        <b>$g_username -</b> <span class="nmb">The username of the authenticated user accessing this page</span><br />
+        <b>$g_errors -</b> <span class="nmb">An array of error messages (if the uploaded avatar was invalid), empty otherwise</span><br />
+        <b>$g_success -</b> <span class="nmb">Flag set to true if the uploaded image has been successfully saved as the new avatar, empty otherwise</span><br />
+      </ul>
+
+
+      <div class="bold large mt">user-confirmed.tpl</div>
+      <ul>
+        This template will be displayed when new user accounts must be confirmed by e-mail and a user has clicked on the confirmation link in the e-mail message they received.
+        It will be displayed both when the confirmation is successful and un-successful.
+
+        <br /><br />
+
+        <b>$g_user -</b> <span class="nmb">The user account data of the confirmed user (if the confirmation code was valid), empty otherwise<br />
+                         (see <a href="templates-common.html#user" target="_blank">Common Template Variables</a>)</span><br />
+        <b>$g_errors -</b> <span class="nmb">An array of error messages (if the confirmation code was invalid), empty otherwise</span><br />
+      </ul>
+
+
+      <div class="bold large mt">user-edit.tpl</div>
+      <ul>
+        This template will display the form where a user can update their user account settings.   It is also re-displayed when invalid data is submitted or the
+        account data is successfully updated.
+
+        <br /><br />
+
+        <b>$g_username -</b> <span class="nmb">The username of the authenticated user accessing this page</span><br />
+        <b>$g_custom_fields -</b> <span class="nmb">An array containing the custom database fields for users, if any have been created</span><br />
+        <b>$g_errors -</b> <span class="nmb">An array of error messages (if the submitted data is invalid), empty otherwise</span><br />
+        <b>$g_success -</b> <span class="nmb">Flag set to true if the user account data has been successfully updated, empty otherwise</span><br />
+      </ul>
+
+
+      <div class="bold large mt">user-favorites.tpl</div>
+      <ul>
+        This template will display when a user views their favorites.  This template supports pagination.
+
+        <br /><br />
+
+        <b>$g_username -</b> <span class="nmb">The username of the authenticated user accessing this page</span><br />
+        <b>g_page_number -</b> <span class="nmb">The current page number that the user is viewing</span><br />
+      </ul>
+
+
+      <div class="bold large mt">user-login.tpl</div>
+      <ul>
+        This template controls the user login page.  It will be re-displayed if the user enters invalid login information.
+
+        <br /><br />
+
+        <b>$g_referrer - </b> <span class="nmb">The referring URL from which the user came, if any</span><br />
+        <b>$g_loc_login -</b> <span class="nmb">This will be set to true only for this template to indicate that the login page is being viewed</span><br />
+        <b>$g_errors -</b> <span class="nmb">An array of error messages (if the submitted data is invalid), empty otherwise</span><br />
+        <b>$g_form -</b> <span class="nmb">The data that the user submitted if it is necessary to redisplay this page, empty otherwise</span><br />
+      </ul>
+
+
+      <div class="bold large mt">user-menu.tpl</div>
+      <ul>
+        This template is designed to be used with the {template} function, and contains the template code that will be used to generate the user menu that is
+        displayed in the user account interfaces (my account, my videos, etc).
+
+        <br /><br />
+
+        <b>$g_username -</b> <span class="nmb">The username of the authenticated user accessing this page</span><br />
+      </ul>
+
+
+      <div class="bold large mt">user-my-account.tpl</div>
+      <ul>
+        This template controls the My Account interface where a user can see their current profile and access other areas of the account management interface.
+
+        <br /><br />
+
+        <b>$g_username -</b> <span class="nmb">The username of the authenticated user accessing this page</span><br />
+        <b>$g_loc_my_account -</b> <span class="nmb">This will be set to true only for this template to indicate that the my account page is being viewed</span><br />
+        <b>$g_num_favorites -</b> <span class="nmb">The total number of favorites the user has created</span><br />
+      </ul>
+
+
+      <div class="bold large mt">user-my-videos.tpl</div>
+      <ul>
+        This template controls the My Videos interface where a user can see their current videos.  This template supports pagination.
+
+        <br /><br />
+
+        <b>$g_username -</b> <span class="nmb">The username of the authenticated user accessing this page</span><br />
+        <b>$g_page_number -</b> <span class="nmb">The current page number that the user is viewing</span><br />
+        <b>$g_my_videos_term -</b> <span class="nmb">The search term the user entered, if any</span><br />
+        <b>$g_sorter -</b> <span class="nmb">The sorting option the ser selected, if any</span><br />
+        <b>$g_videos_sorter -</b> <span class="nmb">The sorting method to use for videos, useful for passing to the sort option of the {videos} template function</span><br />
+      </ul>
+
+
+      <div class="bold large mt">user-profile.tpl</div>
+      <ul>
+        This template controls the profile page where a user's profile can be viewed by other site visitors.
+
+        <br /><br />
+
+        <b>$g_username -</b> <span class="nmb">The username of the account who's profile is being viewed</span><br />
+      </ul>
+
+
+      <div class="bold large mt">user-register-complete.tpl</div>
+      <ul>
+        This template will be displayed after a user succesfully submits account information for creating a new account.
+
+        <br /><br />
+
+        <b>$g_user -</b> <span class="nmb">The account data that the user submitted (see <a href="templates-common.html#user" target="_blank">Common Template Variables</a>)</span><br />
+        <b>$g_form -</b> <span class="nmb">Identical to $g_user</span><br />
+      </ul>
+
+
+      <div class="bold large mt">user-register.tpl</div>
+      <ul>
+        This will control the account signup form which users will need to fill in to create an account.  This will also be re-displayed if the user submits invalid data.
+
+        <br /><br />
+
+        <b>$g_loc_register -</b> <span class="nmb">This will be set to true only for this template to indicate that the register page is being viewed</span><br />
+        <b>$g_errors -</b> <span class="nmb">An array of error messages (if the submitted data is invalid), empty otherwise</span><br />
+        <b>$g_form -</b> <span class="nmb">The data that the user submitted (if it is necessary to redisplay this page), empty otherwise</span><br />
+        <b>$g_custom_fields -</b> <span class="nmb">An array containing the custom database fields for users, if any have been created</span><br />
+        <b>$g_year -</b> <span class="nmb">The current year</span><br />
+      </ul>
+
+
+      <div class="bold large mt">user-reset-confirmed.tpl</div>
+      <ul>
+        This template will be displayed when a user has clicked on the confirmation link in the e-mail message they received after initiating a password reset.
+        It will be displayed both when the confirmation is successful and un-successful.
+
+        <br /><br />
+
+        <b>$g_user -</b> <span class="nmb">The user account data of the confirmed user (if the confirmation code was valid), empty otherwise<br />
+                         (see <a href="templates-common.html#user" target="_blank">Common Template Variables</a>)</span><br />
+        <b>$g_password -</b> <span class="nmb">The new password generated for the account</span><br />
+        <b>$g_errors -</b> <span class="nmb">An array of error messages (if the confirmation code was invalid), empty otherwise</span><br />
+      </ul>
+
+
+      <div class="bold large mt">user-reset-found.tpl</div>
+      <ul>
+        This template will be displayed when a user initiates a password reset and their e-mail address has been found in the database.
+
+        <br /><br />
+
+        <b>$g_user -</b> <span class="nmb">The user account data of the located account (see <a href="templates-common.html#user" target="_blank">Common Template Variables</a>)</span><br />
+      </ul>
+
+
+      <div class="bold large mt">user-reset.tpl</div>
+      <ul>
+        This controls the password reset form.  It will be re-displayed if the user enters an invalid e-mail address.
+
+        <br /><br />
+
+        <b>$g_errors -</b> <span class="nmb">An array of error messages (if the submitted data is invalid), empty otherwise</span><br />
+        <b>$g_form -</b> <span class="nmb">The data that the user submitted (if it is necessary to redisplay this page), empty otherwise</span><br />
+      </ul>
+
+
+      <div class="bold large mt">user-video-edit.tpl</div>
+      <ul>
+        This template wil be displayed when a user wishes to edit one of their videos.  It will also be re-displayed both when the video is successfully updated and when invalid
+        data is submitted.
+
+        <br /><br />
+
+        <b>$g_errors -</b> <span class="nmb">An array of error messages if the data submitted contained invalid information, empty otherwise</span><br />
+        <b>$g_tag_min_length -</b> <span class="nmb">The minimum length allowed for each tag that is submitted</span><br />
+        <b>$g_custom_fields -</b> <span class="nmb">An array containing the custom database fields for videos, if any have been created</span><br />
+        <b>$g_year -</b> <span class="nmb">The current year</span><br />
+        <b>$g_form -</b> <span class="nmb">The data that the user submitted if it is necessary to redisplay this page, empty otherwise</span><br />
+        <b>$g_thumbs - </b> <span class="nmb">An array containing the preview thumbnails for the video, if any</span><br />
+      </ul>
+
+
+      <div class="bold large mt">video-comments-iframe.tpl</div>
+      <ul>
+        This template controls the display of video comments in an &lt;iframe&gt; on the video page.  This template supports pagination.
+
+        <br /><br />
+
+        <b>$g_video_id -</b> <span class="nmb">The ID number of the video who's comments are being viewed</span><br />
+        <b>$g_page_number -</b> <span class="nmb">The page number that the user is viewing</span><br />
+      </ul>
+
+
+      <div class="bold large mt">video-comments.tpl</div>
+      <ul>
+        This template controls the standalone video comments page.  This template supports pagination.
+
+        <br /><br />
+
+        <b>$g_video_id -</b> <span class="nmb">The ID number of the video who's comments are being viewed</span><br />
+        <b>$g_page_number -</b> <span class="nmb">The page number that the user is viewing</span><br />
+      </ul>
+
+
+      <div class="bold large mt">video-player-flash.tpl</div>
+      <ul>
+        This template controls the HTML used for videos that can be played with a Flash video player (FLV, MP4).  For use in the flv option of the {player} template function.
+      </ul>
+
+
+      <div class="bold large mt">video-player-other.tpl</div>
+      <ul>
+        This template controls the HTML used for videos that cannnot be played with the other player types.  For use in the other option of the {player} template function.
+      </ul>
+
+
+      <div class="bold large mt">video-player-quicktime.tpl</div>
+      <ul>
+        This template controls the HTML used for videos that can be played with a Quicktime video player (MPEG, MOV).  For use in the qt option of the {player} template function.
+      </ul>
+
+
+      <div class="bold large mt">video-player-silverlight.tpl</div>
+      <ul>
+        This template controls the HTML used for videos that can be played with a Silverlight video player (WMV).  For use in the wmv option of the {player} template function.
+      </ul>
+
+
+      <div class="bold large mt">videos-browse.tpl</div>
+      <ul>
+        This template controls the Browse Videos page.  This template supports pagination.
+
+        <br /><br />
+
+        <b style="width: 22%">$g_loc_videos -</b>  <span class="nmb">This will be set to true only for this template to indicate that the browse videos page is being viewed</span><br />
+        <b style="width: 22%">$g_page_number -</b>  <span class="nmb">The page number the user is viewing</span><br />
+        <b style="width: 22%">$g_sort -</b>  <span class="nmb">The sorting option that the user selected</span><br />
+        <b style="width: 22%">$g_timeframe -</b>  <span class="nmb">The timeframe that the user selected</span><br />
+        <b style="width: 22%">$g_videos_sorter -</b>  <span class="nmb">The sorting method to use for videos, useful for passing to the sort option of the {videos} template function</span><br />
+        <b style="width: 22%">$g_loc_videos_popular -</b>  <span class="nmb">This will be set to true only if the user is viewing videos by popularity</span><br />
+        <b style="width: 22%">$g_loc_videos_top_rated -</b>  <span class="nmb">This will be set to true only if the user is viewing videos by rating</span><br />
+        <b style="width: 22%">$g_loc_videos_most_rated -</b>  <span class="nmb">This will be set to true only if the user is viewing videos by number of ratings</span><br />
+        <b style="width: 22%">$g_loc_videos_most_discussed -</b>  <span class="nmb">This will be set to true only if the user is viewing videos by number of comments</span><br />
+        <b style="width: 22%">$g_loc_videos_top_favorited -</b>  <span class="nmb">This will be set to true only if the user is viewing videos by number of favorites</span><br />
+        <b style="width: 22%">$g_loc_today -</b>  <span class="nmb">This will be set to true only if the sorting timeframe is today</span><br />
+        <b style="width: 22%">$g_loc_week -</b>  <span class="nmb">This will be set to true only if the sorting timeframe is this week</span><br />
+        <b style="width: 22%">$g_loc_month -</b>  <span class="nmb">This will be set to true only if the sorting timeframe is this month</span><br />
+        <b style="width: 22%">$g_loc_all_time -</b>  <span class="nmb">This will be set to true only if the sorting timeframe is all time</span><br />
+      </ul>
+
+
+      <div class="bold large mt">videos-by-category.tpl</div>
+      <ul>
+        This template will be displayed when a user selected to view videos in a specific category.  This template supports pagination.
+
+        <br /><br />
+
+        <b>$g_category_url -</b>  <span class="nmb">The URL Name for the category the user selected</span><br />
+        <b>$g_page_number -</b> <span class="nmb">The page number that the user is viewing</span><br />
+      </ul>
+
+
+      <div class="bold large mt">videos-by-search.tpl</div>
+      <ul>
+        This template controls the end-user search results page.  This template supports pagination.
+
+        <br /><br />
+
+        <b>$g_term -</b>  <span class="nmb">The search term that the user entered</span><br />
+        <b>$g_category_id -</b>  <span class="nmb">The ID of the category the user selected to search in</span><br />
+        <b>$g_page_number -</b> <span class="nmb">The page number that the user is viewing</span><br />
+      </ul>
+
+
+      <div class="bold large mt">videos-by-tag.tpl</div>
+      <ul>
+        This template will be displayed when a user selects to view videos that contain a specific tag.  This template supports pagination.
+
+        <br /><br />
+
+        <b>$g_tag -</b>  <span class="nmb">The tag that the user selected</span><br />
+        <b>$g_page_number -</b> <span class="nmb">The page number that the user is viewing</span><br />
+      </ul>
+
+
+      <div class="bold large mt">videos-newest.tpl</div>
+      <ul>
+        This template controls the Newest Videos page.  This template supports pagination.
+
+        <br /><br />
+
+        <b>$g_loc_newest -</b>  <span class="nmb">This will be set to true only for this template to indicate that the newest videos page is being viewed</span><br />
+        <b>$g_page_number -</b> <span class="nmb">The page number that the user is viewing</span><br />
+      </ul>
+
+
+      <div class="bold large mt">video-watch.tpl</div>
+      <ul>
+        This template controls the page where users will actually view a video.
+
+        <br /><br />
+
+        <b>$g_video_id -</b> <span class="nmb">The ID number of the video that is being viewed</span><br />
+        <b>$g_private -</b> <span class="nmb">A flag to indicate if the video is private (true), or false otherwise</span><br />
+        <b>$g_private_id -</b> <span class="nmb">If the video is private the special ID that allows access to view the video</span><br />
+      </ul>
+
+    </div>
+
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,277 @@
+<html>
+<head>
+    <title>TubeX Documentation</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <style type="text/css">
+.link { color: blue; }
+pre {
+   font-family:monospace;
+   /*color:#007000;*/
+   font-size:9pt;
+   background-color:#fafafa;
+   border:1px solid #bbb;
+   line-height:125%;
+   margin:1em 0 0 0;
+   padding:.99em;
+   overflow:none;
+   word-wrap:break-word;
+   _word-wrap: normal;
+
+}
+
+.datasheet { margin-bottom: 20px; width: 100%; border-bottom: 1px solid #a1a5a9;border-collapse:collapse;border-spacing:0pt;}
+.datasheet .header { /*font-size: 11px;*/ background: #e2e2e2; text-align: left; font-size: 105%; font-weight: bold;}
+.datasheet .header th { font-size: 105%; font-weight: bold;}
+.datasheet th, .datasheet td {border-top: 1px solid #a1a5a9; line-height: 18px; padding: 2px 5px; /*font-size: 11px;*/ font-weight: normal;}
+.datasheet .divider {border-right: 1px solid #a1a5a9;}
+.datasheet .odd {background: #f1f1f1;}
+
+.legend {
+   display: block;
+   /*font-size: 10px;;*/
+   background-color:#fafafa;
+   border:1px solid #bbb;
+   line-height:125%;
+   margin:1em 0 1em 1em;
+   padding:.99em;
+   overflow:none;
+   word-wrap:break-word;
+   width: 300px;
+}
+
+    </style>
+</head>
+<body>
+  <div class="main-content">
+
+    <div class="header-main">XML Videos Feed Specification</div>
+
+    <div class="toc-link"><a href="index.html">Table of Contents</a></div>
+
+    <span class="header-section">Example Feed</span>
+    <div class="section">
+      <pre class="code">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;videos&gt;
+  &lt;updated&gt;2006-04-06T20:30:34+01:00&lt;/updated&gt;
+  &lt;total&gt;1234&lt;/total&gt;
+  &lt;video&gt;
+    &lt;id&gt;123&lt;/id&gt;
+    &lt;title&gt;Video title&lt;/title&gt;
+    &lt;description&gt;Video description&lt;/description&gt;
+    &lt;tags&gt;tag1,tag2,tag3,tag4,two-words tag&lt;/tags&gt;
+    &lt;paysite&gt;paysite.com&lt;/paysite&gt;
+    &lt;perfomers&gt;perfomer1,perfomer2,perfomer3&lt;/perfomers&gt;
+    &lt;join_url&gt;http://www.paysite.com/?affid=1234&lt;/join_url&gt;
+    &lt;flv_embed&gt;
+      &lt;object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000"
+      codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,0,0"
+      width="454" height="402" id="player" align="middle"&gt;&lt;param name="allowScriptAccess"
+      value="sameDomain" /&gt;&lt;param name="allowFullScreen" value="true" /&gt;&lt;param name="menu" value="false" /&gt;
+      &lt;param name="swLiveConnect" value="true" /&gt;&lt;param name="quality" value="best" /&gt;
+      &lt;param name="movie" value="http://www.sponsor.com/video.flv/&gt;
+      &lt;param name="quality" value="best" /&gt;&lt;param name="bgcolor" value="#dfe5ef" /&gt;
+      &lt;embed src="http://www.sponsor.com/video.flv" menu="false" scale="noscale" quality="best" bgcolor="#dfe5ef"
+      width="454" height="402" name="FLVplayer" align="middle" allowScriptAccess="sameDomain"
+      allowFullScreen="true" type="application/x-shockwave-flash"
+      pluginspage="http://www.macromedia.com/go/getflashplayer" /&gt;&lt;/object&gt;
+    &lt;/flv_embed&gt;
+    &lt;clip_url&gt;http://flv.site.com/galleries/1234/&lt;/clip_url&gt;
+    &lt;screen_url&gt;http://img.site.com/galleries/1234/&lt;/screen_url&gt;
+    &lt;clips&gt;
+      &lt;clip&gt;
+        &lt;duration&gt;120&lt;/duration&gt;
+        &lt;width&gt;512&lt;/width&gt;
+        &lt;height&gt;240&lt;/height&gt;
+        &lt;flv&gt;1.flv&lt;/flv&gt;
+        &lt;screens&gt;
+          &lt;screen&gt;1_1.jpg&lt;/screen&gt;
+        &lt;/screens&gt;
+       &lt;/clip&gt;
+    &lt;/clips&gt;
+  &lt;/video&gt;
+&lt;/videos&gt;</pre>
+    </div>
+
+
+    <span class="header-section">Range Requests</span>
+    <div class="section">
+      Your feed should support range requests to allow users to fetch all galleries
+        from your database if they need to. Range request is made by passing GET
+        parameters to your feed url (eg. feed.php?start=0&amp;limit=100) with
+        ranges from 0-x, when you usually pass these parameters as range for MySQL
+        LIMIT start,limit.
+    </div>
+
+
+    <span class="header-section">XML Tag Descriptions</span>
+    <div class="section">
+
+      <div class="legend">
+        ? = optional subtag<br>
+        * = zero or more instances of the subtag<br>
+
+        + = one or more instances of the subtag<br>
+      </div>
+
+
+      <table class="datasheet">
+        <tr class="header">
+            <th>Tag</th>
+            <th>&nbsp;</th>
+            <th>Definition</th>
+        </tr>
+        <tr class="even">
+
+              <td><b>&lt;videos&gt;</b></td>
+              <td>&nbsp;</td>
+              <td>encapsulates all of the videos listings in the feed.</td>
+        </tr>
+        <tr class="odd">
+             <td><b>&lt;updated&gt;</b></td>
+             <td>&nbsp;</td>
+             <td>last time xml file was updated, file is parsed only when timestamp changes. Timestamp is formatted according to the rules specified by <a href="http://tools.ietf.org/html/rfc3339" target="_blank">RFC 3339</a>.</td>
+
+        </tr>
+        <tr class="even">
+             <td><b>&lt;total&gt;</b></td>
+              <td>&nbsp;</td>
+             <td>
+             this value is displayed only by range requests and contains total value of galleries in database. Range requests
+             are requests for galleries when two parameters are passed to feed url, for eg. feed.php?start=0&amp;limit=100, where start and end values
+             are free to set. Feed then returns galleries in range 0-100 from database (start=200&amp;limit=100 returns galleries 200-300). This tag is
+             <u>very important</u> because it tells to xml parser where to end by range requests. You have to follow names for parameters <b>start</b> and <b>limit</b>.
+             </td>
+
+        </tr>
+        <tr class="odd">
+             <td><b>&lt;video&gt;</b></td>
+              <td>+</td>
+             <td>block which contains informations about one video. This block is repeat for each item in feed.</td>
+        </tr>
+        <tr class="even">
+             <td><b>&lt;id&gt;</b></td>
+             <td>&nbsp;</td>
+
+             <td>unique ID of video from your database. INT (11)</td>
+        </tr>
+        <tr class="odd">
+             <td><b>&lt;title&gt;</b></td>
+             <td>&nbsp;</td>
+             <td>title of video, 255 characters max.</td>
+        </tr>
+        <tr class="even">
+             <td><b>&lt;description&gt;</b></td>
+
+             <td>?</td>
+             <td>description of video</td>
+        </tr>
+        <tr class="odd">
+             <td><b>&lt;tags&gt;</b></td>
+             <td>?</td>
+             <td>keywords related to given video separated by comma, 255 characters max.</td>
+
+        </tr>
+        <tr class="even">
+             <td><b>&lt;paysite&gt;</b></td>
+             <td>&nbsp;</td>
+             <td>
+             paysite name for video. This must be unique and static name, which means once you create it, can't be changed in future.
+             Paysite name is used for finding matching ads for each video in our database, thus have to be same all the time.
+             </td>
+        </tr>
+        <tr class="odd">
+             <td><b>&lt;clip_url&gt;</b></td>
+
+             <td>&nbsp;</td>
+             <td>root directory for all videos</td>
+        </tr>
+        <tr class="even">
+             <td><b>&lt;screen_url&gt;</b></td>
+             <td>&nbsp;</td>
+             <td>root directory for all video screenshots</td>
+        </tr>
+        <tr class="odd">
+
+             <td><b>&lt;clips&gt;</b></td>
+             <td>&nbsp;</td>
+             <td>block which contains informations about clip for given video. This block is repeat for each clip.</td>
+        </tr>
+        <tr class="even">
+             <td><b>&lt;clip&gt;</b></td>
+             <td>+</td>
+             <td>contains information about one clip.</td>
+
+        </tr>
+        <tr class="odd">
+             <td><b>&lt;duration&gt;</b></td>
+             <td>&nbsp;</td>
+             <td>duration of clip in seconds</td>
+        </tr>
+        <tr class="even">
+             <td><b>&lt;width&gt;</b></td>
+             <td>?</td>
+
+             <td>width of clip in pixels</td>
+        </tr>
+        <tr class="odd">
+             <td><b>&lt;height&gt;</b></td>
+             <td>?</td>
+             <td>height of clip in pixels</td>
+        </tr>
+        <tr class="even">
+             <td><b>&lt;flv&gt;</b></td>
+
+             <td>&nbsp;</td>
+             <td>
+             location to video file, relative to <b>&lt;clip_url&gt;</b>. Your video file can be in any video format supported by FLASH, though you should give
+             a choice to select if people want to use just <b>.flv</b> videos compatible with older FLASH versions or also new h264 format eg. <b>.mp4</b>.
+             This could be easily done by adding special parameter to your feed, which will be specific just for your feeds, eg.:<br>
+             <div class="link">http://www.yourdomain.com/feed.php?format=flv</div> (will display just .flv videos)<br>
+
+             <div class="link">http://www.yourdomain.com/feed.php?format=mp4</div> (will display just .mp4 videos)<br>
+             <div class="link">http://www.yourdomain.com/feed.php?format=all</div> (will display all available formats)<br><br>
+             next parameters could be passed to your feeds of course eg.:<br>
+             <div class="link">http://www.yourdomain.com/feed.php?format=flv&amp;start=200&amp;limit=100</div><br>
+
+             You can give a choice to people what video quality they want to use by creating several xml feed files by video quality/length/clips amount/resolution.
+             </td>
+        </tr>
+        <tr class="odd">
+             <td><b>&lt;screens&gt;</b></td>
+             <td>&nbsp;</td>
+             <td>block which contains informations about screenshots of given videoclip.</td>
+        </tr>
+        <tr class="even">
+             <td><b>&lt;screen&gt;</b></td>
+
+             <td>+</td>
+             <td>location to image file, relative to <b>&lt;screen_url&gt;</b></td>
+        </tr>
+        </table>
+
+      </div>
+
+
+
+      <span class="header-section">Additional Guidelines</span>
+      <div class="section">
+        Your XML file(s) must follow these guidelines:
+        <ul>
+          <li> Your feed must use UTF-8 encoding. Please specify this encoding schema
+            by including the encoding attribute in your XML tag as shown in the sample
+            XML above. </li>
+
+          <li> XML tags without data should be omitted from your feed. </li>
+          <li> XML tags should not contain HTML unless the XML tag definition explicitly
+            specifies that HTML markup is acceptable. </li>
+          <li> All data values, including URLs, in your feed must use escape codes for
+            the characters listed in the following table. </li>
+        </ul>
+      </div>
+
+
+  </div>
+
+</body>
+</html>

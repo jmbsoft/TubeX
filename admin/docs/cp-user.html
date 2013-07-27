@@ -1,0 +1,155 @@
+<html>
+<head>
+    <title>TubeX Documentation</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body>
+  <div class="main-content">
+    <div class="header-main">Users</div>
+
+    <div class="toc-link"><a href="index.html">Table of Contents</a></div>
+
+
+    <span class="header-section">Managing Users</span>
+    <div class="section">
+      Managing users is done by accessing the Users &gt; Search Users function in the control panel menu.
+      From this interface you can add new users and search, edit, or delete the existing users.  For an overview of searching,
+      adding, editing, and deleting items, please see the <a href="cp-basics.html">Control Panel Basics</a> section of this software manual.
+    </div>
+
+
+    <span class="header-section">Database Fields</span>
+    <div class="section">
+      Users have the following fields associated with them:
+      <ul>
+        <b>Username -</b> <span>The account's username.  Usernames may contain English letters, numbers, and the underscore (_) character</span><br />
+
+        <b>Password -</b> <span>The account's password.  Passwords are hashed using a one-way algorithm and cannot be recovered.  When editing
+                          an account, leave this field empty unless you want to change the account password.</span><br />
+
+        <b>E-mail Address -</b> <span>The account's e-mail address</span><br />
+
+        <b>Date Created -</b> <span>The date and time that this account was created</span><br />
+
+        <b>Status -</b> <span>The account status (one of Submitted, Pending, Active or Disabled) (see below)</span><br />
+
+        <b>User Level -</b> <span>The account user level</span><br />
+
+        <b>Avatar -</b> <span>The user's uploaded avatar (image)</span><br />
+
+        <b>Name -</b> <span>The user's name</span><br />
+
+        <b>Birthday -</b> <span>The user's birthday</span><br />
+
+        <b>Gender -</b> <span>The user's gender (one of Male or Female)</span><br />
+
+        <b>Relationship -</b> <span>The user's relationship status (one of Single, Taken or Open)</span><br />
+
+        <b>About Me -</b> <span>Information about this user</span><br />
+
+        <b>Website URL -</b> <span>The URL of the user's website</span><br />
+
+        <b>Hometown -</b> <span>The town in which the user grew up</span><br />
+
+        <b>Current City -</b> <span>The city in which the user is currently located</span><br />
+
+        <b>Postal Code -</b> <span>The postal code in which the user is currently located</span><br />
+
+        <b>Current Country -</b> <span>The country in which the user is currently located</span><br />
+
+        <b>Occupations -</b> <span>Jobs that the user has had</span><br />
+
+        <b>Companies -</b> <span>Companies for which the user has worked</span><br />
+
+        <b>Schools -</b> <span>Schools which the user has attended</span><br />
+
+        <b>Hobbies -</b> <span>Hobbies and interests that the user has</span><br />
+
+        <b>Favorite Shows/Movies -</b> <span>The user's favorite movies and/or TV shows</span><br />
+
+        <b>Favorite Music -</b> <span>The user's favorite musicians and/or genres</span><br />
+
+        <b>Favorite Books -</b> <span>The user's favorite books and/or genres</span><br />
+      </ul>
+    </div>
+
+
+    <span class="header-section">Individual Functions</span>
+    <div class="section">
+      Besides the <a href="cp-common-functions.html">Common Functions</a> available for most items, users also have some custom functions that can be run.  The icons that appear for each user in
+      the Search Users interface are described below.
+
+      <ul>
+        <b><img src="../images/video-22x22.png" /> -</b> <span>View the videos this user has uploaded.  This will take you to the Search Videos interface which will display
+                                                            only the videos uploaded by this user.</span><br />
+
+        <b><img src="../images/approve-22x22.png" /> -</b> <span>Approve this user.  This will only be available for users with Pending status.  Approving a user will change
+                                                           the user's status to Active and send the email-user-approved.tpl e-mail message to the user who submitted this user (if any)</span><br />
+
+        <b><img src="../images/reject-22x22.png" /> -</b> <span>Reject this user.  This will only be available for users with Pending status.  Rejecting a user will delete the user
+                                                          from the database permanently and send the email-user-rejected.tpl e-mail message to the user who submitted this user (if any)
+
+                                                          <br /><br />
+
+                                                          When you reject a user you also have the option to select a rejection reason.  There will be a drop-down selection list that you can
+                                                          choose from.  To setup these reasons, use the <a href="cp-reason.html">Search Reasons</a> interface.
+                                                          </span><br />
+
+        <b><img src="../images/enable-22x22.png" /> -</b> <span>Enable this user.  This will only be available for users with Disabled status.  Enabling a user will change it's status back
+                                                          to Active and the user will be able to login to rate, comment, upload, etc.</span><br />
+
+        <b><img src="../images/disable-22x22.png" /> -</b> <span>Disable this user.  This will only be available for users with Active status.  Disabling a user will change it's status to
+                                                           Disabled and the user will no longer be able to login.</span><br />
+      </ul>
+    </div>
+
+
+
+    <span class="header-section">Bulk Functions</span>
+    <div class="section">
+      Besides the <a href="cp-common-functions.html">Common Functions</a> available for most items, users also have some custom functions that can be run.  The icons that appear in the toolbar
+      which can be run on multiple users at once are covered below.
+
+      <ul>
+
+        <b><img src="../images/approve-32x32.png" /> -</b> <span>Approve the checked or matching users.  Only users with Pending status will be affected by this function.
+                                                           Approving a user will change the user's status to Active and send the email-user-approved.tpl e-mail message to the
+                                                           user</span><br />
+
+        <b><img src="../images/reject-32x32.png" /> -</b> <span>Reject the checked or matching users.  Only users with Pending status will be affected by this function.
+                                                          Rejecting a user will delete the user from the database permanently and send the email-user-rejected.tpl e-mail
+                                                          message to the user
+                                                          </span><br />
+
+        <b><img src="../images/enable-32x32.png" /> -</b> <span>Enable the checked or matching users.  Only users with Disabled status will be affected by this function.
+                                                          Enabling a user will change it's status back to Active and the user will be able to login.</span><br />
+
+        <b><img src="../images/disable-32x32.png" /> -</b> <span>Disable the checked or matching users.  Only users with Active status will be affected by this function.
+                                                           Disabling a user will change it's status to Disabled and the user will not be able to login.</span><br />
+      </ul>
+    </div>
+
+
+
+    <span class="header-section">User Status</span>
+    <div class="section">
+      Users can have one of 4 values for their status, depending on how they have been processed and what software settings you are using.
+
+      <ul>
+        <b>Submitted -</b> <span>These are user accounts that have been registered but not yet confirmed by e-mail.  You will get Submitted users when you
+                           have the <i class="bold">All new user accounts must be confirmed by e-mail</i> software setting enabled.</span><br />
+
+        <b>Pending -</b> <span>These are user accounts that have been registered but not yet approved by an administrator.  These users
+                         will not be able to login until they have been approved.  You will get Pending users when you have the
+                         <i class="bold">Review new user accounts</i> software setting enabled.</span><br />
+
+        <b>Active -</b> <span>These are users which are currently able to login</span><br />
+
+        <b>Disabled -</b> <span>These are users that have been disabled by an administrator.  Disabled users will remain in your database, but will not be able to login.
+                          Disabled users can only be re-activated by an administrator.</span><br />
+      </ul>
+
+    </div>
+  </div>
+</body>
+</html>

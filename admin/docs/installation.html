@@ -1,0 +1,250 @@
+<html>
+<head>
+    <title>TubeX Documentation</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+
+<body>
+
+  <div class="main-content">
+
+    <div class="header-main">TubeX Installation</div>
+
+    <br />
+
+    <div class="message-notice">
+      If you are moving your installation to a new server or to a new domain on the same server, please follow the instructions in the
+      <a href="install-move.html">Moving Your Installation</a> portion of this manual.
+
+      <br /><br />
+
+      Unless otherwise noted, you are licensed to install the software on a single domain. If you would like to install the software
+      on more than one domain, you will need to purchase additional licenses. Additional licenses may be purchased though the
+      <a href="http://www.jmbsoft.com/my-account/" target="_blank">My Account</a> interface at a discounted rate.
+    </div>
+
+    <div class="toc-link" style="margin-top: 5px;"><a href="index.html">Table of Contents</a></div>
+
+    <div class="header-section">Introduction</div>
+
+    <div class="section">
+      Before you begin the installation you should have the following information on hand:
+
+      <br /><br />
+
+      - The name of the MySQL database which you will be using to store the data*<br />
+      - The username which you use to access the MySQL database<br />
+      - The password which you use to access the MySQL database
+
+      <br /><br />
+
+      If you do not have this information, contact your server administrator to get it.
+
+      <br /><br />
+
+      * This name is not something you can just make up. The database must be created by your
+      server administrator in order for you to use it. If you don't know the name of a database
+      which you are allowed to use, contact your server administrator to get that information
+      or to have them create a database for you.  Some servers offer control panels where you
+      can create your own MySQL database.  In that case you will need to have created the MySQL
+      database before you continue.
+    </div>
+
+
+
+    <div class="header-section">Uploading Files</div>
+
+    <div class="section">
+      Now you are ready to begin uploading the files to your server, but you will need to extract the software
+      archive if you haven't already done so.  Be sure when you extract the archive (using your favorite zip or
+      tar.gz file extractor) that you maintain the directory structure of the archive.  In most extraction programs
+      this is the default setting, but you should double check to make sure.
+
+      <br /><br />
+
+      Once the archive has been extracted, simply upload all of the TubeX distribution's files and directories <b>(except the utilities directory)</b>
+      to your server into the directory where you want TubeX to run.  TubeX can be installed to the base directory or any sub-directory
+      of your site.
+
+      <br /><br />
+
+      Assuming you installed TubeX into a directory named tubex, the base TubeX directory structure should look like this:
+
+      <pre style="padding-left: 20px">tubex/admin/
+tubex/admin/classes/
+tubex/admin/css/
+tubex/admin/docs/
+tubex/admin/images/
+tubex/admin/includes/
+tubex/admin/js/
+tubex/admin/player/
+tubex/classes/
+tubex/data/
+tubex/includes/
+tubex/js/
+tubex/language/
+tubex/player/
+tubex/swfupload/
+tubex/temp/
+tubex/templates/
+tubex/templates/_cache/
+tubex/templates/_compiled/
+tubex/templates/Adult-Dark/
+tubex/templates/Adult-Dark-Rewrite/
+tubex/templates/Adult-Light/
+tubex/templates/Adult-Light-Rewrite/
+tubex/templates/Default-Blue/
+tubex/templates/Default-Blue-Rewrite/
+tubex/uploads/
+tubex/videos/</pre>
+    </div>
+
+    <div class="header-section">Setting Permissions</div>
+
+    <div class="section">
+      Next, you will need to set permissions on the directories and files that TubeX will be
+      using. If you are not sure how to set permissions, consult the documentation for your FTP client
+      and/or contact your server administrator for more information. Below is a table containing the
+      permissions you will need to set on each directory or file.  If you do not see a file or directory
+      listed, it means you do not need to change the permissions on that file or directory
+
+      <br /><br />
+
+      <ul>
+        <table width="400" cellspacing="0" cellpadding="3" border="0" style="border: 1px solid #aaaaaa;">
+          <tr>
+            <td bgcolor="#cccccc" class="bold">File or Directory</td>
+            <td bgcolor="#cccccc" class="bold centered">Permissions</td>
+          </tr>
+          <tr bgcolor="#ececec">
+            <td>data directory</td>
+            <td align="center">777</td>
+          </tr>
+          <tr bgcolor="#ececec">
+            <td>temp directory</td>
+            <td align="center">777</td>
+          </tr>
+          <tr bgcolor="#ececec">
+            <td>templates/_cache directory</td>
+            <td align="center">777</td>
+          </tr>
+          <tr bgcolor="#ececec">
+            <td>templates/_compiled directory</td>
+            <td align="center">777</td>
+          </tr>
+          <tr bgcolor="#ececec">
+            <td>uploads directory</td>
+            <td align="center">777</td>
+          </tr>
+          <tr bgcolor="#ececec">
+            <td>videos directory</td>
+            <td align="center">777</td>
+          </tr>
+          <tr bgcolor="#ececec">
+            <td>classes/Config.php file</td>
+            <td align="center">666</td>
+          </tr>
+          <tr bgcolor="#ececec">
+            <td>includes/database.xml file</td>
+            <td align="center">666</td>
+          </tr>
+          <tr bgcolor="#ececec">
+            <td>includes/vp6.mcf file</td>
+            <td align="center">666</td>
+          </tr>
+          <tr bgcolor="#ececec">
+            <td>All template files*</td>
+            <td align="center">666</td>
+          </tr>
+        </table>
+        <div style="font-size: 80%;">
+        * Template files are those located in the sub-directories of the templates directory, for example all files inside
+        the templates/Default-Blue directory</div>
+      </ul>
+
+      These are only the recommended file permissions, and may need to be altered depending on your server configuration.
+    </div>
+
+
+
+    <div class="header-section">Software Initialization</div>
+
+    <div class="section">
+      You are now ready to begin the web based portion of the setup. In your browser, type in the full URL to the install.php file on your server,
+      which is located in the admin directory of your TubeX installation.  So, for example, if you installed TubeX in a directory named tubex, you would
+      access the install.php script with the following URL:
+
+      <pre style="padding-left: 20px">http://www.yoursite.com/tubex/admin/install.php</pre>
+
+      The install.php script will run a few diagnostic tests to make sure your server has all of the required modules and that all of the permissions
+      have been set correctly.  If there are any problems, a page will be displayed that details them.
+
+      <br /><br />
+
+      If all of the diagnostic tests pass, you will see a page where you will need to enter your MySQL database information.  Once you have filled in all
+      of the fields with your MySQL information, press the Submit button.  The MySQL database information will be tested to make sure it is working.  If it is not,
+      you will get an error message indicating the problem and you will need to try again.
+
+      <br /><br />
+
+      If the MySQL information is entered correctly, you will be brought to a page that will have the URL and login information for the control panel.
+      Be sure to write down your control panel username and password before continuing to the next step!
+    </div>
+
+
+
+    <div class="header-section">Accessing the Control Panel</div>
+
+    <div class="section">
+      On the final screen of the install.php script you will find a link to the control panel.  Click that link and enter the login information indicated
+      on the final install.php screen.  This will log you into the control panel so you can setup the software's options.  The first time you login to the
+      control panel, the Global Settings window will pop-up.  In this popup window you will be able to configure the various options that TubeX has available.
+      You can click on the <img src="../images/help-22x22.png" border="0" style="vertical-align: middle;"> icon to get a description of each of the software options.
+      After you have set all of the options how you want them, you can click on the Apply Changes button at the bottom of the Global Settings dialog.
+
+      <br /><br />
+
+      <div class="message-notice">
+      You must save the software settings before you can access the other control panel functions.  The global settings
+      window will continue to popup until you correctly save your settings.
+      </div>
+
+      <br />
+
+      You are now ready to begin using the software.  From here you should read the <a href="first-steps.html">First Steps</a> portion of the manual.  That document
+      will provide recommended steps to take before you open your site for visitors.
+
+      <br /><br />
+
+      <div class="message-notice">
+        <span style="color: #FF0000; font-size: 130%;">Help Prevent Software Piracy</span>
+
+        <br /><br />
+
+        If you have uploaded the TubeX zip (or tar.gz) file to your server, remove it now. Leaving it on
+        your server provides a chance for other users to steal it from your web space. Make sure you never leave a copy of
+        the software archive where other people can access it.
+
+        <br /><br />
+
+        Never share your software with anyone. The license you purchased is for your use only. You may not give or sell the software
+        to anyone under any circumstances. If you are caught doing this, you will be prosecuted to the full extent of the law.
+
+        <br /><br />
+
+        Never share your owners lounge username or password with anyone. Again, that is for your use only. We will never
+        ask for you to send your password to us, so if you ever get an e-mail requesting it you should not send it.
+
+        <br /><br />
+
+        If you ever find a site that is offering our software for download, please contact us immediately so we can have
+        the site shut down. Every time our software is pirated instead of purchased, it means less resources for us to continue
+        the development of this and future software.
+      </div>
+    </div>
+
+  </div>
+
+
+</body>
+</html>

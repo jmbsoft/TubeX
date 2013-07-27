@@ -1,0 +1,5160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<database>
+  <!-- START tbx_video -->
+  <table>
+    <name>tbx_video</name>
+    <custom>tbx_video_custom</custom>
+    <merge>tbx_video_stat</merge>
+    <join>
+      <table>tbx_video_custom</table>
+      <foreign>video_id</foreign>
+      <local>video_id</local>
+    </join>
+    <join>
+      <table>tbx_video_clip</table>
+      <foreign>video_id</foreign>
+      <local>video_id</local>
+    </join>
+    <join>
+      <table>tbx_user</table>
+      <foreign>username</foreign>
+      <local>username</local>
+    </join>
+    <join>
+      <table>tbx_video_stat</table>
+      <foreign>video_id</foreign>
+      <local>video_id</local>
+    </join>
+    <join>
+      <table>tbx_category</table>
+      <foreign>category_id</foreign>
+      <local>category_id</local>
+    </join>
+    <join>
+      <table>tbx_sponsor</table>
+      <foreign>sponsor_id</foreign>
+      <local>sponsor_id</local>
+    </join>
+    <join>
+      <table>tbx_video_comment</table>
+      <foreign>video_id</foreign>
+      <local>video_id</local>
+    </join>
+    <privilege>VIDEOS</privilege>
+    <naming>
+      <type>video</type>
+      <textLower>video</textLower>
+      <textLowerPlural>videos</textLowerPlural>
+      <textUpper>Video</textUpper>
+      <textUpperPlural>Videos</textUpperPlural>
+      <function>Video</function>
+    </naming>
+    <email>
+      <field>tbx_user.email</field>
+      <nameField>tbx_user.name</nameField>
+      <text>Video Submitters</text>
+    </email>
+    <toolbar>
+      <icon>
+        <type>dialog</type>
+        <img>add-32x32.png</img>
+        <title>Add</title>
+        <function>tbxGenericShowAdd(video)</function>
+      </icon>
+      <icon>
+        <type>separator</type>
+      </icon>
+      <icon>
+        <type>dialog</type>
+        <img>edit-32x32.png</img>
+        <title>Edit</title>
+        <function>tbxGenericShowBulkEdit(video)</function>
+      </icon>
+      <icon>
+        <type>dialog</type>
+        <img>email-32x32.png</img>
+        <title>E-mail</title>
+        <function>tbxGenericShowEmail(video)</function>
+      </icon>
+      <!--<icon>
+        <type>action</type>
+        <img>blacklist-32x32.png</img>
+        <title>Blacklist</title>
+        <function>tbxGenericAction(video,blacklist)</function>
+      </icon>-->
+      <icon>
+        <type>action</type>
+        <img>approve-32x32.png</img>
+        <title>Approve</title>
+        <function>tbxGenericAction(video,approve)</function>
+      </icon>
+      <icon>
+        <type>action</type>
+        <img>reject-32x32.png</img>
+        <title>Reject</title>
+        <function>tbxGenericAction(video,reject)</function>
+      </icon>
+      <icon>
+        <type>action</type>
+        <img>enable-32x32.png</img>
+        <title>Enable</title>
+        <function>tbxGenericAction(video,enable)</function>
+      </icon>
+      <icon>
+        <type>action</type>
+        <img>disable-32x32.png</img>
+        <title>Disable</title>
+        <function>tbxGenericAction(video,disable)</function>
+      </icon>
+      <icon>
+        <type>action</type>
+        <img>featured-32x32.png</img>
+        <title>Feature</title>
+        <function>tbxGenericAction(video,feature)</function>
+      </icon>
+      <icon>
+        <type>action</type>
+        <img>featured-off-32x32.png</img>
+        <title>Un-Feature</title>
+        <function>tbxGenericAction(video,unfeature)</function>
+      </icon>
+      <icon>
+        <type>action</type>
+        <img>conversion-queue-32x32.png</img>
+        <title>Convert</title>
+        <function>tbxGenericAction(video,convert)</function>
+      </icon>
+      <icon>
+        <type>action</type>
+        <img>thumb-queue-32x32.png</img>
+        <title>Thumbnail</title>
+        <function>tbxGenericAction(video,thumbnail)</function>
+      </icon>
+      <icon>
+        <type>action</type>
+        <img>delete-32x32.png</img>
+        <title>Delete</title>
+        <function>tbxGenericAction(video,delete)</function>
+      </icon>
+      <icon>
+        <type>separator</type>
+      </icon>
+      <icon>
+        <type>link</type>
+        <img>help-32x32.png</img>
+        <title>Documentation</title>
+        <link>docs/cp-video.html</link>
+        <target>_blank</target>
+      </icon>
+    </toolbar>
+    <searches>
+      <search>
+        <identifier>pending</identifier>
+        <id>0</id>
+        <json>{text_search: '', search_field: ['tbx_video.status'], search_operator: [3], search_term: ['Pending'], search_connector: [''], sort_field: ['tbx_video.date_added'], sort_direction: ['ASC'], sort_connector: ['']}</json>
+      </search>
+      <search>
+        <identifier>user</identifier>
+        <id>0</id>
+        <json>{text_search: '', search_field: ['tbx_video.username'], search_operator: [3], search_term: ['##username##'], search_connector: [''], sort_field: ['tbx_video.date_added'], sort_direction: ['ASC'], sort_connector: ['']}</json>
+      </search>
+      <search>
+        <identifier>video</identifier>
+        <id>0</id>
+        <json>{text_search: '', search_field: ['tbx_video.video_id'], search_operator: [3], search_term: ['##video_id##'], search_connector: [''], sort_field: ['tbx_video.date_added'], sort_direction: ['ASC'], sort_connector: ['']}</json>
+      </search>
+      <search>
+        <identifier>category</identifier>
+        <id>0</id>
+        <json>{text_search: '', search_field: ['tbx_category.name'], search_operator: [3], search_term: ['##name##'], search_connector: [''], sort_field: ['tbx_video.date_added'], sort_direction: ['ASC'], sort_connector: ['']}</json>
+      </search>
+      <search>
+        <identifier>sponsor</identifier>
+        <id>0</id>
+        <json>{text_search: '', search_field: ['tbx_sponsor.name'], search_operator: [3], search_term: ['##name##'], search_connector: [''], sort_field: ['tbx_video.date_added'], sort_direction: ['ASC'], sort_connector: ['']}</json>
+      </search>
+    </searches>
+    <searchFields/>
+    <sortFields/>
+    <detailedOption>true</detailedOption>
+    <columns>
+      <column>
+        <name>video_id</name>
+        <definition>INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT</definition>
+        <label>Video ID</label>
+        <description>The ID number assigned to the video.  ID numbers are generated in sequential order automatically by the software.</description>
+        <default>null</default>
+        <user>
+          <create>false</create>
+          <edit>false</edit>
+        </user>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>false</create>
+          <edit>false</edit>
+        </admin>
+      </column>
+      <column>
+        <name>username</name>
+        <definition>VARCHAR(64)</definition>
+        <label>Username</label>
+        <description>The username of the account that uploaded the video</description>
+        <default>null</default>
+        <autocomplete>tbx_user.username</autocomplete>
+        <user>
+          <create>false</create>
+          <edit>false</edit>
+        </user>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>SET,CLEAR,RAW_SQL</bulkEdit>
+        </admin>
+      </column>
+      <column>
+        <name>title</name>
+        <definition>TEXT NOT NULL</definition>
+        <label>Title</label>
+        <description>The title that has been assigned to the video</description>
+        <user>
+          <create>true</create>
+          <edit>true</edit>
+        </user>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>-CLEAR,ADD,SUBTRACT,INCREMENT,DECREMENT</bulkEdit>
+          <validator>
+            <type>NOT_EMPTY</type>
+            <message>The Title field is required</message>
+          </validator>
+        </admin>
+      </column>
+      <column>
+        <name>description</name>
+        <definition>TEXT NOT NULL</definition>
+        <label>Description</label>
+        <description>The description that has been assigned to the video</description>
+        <user>
+          <create>true</create>
+          <edit>true</edit>
+        </user>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>-CLEAR,ADD,SUBTRACT,INCREMENT,DECREMENT</bulkEdit>
+          <validator>
+            <type>NOT_EMPTY</type>
+            <message>The Description field is required</message>
+          </validator>
+        </admin>
+      </column>
+      <column>
+        <name>tags</name>
+        <definition>TEXT NOT NULL</definition>
+        <label>Tags</label>
+        <description>The tags that have been assigned to the video</description>
+        <user>
+          <create>true</create>
+          <edit>true</edit>
+        </user>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>-ADD,SUBTRACT,INCREMENT,DECREMENT</bulkEdit>
+        </admin>
+      </column>
+      <column>
+        <name>date_added</name>
+        <definition>DATETIME NOT NULL</definition>
+        <label>Date Added</label>
+        <description>The date and time the video was added to the database</description>
+        <default>mysql:now</default>
+        <user>
+          <create>true</create>
+          <edit>true</edit>
+        </user>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>SET,RAW_SQL</bulkEdit>
+          <validator>
+            <type>NOT_EMPTY</type>
+            <message>The Date Added field is required</message>
+          </validator>
+          <validator>
+            <condition>not-empty</condition>
+            <type>VALID_DATETIME</type>
+            <message>The Date Added field is not a properly formatted date and time value</message>
+          </validator>
+        </admin>
+      </column>
+      <column>
+        <name>date_recorded</name>
+        <definition>DATE</definition>
+        <label>Date Recorded</label>
+        <description>The date the video was recorded</description>
+        <default>null</default>
+        <user>
+          <create>true</create>
+          <edit>true</edit>
+        </user>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>SET,CLEAR,RAW_SQL</bulkEdit>
+          <validator>
+            <condition>not-empty</condition>
+            <type>VALID_DATE</type>
+            <message>The Date Recorded field is not a properly formatted date value</message>
+          </validator>
+        </admin>
+      </column>
+      <column>
+        <name>location_recorded</name>
+        <definition>TEXT</definition>
+        <label>Location Recorded</label>
+        <description>The location where the video was recorded</description>
+        <user>
+          <create>true</create>
+          <edit>true</edit>
+        </user>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>-ADD,SUBTRACT,INCREMENT,DECREMENT</bulkEdit>
+        </admin>
+      </column>
+      <column>
+        <name>status</name>
+        <definition>ENUM('Pending','Queued','Scheduled','Active','Disabled') NOT NULL</definition>
+        <label>Status</label>
+        <description>The status of the video</description>
+        <default>Pending</default>
+        <autocomplete>#Pending,Queued,Scheduled,Active,Disabled</autocomplete>
+        <user>
+          <create>false</create>
+          <edit>false</edit>
+        </user>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+        </admin>
+      </column>
+      <column>
+        <name>next_status</name>
+        <definition>ENUM('Pending','Queued','Scheduled','Active','Disabled')</definition>
+        <default>null</default>
+        <user>
+          <create>false</create>
+          <edit>false</edit>
+        </user>
+        <admin>
+          <search>false</search>
+          <sort>false</sort>
+          <create>false</create>
+          <edit>false</edit>
+        </admin>
+      </column>
+      <column>
+        <name>duration</name>
+        <definition>INT UNSIGNED NOT NULL</definition>
+        <label>Duration</label>
+        <description>The length of the video, in seconds</description>
+        <default>0</default>
+        <notes>The total duration of all the clips</notes>
+        <user>
+          <create>false</create>
+          <edit>false</edit>
+        </user>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>false</create>
+          <edit>false</edit>
+          <bulkEdit>SET,ADD,SUBTRACT,INCREMENT,DECREMENT</bulkEdit>
+        </admin>
+      </column>
+      <column>
+        <name>category_id</name>
+        <definition>INT UNSIGNED NOT NULL</definition>
+        <label>Category</label>
+        <description>The category in which this video appears</description>
+        <autocomplete>tbx_category.name</autocomplete>
+        <user>
+          <create>true</create>
+          <edit>true</edit>
+        </user>
+        <admin>
+          <search>false</search>
+          <sort>false</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>SET,RAW_SQL</bulkEdit>
+        </admin>
+      </column>
+      <column>
+        <name>sponsor_id</name>
+        <definition>INT UNSIGNED</definition>
+        <default>null</default>
+        <label>Sponsor</label>
+        <description>The sponsor from which this video comes</description>
+        <autocomplete>tbx_sponsor.name</autocomplete>
+        <user>
+          <create>false</create>
+          <edit>false</edit>
+        </user>
+        <admin>
+          <search>true</search>
+          <sort>false</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>SET,CLEAR,RAW_SQL</bulkEdit>
+        </admin>
+      </column>
+      <column>
+        <name>is_private</name>
+        <definition>TINYINT UNSIGNED NOT NULL</definition>
+        <label>Make this video private</label>
+        <description>Indicates if this video should be private</description>
+        <default>0</default>
+        <autocomplete>#Yes,No</autocomplete>
+        <user>
+          <create>true</create>
+          <edit>true</edit>
+        </user>
+        <admin>
+          <search>true</search>
+          <sort>false</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>SET,RAW_SQL</bulkEdit>
+        </admin>
+      </column>
+      <column>
+        <name>is_featured</name>
+        <definition>TINYINT UNSIGNED NOT NULL</definition>
+        <label>Make this video featured</label>
+        <description>Indicates if this video should be a featured video</description>
+        <default>0</default>
+        <autocomplete>#Yes,No</autocomplete>
+        <user>
+          <create>false</create>
+          <edit>false</edit>
+        </user>
+        <admin>
+          <search>true</search>
+          <sort>false</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>SET,RAW_SQL</bulkEdit>
+        </admin>
+      </column>
+      <column>
+        <name>date_last_featured</name>
+        <definition>DATETIME</definition>
+        <label>Date Last Featured</label>
+        <description>The date and time the video was last featured</description>
+        <default>null</default>
+        <user>
+          <create>false</create>
+          <edit>false</edit>
+        </user>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>false</create>
+          <edit>false</edit>
+        </admin>
+      </column>
+      <column>
+        <name>num_thumbnails</name>
+        <definition>INT UNSIGNED</definition>
+        <label># of Thumbnails</label>
+        <description>The number of thumbnail images available for this video</description>
+        <default>0</default>
+        <user>
+          <create>false</create>
+          <edit>false</edit>
+        </user>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>false</create>
+          <edit>false</edit>
+        </admin>
+      </column>
+      <column>
+        <name>display_thumbnail</name>
+        <definition>INT UNSIGNED</definition>
+        <label>Display Thumbnail</label>
+        <description>The thumbnail image from the video to display while browsing videos</description>
+        <user>
+          <create>false</create>
+          <edit>true</edit>
+        </user>
+        <admin>
+          <search>false</search>
+          <sort>false</sort>
+          <create>true</create>
+          <edit>true</edit>
+        </admin>
+      </column>
+      <column>
+        <name>allow_comments</name>
+        <definition>ENUM('No','Yes - Add Immediately','Yes - Require Approval') NOT NULL</definition>
+        <label>Comments Allowed</label>
+        <description>Indicates if comments are allowed for this video</description>
+        <default>Yes - Add Immediately</default>
+        <autocomplete>#No,Yes - Add Immediately,Yes - Require Approval</autocomplete>
+        <user>
+          <create>true</create>
+          <edit>true</edit>
+        </user>
+        <admin>
+          <search>true</search>
+          <sort>false</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>SET,RAW_SQL</bulkEdit>
+        </admin>
+      </column>
+      <column>
+        <name>allow_ratings</name>
+        <definition>TINYINT UNSIGNED NOT NULL</definition>
+        <label>Allow ratings</label>
+        <description>Indicates if ratings are allowed for this video</description>
+        <default>1</default>
+        <autocomplete>#Yes,No</autocomplete>
+        <user>
+          <create>true</create>
+          <edit>true</edit>
+        </user>
+        <admin>
+          <search>true</search>
+          <sort>false</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>SET,RAW_SQL</bulkEdit>
+        </admin>
+      </column>
+      <column>
+        <name>allow_embedding</name>
+        <definition>TINYINT UNSIGNED NOT NULL</definition>
+        <label>Allow embedding</label>
+        <description>Indicates if this video can be embedded in remote sites</description>
+        <default>1</default>
+        <autocomplete>#Yes,No</autocomplete>
+        <user>
+          <create>true</create>
+          <edit>true</edit>
+        </user>
+        <admin>
+          <search>true</search>
+          <sort>false</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>SET,RAW_SQL</bulkEdit>
+        </admin>
+      </column>
+      <column>
+        <name>is_user_submitted</name>
+        <definition>TINYINT UNSIGNED NOT NULL</definition>
+        <label>User Submitted</label>
+        <description>Indicates if this video was submitted by an end-user</description>
+        <default>0</default>
+        <autocomplete>#Yes,No</autocomplete>
+        <user>
+          <create>true</create>
+          <edit>false</edit>
+        </user>
+        <admin>
+          <search>true</search>
+          <sort>false</sort>
+          <create>false</create>
+          <edit>false</edit>
+        </admin>
+      </column>
+      <column>
+        <name>conversion_failed</name>
+        <definition>TINYINT UNSIGNED NOT NULL</definition>
+        <label>Conversion Failed</label>
+        <description>Indicates if this video conversion failed</description>
+        <default>0</default>
+        <user>
+          <create>false</create>
+          <edit>false</edit>
+        </user>
+        <admin>
+          <search>true</search>
+          <sort>false</sort>
+          <create>false</create>
+          <edit>false</edit>
+        </admin>
+      </column>
+      <primaryKey>video_id</primaryKey>
+      <index>
+        <column>username</column>
+      </index>
+      <index>
+        <column>date_added</column>
+      </index>
+      <index>
+        <column>category_id</column>
+      </index>
+      <fulltext>
+        <column>title</column>
+        <column>description</column>
+      </fulltext>
+      <fulltext>
+        <column>tags</column>
+      </fulltext>
+    </columns>
+  </table>
+  <!-- END tbx_video -->
+  <!-- START tbx_video_clip -->
+  <table>
+    <name>tbx_video_clip</name>
+    <naming>
+      <type>video-clip</type>
+      <textLower>video clip</textLower>
+      <textLowerPlural>video clips</textLowerPlural>
+      <textUpper>Video Clip</textUpper>
+      <textUpperPlural>Video Clips</textUpperPlural>
+      <function>VideoClip</function>
+    </naming>
+    <columns>
+      <column>
+        <name>clip_id</name>
+        <definition>INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT</definition>
+        <default>null</default>
+        <admin>
+          <search>false</search>
+          <sort>false</sort>
+        </admin>
+      </column>
+      <column>
+        <name>video_id</name>
+        <definition>INT UNSIGNED NOT NULL</definition>
+        <admin>
+          <search>false</search>
+          <sort>false</sort>
+        </admin>
+      </column>
+      <column>
+        <name>type</name>
+        <definition>ENUM('URL','Embed')</definition>
+        <default>URL</default>
+        <admin>
+          <search>false</search>
+          <sort>false</sort>
+        </admin>
+      </column>
+      <column>
+        <name>clip</name>
+        <definition>TEXT</definition>
+        <label>Clip URL/Embed Code</label>
+        <admin>
+          <search>true</search>
+          <sort>false</sort>
+        </admin>
+      </column>
+      <column>
+        <name>filesize</name>
+        <definition>INT UNSIGNED NOT NULL</definition>
+        <default>0</default>
+        <admin>
+          <search>false</search>
+          <sort>false</sort>
+        </admin>
+      </column>
+      <index>
+        <column>video_id</column>
+      </index>
+      <primaryKey>clip_id</primaryKey>
+    </columns>
+  </table>
+  <!-- END tbx_video_clip -->
+  <!-- START tbx_video_thumbnail -->
+  <table>
+    <name>tbx_video_thumbnail</name>
+    <columns>
+      <column>
+        <name>thumbnail_id</name>
+        <definition>INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT</definition>
+        <default>null</default>
+      </column>
+      <column>
+        <name>video_id</name>
+        <definition>INT UNSIGNED NOT NULL</definition>
+      </column>
+      <column>
+        <name>thumbnail</name>
+        <definition>TEXT</definition>
+        <notes>The relative or full URL to the video thumbnail</notes>
+      </column>
+      <index>
+        <column>video_id</column>
+      </index>
+      <primaryKey>thumbnail_id</primaryKey>
+    </columns>
+  </table>
+  <!-- END tbx_video_thumbnail -->
+  <!-- START tbx_video_rating -->
+  <table>
+    <name>tbx_video_rating</name>
+    <columns>
+      <column>
+        <name>username</name>
+        <definition>VARCHAR(64) NOT NULL</definition>
+      </column>
+      <column>
+        <name>video_id</name>
+        <definition>INT UNSIGNED NOT NULL</definition>
+      </column>
+      <column>
+        <name>rating</name>
+        <definition>INT UNSIGNED NOT NULL</definition>
+      </column>
+      <column>
+        <name>date_rated</name>
+        <definition>DATETIME NOT NULL</definition>
+      </column>
+      <unique>
+        <column>video_id</column>
+        <column>username</column>
+      </unique>
+      <index>
+        <column>date_rated</column>
+      </index>
+    </columns>
+  </table>
+  <!-- END tbx_video_rating -->
+  <!-- START tbx_video_flagged -->
+  <table>
+    <name>tbx_video_flagged</name>
+    <columns>
+      <column>
+        <name>video_id</name>
+        <definition>INT UNSIGNED NOT NULL</definition>
+      </column>
+      <column>
+        <name>username</name>
+        <definition>VARCHAR(64) NOT NULL</definition>
+      </column>
+      <column>
+        <name>reason_id</name>
+        <definition>INT UNSIGNED NOT NULL</definition>
+      </column>
+      <column>
+        <name>date_flagged</name>
+        <definition>DATETIME NOT NULL</definition>
+      </column>
+      <unique>
+        <column>video_id</column>
+        <column>username</column>
+      </unique>
+    </columns>
+  </table>
+  <!-- END tbx_video_flagged -->
+  <!-- START tbx_video_featured -->
+  <table>
+    <name>tbx_video_featured</name>
+    <columns>
+      <column>
+        <name>video_id</name>
+        <definition>INT UNSIGNED NOT NULL</definition>
+      </column>
+      <column>
+        <name>username</name>
+        <definition>VARCHAR(64) NOT NULL</definition>
+      </column>
+      <column>
+        <name>reason_id</name>
+        <definition>INT UNSIGNED NOT NULL</definition>
+      </column>
+      <column>
+        <name>date_featured</name>
+        <definition>DATETIME NOT NULL</definition>
+      </column>
+      <unique>
+        <column>video_id</column>
+        <column>username</column>
+      </unique>
+    </columns>
+  </table>
+  <!-- END tbx_video_featured -->
+  <!-- START tbx_video_favorited -->
+  <table>
+    <name>tbx_video_favorited</name>
+    <columns>
+      <column>
+        <name>video_id</name>
+        <definition>INT UNSIGNED NOT NULL</definition>
+      </column>
+      <column>
+        <name>username</name>
+        <definition>VARCHAR(64) NOT NULL</definition>
+      </column>
+      <column>
+        <name>date_favorited</name>
+        <definition>DATETIME NOT NULL</definition>
+      </column>
+      <unique>
+        <column>video_id</column>
+        <column>username</column>
+      </unique>
+    </columns>
+  </table>
+  <!-- END tbx_video_favorited -->
+  <!-- START tbx_video_custom -->
+  <table>
+    <name>tbx_video_custom</name>
+    <naming>
+      <type>custom-video-field</type>
+      <textLower>custom video field</textLower>
+      <textLowerPlural>custom video fields</textLowerPlural>
+      <textUpper>Custom Video Field</textUpper>
+      <textUpperPlural>Custom Video Fields</textUpperPlural>
+    </naming>
+    <columns>
+      <column>
+        <name>video_id</name>
+        <definition>INT UNSIGNED NOT NULL PRIMARY KEY</definition>
+        <admin>
+          <search>false</search>
+          <sort>false</sort>
+          <create>false</create>
+          <edit>false</edit>
+        </admin>
+      </column>
+      <primaryKey>video_id</primaryKey>
+    </columns>
+  </table>
+  <!-- START tbx_video_custom -->
+  <!-- START tbx_video_custom_schema -->
+  <table>
+    <name>tbx_video_custom_schema</name>
+    <privilege>DATABASE</privilege>
+    <naming>
+      <type>video-custom-field</type>
+      <textLower>custom video field</textLower>
+      <textLowerPlural>custom video fields</textLowerPlural>
+      <textUpper>Custom Video Field</textUpper>
+      <textUpperPlural>Custom Video Fields</textUpperPlural>
+      <function>VideoCustomField</function>
+    </naming>
+    <toolbar>
+      <icon>
+        <type>dialog</type>
+        <img>add-32x32.png</img>
+        <title>Add</title>
+        <function>tbxGenericShowAdd(video-custom-field)</function>
+      </icon>
+      <icon>
+        <type>separator</type>
+      </icon>
+      <icon>
+        <type>dialog</type>
+        <img>edit-32x32.png</img>
+        <title>Edit</title>
+        <function>tbxGenericShowBulkEdit(video-custom-field)</function>
+      </icon>
+      <icon>
+        <type>action</type>
+        <img>delete-32x32.png</img>
+        <title>Delete</title>
+        <function>tbxGenericAction(video-custom-field,delete)</function>
+      </icon>
+      <icon>
+        <type>separator</type>
+      </icon>
+      <icon>
+        <type>link</type>
+        <img>help-32x32.png</img>
+        <title>Documentation</title>
+        <link>docs/cp-video-custom-field.html</link>
+        <target>_blank</target>
+      </icon>
+    </toolbar>
+    <searches/>
+    <searchFields/>
+    <sortFields/>
+    <columns>
+      <column>
+        <name>field_id</name>
+        <definition>INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT</definition>
+        <label>Field ID</label>
+        <description>The ID number assigned to the field.  ID numbers are generated in sequential order automatically by the software.</description>
+        <default>null</default>
+        <admin>
+          <search>false</search>
+          <sort>false</sort>
+          <create>false</create>
+          <edit>false</edit>
+        </admin>
+      </column>
+      <column>
+        <name>name</name>
+        <definition>VARCHAR(32) NOT NULL</definition>
+        <label>Name</label>
+        <description>The name to use for the database field</description>
+        <autocomplete>tbx_video_custom_schema.name</autocomplete>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+        </admin>
+      </column>
+      <column>
+        <name>type</name>
+        <definition>ENUM('Text','Textarea','Checkbox','Select') NOT NULL</definition>
+        <label>Field Type</label>
+        <description>The form field type to use for this custom input field</description>
+        <default>Text</default>
+        <autocomplete>#Text,Textarea,Checkbox,Select</autocomplete>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>SET,RAW_SQL</bulkEdit>
+        </admin>
+      </column>
+      <column>
+        <name>label</name>
+        <definition>TEXT NOT NULL</definition>
+        <label>Label</label>
+        <description>The label to display for this field</description>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>-ADD,SUBTRACT,INCREMENT,DECREMENT</bulkEdit>
+        </admin>
+      </column>
+      <column>
+        <name>tag_attributes</name>
+        <definition>TEXT</definition>
+        <label>Tag Attributes</label>
+        <description>Extra HTML attributes to use in the HTML tag for this field</description>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>-ADD,SUBTRACT,INCREMENT,DECREMENT</bulkEdit>
+        </admin>
+      </column>
+      <column>
+        <name>options</name>
+        <definition>TEXT</definition>
+        <label>Options</label>
+        <description>A comma separated list of values to use for the options of a select field</description>
+        <notes>Only visible when adding a select type field</notes>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>-ADD,SUBTRACT,INCREMENT,DECREMENT</bulkEdit>
+        </admin>
+      </column>
+      <column>
+        <name>validators</name>
+        <definition>TEXT</definition>
+        <label>Validators</label>
+        <description>The validators to use for this field</description>
+        <notes>PHP serialized value</notes>
+        <admin>
+          <search>false</search>
+          <sort>false</sort>
+          <create>true</create>
+          <edit>true</edit>
+        </admin>
+      </column>
+      <column>
+        <name>on_submit</name>
+        <definition>TINYINT UNSIGNED NOT NULL</definition>
+        <label>Display on submission form</label>
+        <description>Check if you want this field to appear on the submission form</description>
+        <default>1</default>
+        <autocomplete>#Yes,No</autocomplete>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>SET,RAW_SQL</bulkEdit>
+        </admin>
+      </column>
+      <column>
+        <name>on_edit</name>
+        <definition>TINYINT UNSIGNED NOT NULL</definition>
+        <label>Display on editing form</label>
+        <description>Check if you want this field to appear on the editing form</description>
+        <default>1</default>
+        <autocomplete>#Yes,No</autocomplete>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>SET,RAW_SQL</bulkEdit>
+        </admin>
+      </column>
+      <primaryKey>field_id</primaryKey>
+    </columns>
+  </table>
+  <!-- END tbx_video_custom_schema -->
+  <!-- START tbx_video_stat -->
+  <table>
+    <name>tbx_video_stat</name>
+    <naming>
+      <textUpper>Video Stat</textUpper>
+      <textUpperPlural>Video Stats</textUpperPlural>
+    </naming>
+    <columns>
+      <column>
+        <name>video_id</name>
+        <definition>INT UNSIGNED NOT NULL PRIMARY KEY</definition>
+        <label>Video ID</label>
+        <admin>
+          <search>false</search>
+          <sort>false</sort>
+          <create>false</create>
+          <edit>false</edit>
+        </admin>
+      </column>
+      <column>
+        <name>date_last_view</name>
+        <definition>DATETIME</definition>
+        <label>Last Viewed</label>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>false</create>
+          <edit>false</edit>
+        </admin>
+      </column>
+      <column>
+        <name>today_num_views</name>
+        <definition>INT NOT NULL</definition>
+        <default>0</default>
+        <label>Views Today</label>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+        </admin>
+      </column>
+      <column>
+        <name>today_num_flagged</name>
+        <definition>INT NOT NULL</definition>
+        <default>0</default>
+        <label>Flagged Today</label>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+        </admin>
+      </column>
+      <column>
+        <name>today_num_featured</name>
+        <definition>INT NOT NULL</definition>
+        <default>0</default>
+        <label>Featured Today</label>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+        </admin>
+      </column>
+      <column>
+        <name>today_num_comments</name>
+        <definition>INT NOT NULL</definition>
+        <default>0</default>
+        <label>Comments Today</label>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>false</create>
+          <edit>false</edit>
+        </admin>
+      </column>
+      <column>
+        <name>today_num_favorited</name>
+        <definition>INT NOT NULL</definition>
+        <default>0</default>
+        <label>Favorited Today</label>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+        </admin>
+      </column>
+      <column>
+        <name>today_num_ratings</name>
+        <definition>INT NOT NULL</definition>
+        <default>0</default>
+        <label>Ratings Today</label>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+        </admin>
+      </column>
+      <column>
+        <name>today_sum_of_ratings</name>
+        <definition>INT NOT NULL</definition>
+        <default>0</default>
+        <label>Ratings Sum Today</label>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+        </admin>
+      </column>
+      <column>
+        <name>today_avg_rating</name>
+        <definition>DECIMAL(10,2) NOT NULL</definition>
+        <default>0.0</default>
+        <label>Average Rating Today</label>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>false</create>
+          <edit>false</edit>
+        </admin>
+      </column>
+      <column>
+        <name>week_num_views</name>
+        <definition>INT NOT NULL</definition>
+        <default>0</default>
+        <label>Views This Week</label>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+        </admin>
+      </column>
+      <column>
+        <name>week_num_flagged</name>
+        <definition>INT NOT NULL</definition>
+        <default>0</default>
+        <label>Flagged This Week</label>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+        </admin>
+      </column>
+      <column>
+        <name>week_num_featured</name>
+        <definition>INT NOT NULL</definition>
+        <default>0</default>
+        <label>Featured This Week</label>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+        </admin>
+      </column>
+      <column>
+        <name>week_num_comments</name>
+        <definition>INT NOT NULL</definition>
+        <default>0</default>
+        <label>Comments This Week</label>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>false</create>
+          <edit>false</edit>
+        </admin>
+      </column>
+      <column>
+        <name>week_num_favorited</name>
+        <definition>INT NOT NULL</definition>
+        <default>0</default>
+        <label>Favorited This Week</label>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+        </admin>
+      </column>
+      <column>
+        <name>week_num_ratings</name>
+        <definition>INT NOT NULL</definition>
+        <default>0</default>
+        <label>Ratings This Week</label>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+        </admin>
+      </column>
+      <column>
+        <name>week_sum_of_ratings</name>
+        <definition>INT NOT NULL</definition>
+        <default>0</default>
+        <label>Ratings Sum This Week</label>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+        </admin>
+      </column>
+      <column>
+        <name>week_avg_rating</name>
+        <definition>DECIMAL(10,2) NOT NULL</definition>
+        <default>0.0</default>
+        <label>Average Rating This Week</label>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>false</create>
+          <edit>false</edit>
+        </admin>
+      </column>
+      <column>
+        <name>month_num_views</name>
+        <definition>INT NOT NULL</definition>
+        <default>0</default>
+        <label>Views This Month</label>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+        </admin>
+      </column>
+      <column>
+        <name>month_num_flagged</name>
+        <definition>INT NOT NULL</definition>
+        <default>0</default>
+        <label>Flagged This Month</label>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+        </admin>
+      </column>
+      <column>
+        <name>month_num_featured</name>
+        <definition>INT NOT NULL</definition>
+        <default>0</default>
+        <label>Featured This Month</label>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+        </admin>
+      </column>
+      <column>
+        <name>month_num_comments</name>
+        <definition>INT NOT NULL</definition>
+        <default>0</default>
+        <label>Comments This Month</label>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>false</create>
+          <edit>false</edit>
+        </admin>
+      </column>
+      <column>
+        <name>month_num_favorited</name>
+        <definition>INT NOT NULL</definition>
+        <default>0</default>
+        <label>Favorited This Month</label>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+        </admin>
+      </column>
+      <column>
+        <name>month_num_ratings</name>
+        <definition>INT NOT NULL</definition>
+        <default>0</default>
+        <label>Ratings This Month</label>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+        </admin>
+      </column>
+      <column>
+        <name>month_sum_of_ratings</name>
+        <definition>INT NOT NULL</definition>
+        <default>0</default>
+        <label>Ratings Sum This Month</label>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+        </admin>
+      </column>
+      <column>
+        <name>month_avg_rating</name>
+        <definition>DECIMAL(10,2) NOT NULL</definition>
+        <default>0.0</default>
+        <label>Average Rating This Month</label>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>false</create>
+          <edit>false</edit>
+        </admin>
+      </column>
+      <column>
+        <name>total_num_views</name>
+        <definition>INT NOT NULL</definition>
+        <default>0</default>
+        <label>Views Total</label>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+        </admin>
+      </column>
+      <column>
+        <name>total_num_flagged</name>
+        <definition>INT NOT NULL</definition>
+        <default>0</default>
+        <label>Flagged Total</label>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+        </admin>
+      </column>
+      <column>
+        <name>total_num_featured</name>
+        <definition>INT NOT NULL</definition>
+        <default>0</default>
+        <label>Featured Total</label>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+        </admin>
+      </column>
+      <column>
+        <name>total_num_comments</name>
+        <definition>INT NOT NULL</definition>
+        <default>0</default>
+        <label>Comments Total</label>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>false</create>
+          <edit>false</edit>
+        </admin>
+      </column>
+      <column>
+        <name>total_num_favorited</name>
+        <definition>INT NOT NULL</definition>
+        <default>0</default>
+        <label>Favorited Total</label>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+        </admin>
+      </column>
+      <column>
+        <name>total_num_ratings</name>
+        <definition>INT NOT NULL</definition>
+        <default>0</default>
+        <label>Ratings Total</label>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+        </admin>
+      </column>
+      <column>
+        <name>total_sum_of_ratings</name>
+        <definition>INT NOT NULL</definition>
+        <default>0</default>
+        <label>Ratings Sum Total</label>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+        </admin>
+      </column>
+      <column>
+        <name>total_avg_rating</name>
+        <definition>DECIMAL(10,2) NOT NULL</definition>
+        <default>0.0</default>
+        <label>Average Rating Total</label>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>false</create>
+          <edit>false</edit>
+        </admin>
+      </column>
+      <primaryKey>video_id</primaryKey>
+      <index>
+        <column>date_last_view</column>
+      </index>
+      <index>
+        <column>today_num_views</column>
+      </index>
+      <index>
+        <column>today_num_comments</column>
+      </index>
+      <index>
+        <column>today_num_favorited</column>
+      </index>
+      <index>
+        <column>today_num_ratings</column>
+      </index>
+      <index>
+        <column>today_avg_rating</column>
+      </index>
+      <index>
+        <column>week_num_views</column>
+      </index>
+      <index>
+        <column>week_num_comments</column>
+      </index>
+      <index>
+        <column>week_num_favorited</column>
+      </index>
+      <index>
+        <column>week_num_ratings</column>
+      </index>
+      <index>
+        <column>week_avg_rating</column>
+      </index>
+      <index>
+        <column>month_num_views</column>
+      </index>
+      <index>
+        <column>month_num_comments</column>
+      </index>
+      <index>
+        <column>month_num_favorited</column>
+      </index>
+      <index>
+        <column>month_num_ratings</column>
+      </index>
+      <index>
+        <column>month_avg_rating</column>
+      </index>
+      <index>
+        <column>total_num_views</column>
+      </index>
+      <index>
+        <column>total_num_comments</column>
+      </index>
+      <index>
+        <column>total_num_favorited</column>
+      </index>
+      <index>
+        <column>total_num_ratings</column>
+      </index>
+      <index>
+        <column>total_avg_rating</column>
+      </index>
+    </columns>
+  </table>
+  <!-- END tbx_video_stat -->
+  <!-- START tbx_video_comment -->
+  <table>
+    <name>tbx_video_comment</name>
+    <join>
+      <table>tbx_video</table>
+      <foreign>video_id</foreign>
+      <local>video_id</local>
+    </join>
+    <privilege>VIDEO_COMMENTS</privilege>
+    <naming>
+      <type>video-comment</type>
+      <textLower>video comment</textLower>
+      <textLowerPlural>video comments</textLowerPlural>
+      <textUpper>Video Comment</textUpper>
+      <textUpperPlural>Video Comments</textUpperPlural>
+      <function>VideoComment</function>
+    </naming>
+    <email>
+      <field>tbx_user.email</field>
+      <nameField>tbx_user.name</nameField>
+      <text>Comment Submitters</text>
+    </email>
+    <toolbar>
+      <icon>
+        <type>dialog</type>
+        <img>edit-32x32.png</img>
+        <title>Edit</title>
+        <function>tbxGenericShowBulkEdit(video-comment)</function>
+      </icon>
+      <icon>
+        <type>dialog</type>
+        <img>email-32x32.png</img>
+        <title>E-mail</title>
+        <function>tbxGenericShowEmail(video-comment)</function>
+      </icon>
+      <icon>
+        <type>action</type>
+        <img>approve-32x32.png</img>
+        <title>Approve</title>
+        <function>tbxGenericAction(video-comment,approve)</function>
+      </icon>
+      <icon>
+        <type>action</type>
+        <img>reject-32x32.png</img>
+        <title>Reject</title>
+        <function>tbxGenericAction(video-comment,reject)</function>
+      </icon>
+      <icon>
+        <type>action</type>
+        <img>delete-32x32.png</img>
+        <title>Delete</title>
+        <function>tbxGenericAction(video-comment,delete)</function>
+      </icon>
+      <icon>
+        <type>separator</type>
+      </icon>
+      <icon>
+        <type>link</type>
+        <img>help-32x32.png</img>
+        <title>Documentation</title>
+        <link>docs/cp-video-comment.html</link>
+        <target>_blank</target>
+      </icon>
+    </toolbar>
+    <searches>
+      <search>
+        <identifier>pending</identifier>
+        <id>0</id>
+        <json>{text_search: '', search_field: ['tbx_video_comment.status'], search_operator: [3], search_term: ['Pending'], search_connector: [''], sort_field: ['tbx_video_comment.date_commented'], sort_direction: ['ASC'], sort_connector: ['']}</json>
+      </search>
+      <search>
+        <identifier>video</identifier>
+        <id>0</id>
+        <json>{text_search: '', search_field: ['tbx_video_comment.video_id'], search_operator: [3], search_term: ['##video_id##'], search_connector: [''], sort_field: ['tbx_video_comment.date_commented'], sort_direction: ['ASC'], sort_connector: ['']}</json>
+      </search>
+    </searches>
+    <searchFields/>
+    <sortFields/>
+    <columns>
+      <column>
+        <name>comment_id</name>
+        <definition>INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT</definition>
+        <label>Comment ID</label>
+        <description>The ID number assigned to the comment.  ID numbers are generated in sequential order automatically by the software.</description>
+        <default>null</default>
+        <user>
+          <create>false</create>
+          <edit>false</edit>
+        </user>
+        <admin>
+          <search>false</search>
+          <sort>false</sort>
+          <create>false</create>
+          <edit>false</edit>
+        </admin>
+      </column>
+      <column>
+        <name>video_id</name>
+        <definition>INT UNSIGNED NOT NULL</definition>
+        <label>Video ID</label>
+        <description>The ID number of the video for which this comment was submitted.</description>
+        <user>
+          <create>false</create>
+          <edit>false</edit>
+        </user>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>false</create>
+          <edit>false</edit>
+        </admin>
+      </column>
+      <column>
+        <name>username</name>
+        <definition>VARCHAR(64) NOT NULL</definition>
+        <label>Username</label>
+        <description>The username of the account which submitted this comment.</description>
+        <autocomplete>tbx_user.username</autocomplete>
+        <user>
+          <create>false</create>
+          <edit>false</edit>
+        </user>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>false</create>
+          <edit>false</edit>
+        </admin>
+      </column>
+      <column>
+        <name>date_commented</name>
+        <definition>DATETIME NOT NULL</definition>
+        <label>Date</label>
+        <description>The date and time the comment was added.</description>
+        <user>
+          <create>true</create>
+          <edit>false</edit>
+        </user>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>false</create>
+          <edit>true</edit>
+        </admin>
+      </column>
+      <column>
+        <name>status</name>
+        <definition>ENUM('Pending','Active') NOT NULL</definition>
+        <label>Status</label>
+        <description>The status of the comment</description>
+        <default>Pending</default>
+        <autocomplete>#Pending,Active</autocomplete>
+        <user>
+          <create>false</create>
+          <edit>false</edit>
+        </user>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+        </admin>
+      </column>
+      <column>
+        <name>comment</name>
+        <definition>TEXT NOT NULL</definition>
+        <label>Comment</label>
+        <description>The comment itself.</description>
+        <user>
+          <create>true</create>
+          <edit>false</edit>
+        </user>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>false</create>
+          <edit>true</edit>
+          <bulkEdit>-ADD,SUBTRACT,INCREMENT,DECREMENT</bulkEdit>
+          <validator>
+            <type>NOT_EMPTY</type>
+            <message>The Comment field is required</message>
+          </validator>
+        </admin>
+      </column>
+      <index>
+        <column>video_id</column>
+      </index>
+      <index>
+        <column>date_commented</column>
+      </index>
+      <primaryKey>comment_id</primaryKey>
+    </columns>
+  </table>
+  <!-- END tbx_video_comment -->
+  <!-- START tbx_video_tag -->
+  <table>
+    <name>tbx_video_tag</name>
+    <columns>
+      <column>
+        <name>tag</name>
+        <definition>VARCHAR(100) NOT NULL PRIMARY KEY</definition>
+      </column>
+      <column>
+        <name>frequency</name>
+        <definition>INT UNSIGNED NOT NULL</definition>
+        <default>0</default>
+      </column>
+      <primaryKey>tag</primaryKey>
+      <index>
+        <column>frequency</column>
+      </index>
+    </columns>
+  </table>
+  <!-- END tbx_video_tag -->
+  <!-- START tbx_video_private -->
+  <table>
+    <name>tbx_video_private</name>
+    <naming>
+      <type>video-private</type>
+    </naming>
+    <columns>
+      <column>
+        <name>video_id</name>
+        <definition>INT UNSIGNED NOT NULL PRIMARY KEY</definition>
+      </column>
+      <column>
+        <name>private_id</name>
+        <definition>CHAR(40) NOT NULL</definition>
+      </column>
+      <primaryKey>video_id</primaryKey>
+      <index>
+        <column>private_id</column>
+      </index>
+    </columns>
+  </table>
+  <!-- END tbx_video_private -->
+  <!-- START tbx_video_md5sum -->
+  <table>
+    <name>tbx_video_md5sum</name>
+    <naming>
+      <type>video-md5sum</type>
+    </naming>
+    <columns>
+      <column>
+        <name>md5</name>
+        <definition>CHAR(32) NOT NULL PRIMARY KEY</definition>
+      </column>
+      <primaryKey>md5</primaryKey>
+    </columns>
+  </table>
+  <!-- END tbx_video_md5sum -->
+  <!-- START tbx_reason -->
+  <table>
+    <name>tbx_reason</name>
+    <privilege>REASONS</privilege>
+    <naming>
+      <type>reason</type>
+      <textLower>reason</textLower>
+      <textLowerPlural>reasons</textLowerPlural>
+      <textUpper>Reason</textUpper>
+      <textUpperPlural>Reasons</textUpperPlural>
+      <function>Reason</function>
+    </naming>
+    <toolbar>
+      <icon>
+        <type>dialog</type>
+        <img>add-32x32.png</img>
+        <title>Add</title>
+        <function>tbxGenericShowAdd(reason)</function>
+      </icon>
+      <icon>
+        <type>separator</type>
+      </icon>
+      <icon>
+        <type>dialog</type>
+        <img>edit-32x32.png</img>
+        <title>Edit</title>
+        <function>tbxGenericShowBulkEdit(reason)</function>
+      </icon>
+      <icon>
+        <type>action</type>
+        <img>delete-32x32.png</img>
+        <title>Delete</title>
+        <function>tbxGenericAction(reason,delete)</function>
+      </icon>
+      <icon>
+        <type>separator</type>
+      </icon>
+      <icon>
+        <type>link</type>
+        <img>help-32x32.png</img>
+        <title>Documentation</title>
+        <link>docs/cp-reason.html</link>
+        <target>_blank</target>
+      </icon>
+    </toolbar>
+    <searchFields/>
+    <sortFields/>
+    <columns>
+      <column>
+        <name>reason_id</name>
+        <definition>INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT</definition>
+        <label>Reason ID</label>
+        <description>The ID number assigned to the reason.  ID numbers are generated in sequential order automatically by the software.</description>
+        <default>null</default>
+        <admin>
+          <search>false</search>
+          <sort>false</sort>
+          <create>false</create>
+          <edit>false</edit>
+        </admin>
+      </column>
+      <column>
+        <name>type</name>
+        <definition>ENUM('Reject User','Reject Video','Flag','Feature')</definition>
+        <label>Type</label>
+        <description>The type of reason</description>
+        <autocomplete>#Reject User,Reject Comment,Flag,Feature</autocomplete>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>SET,RAW_SQL</bulkEdit>
+        </admin>
+      </column>
+      <column>
+        <name>short_name</name>
+        <definition>TEXT NOT NULL</definition>
+        <label>Short Name</label>
+        <description>A short overview of the reason for doing something</description>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>-ADD,SUBTRACT,INCREMENT,DECREMENT</bulkEdit>
+          <validator>
+            <type>NOT_EMPTY</type>
+            <message>The Short Name field is required</message>
+          </validator>
+        </admin>
+      </column>
+      <column>
+        <name>description</name>
+        <definition>TEXT NOT NULL</definition>
+        <label>Description</label>
+        <description>A full description of the reason for doing something</description>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>-ADD,SUBTRACT,INCREMENT,DECREMENT</bulkEdit>
+          <validator>
+            <type>NOT_EMPTY</type>
+            <message>The Description field is required</message>
+          </validator>
+        </admin>
+      </column>
+      <primaryKey>reason_id</primaryKey>
+    </columns>
+  </table>
+  <!-- END tbx_flag_reason -->
+  <!-- START tbx_category -->
+  <table>
+    <name>tbx_category</name>
+    <custom>tbx_category_custom</custom>
+    <privilege>CATEGORIES</privilege>
+    <join>
+      <table>tbx_category_custom</table>
+      <foreign>category_id</foreign>
+      <local>category_id</local>
+    </join>
+    <naming>
+      <type>category</type>
+      <textLower>category</textLower>
+      <textLowerPlural>categories</textLowerPlural>
+      <textUpper>Category</textUpper>
+      <textUpperPlural>Categories</textUpperPlural>
+      <function>Category</function>
+    </naming>
+    <toolbar>
+      <icon>
+        <type>dialog</type>
+        <img>add-32x32.png</img>
+        <title>Add</title>
+        <function>tbxGenericShowAdd(category)</function>
+      </icon>
+      <icon>
+        <type>separator</type>
+      </icon>
+      <icon>
+        <type>dialog</type>
+        <img>edit-32x32.png</img>
+        <title>Edit</title>
+        <function>tbxGenericShowBulkEdit(category)</function>
+      </icon>
+      <icon>
+        <type>action</type>
+        <img>delete-32x32.png</img>
+        <title>Delete</title>
+        <function>tbxGenericAction(category,delete)</function>
+      </icon>
+      <icon>
+        <type>separator</type>
+      </icon>
+      <icon>
+        <type>link</type>
+        <img>help-32x32.png</img>
+        <title>Documentation</title>
+        <link>docs/cp-category.html</link>
+        <target>_blank</target>
+      </icon>
+    </toolbar>
+    <searches/>
+    <searchFields/>
+    <sortFields/>
+    <columns>
+      <column>
+        <name>category_id</name>
+        <definition>INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT</definition>
+        <label>Category ID</label>
+        <description>The ID number assigned to the category.  ID numbers are generated in sequential order automatically by the software.</description>
+        <default>null</default>
+        <admin>
+          <search>false</search>
+          <sort>false</sort>
+          <create>false</create>
+          <edit>false</edit>
+        </admin>
+      </column>
+      <column>
+        <name>name</name>
+        <definition>VARCHAR(255)</definition>
+        <label>Name</label>
+        <description>The category's name</description>
+        <autocomplete>tbx_category.name</autocomplete>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>APPEND,PREPEND,UPPERCASE_ALL,UPPERCASE_FIRST,LOWERCASE_ALL,RAW_SQL</bulkEdit>
+          <validator>
+            <type>NOT_EMPTY</type>
+            <message>The Name field is required</message>
+          </validator>
+        </admin>
+      </column>
+      <column>
+        <name>url_name</name>
+        <definition>VARCHAR(255)</definition>
+        <label>URL Name</label>
+        <description>The category's name</description>
+        <autocomplete>tbx_category.url_name</autocomplete>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>APPEND,PREPEND,UPPERCASE_ALL,UPPERCASE_FIRST,LOWERCASE_ALL,RAW_SQL</bulkEdit>
+          <validator>
+            <type>NOT_EMPTY</type>
+            <message>The URL Name field is required</message>
+          </validator>
+          <validator>
+            <condition>not-empty</condition>
+            <type>REGEX_MATCH</type>
+            <message>The URL Name field can contain only English letter, number, dash, and underscore characters</message>
+            <extras>~^[a-z0-9_\-]+$~i</extras>
+          </validator>
+        </admin>
+      </column>
+      <column>
+        <name>description</name>
+        <definition>TEXT NOT NULL</definition>
+        <label>Description</label>
+        <description>The category's description</description>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>-ADD,SUBTRACT,INCREMENT,DECREMENT</bulkEdit>
+        </admin>
+      </column>
+      <column>
+        <name>meta_description</name>
+        <definition>TEXT NOT NULL</definition>
+        <label>Meta Description</label>
+        <description>The category's description as it should appear in a meta tag</description>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>-ADD,SUBTRACT,INCREMENT,DECREMENT</bulkEdit>
+        </admin>
+      </column>
+      <column>
+        <name>meta_keywords</name>
+        <definition>TEXT NOT NULL</definition>
+        <label>Meta Keywords</label>
+        <description>The category's keywords as they should appear in a meta tag</description>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>-ADD,SUBTRACT,INCREMENT,DECREMENT</bulkEdit>
+        </admin>
+      </column>
+      <column>
+        <name>auto_category_term</name>
+        <definition>TEXT NOT NULL</definition>
+        <label>Auto Category Term</label>
+        <description>The search term to be used for automatic categorization</description>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>-ADD,SUBTRACT,INCREMENT,DECREMENT</bulkEdit>
+        </admin>
+      </column>
+      <column>
+        <name>num_videos</name>
+        <definition>INT UNSIGNED NOT NULL</definition>
+        <label>Videos</label>
+        <description>The number of videos in this category</description>
+        <default>0</default>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>false</create>
+          <edit>false</edit>
+        </admin>
+      </column>
+      <column>
+        <name>last_video_id</name>
+        <definition>INT UNSIGNED</definition>
+        <label>Last Video Added</label>
+        <description>The ID number of the last video added to this category</description>
+        <default>null</default>
+        <admin>
+          <search>false</search>
+          <sort>false</sort>
+          <create>false</create>
+          <edit>false</edit>
+        </admin>
+      </column>
+      <primaryKey>category_id</primaryKey>
+      <unique>
+        <column>name</column>
+      </unique>
+      <unique>
+        <column>url_name</column>
+      </unique>
+      <index>
+        <column>num_videos</column>
+      </index>
+      <column>
+        <name>image_id</name>
+        <label>Image</label>
+        <definition>INT UNSIGNED</definition>
+        <description>An image associated with the category</description>
+        <admin>
+          <search>false</search>
+          <sort>false</sort>
+          <create>true</create>
+          <edit>true</edit>
+        </admin>
+      </column>
+    </columns>
+  </table>
+  <!-- END tbx_category -->
+  <!-- START tbx_category_custom -->
+  <table>
+    <name>tbx_category_custom</name>
+    <naming>
+      <type>custom-category-field</type>
+      <textLower>custom category field</textLower>
+      <textLowerPlural>custom category fields</textLowerPlural>
+      <textUpper>Custom Category Field</textUpper>
+      <textUpperPlural>Custom Category Fields</textUpperPlural>
+    </naming>
+    <columns>
+      <column>
+        <name>category_id</name>
+        <definition>INT UNSIGNED NOT NULL PRIMARY KEY</definition>
+        <admin>
+          <search>false</search>
+          <sort>false</sort>
+          <create>false</create>
+          <edit>false</edit>
+        </admin>
+      </column>
+      <primaryKey>category_id</primaryKey>
+    </columns>
+  </table>
+  <!-- START tbx_category_custom -->
+  <!-- START tbx_category_custom_schema -->
+  <table>
+    <name>tbx_category_custom_schema</name>
+    <privilege>DATABASE</privilege>
+    <naming>
+      <type>category-custom-field</type>
+      <textLower>custom category field</textLower>
+      <textLowerPlural>custom category fields</textLowerPlural>
+      <textUpper>Custom Category Field</textUpper>
+      <textUpperPlural>Custom Category Fields</textUpperPlural>
+      <function>CategoryCustomField</function>
+    </naming>
+    <toolbar>
+      <icon>
+        <type>dialog</type>
+        <img>add-32x32.png</img>
+        <title>Add</title>
+        <function>tbxGenericShowAdd(category-custom-field)</function>
+      </icon>
+      <icon>
+        <type>separator</type>
+      </icon>
+      <icon>
+        <type>dialog</type>
+        <img>edit-32x32.png</img>
+        <title>Edit</title>
+        <function>tbxGenericShowBulkEdit(category-custom-field)</function>
+      </icon>
+      <icon>
+        <type>action</type>
+        <img>delete-32x32.png</img>
+        <title>Delete</title>
+        <function>tbxGenericAction(category-custom-field,delete)</function>
+      </icon>
+      <icon>
+        <type>separator</type>
+      </icon>
+      <icon>
+        <type>link</type>
+        <img>help-32x32.png</img>
+        <title>Documentation</title>
+        <link>docs/cp-category-custom-field.html</link>
+        <target>_blank</target>
+      </icon>
+    </toolbar>
+    <searches/>
+    <searchFields/>
+    <sortFields/>
+    <columns>
+      <column>
+        <name>field_id</name>
+        <definition>INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT</definition>
+        <label>Field ID</label>
+        <description>The ID number assigned to the field.  ID numbers are generated in sequential order automatically by the software.</description>
+        <default>null</default>
+        <admin>
+          <search>false</search>
+          <sort>false</sort>
+          <create>false</create>
+          <edit>false</edit>
+        </admin>
+      </column>
+      <column>
+        <name>name</name>
+        <definition>VARCHAR(32) NOT NULL</definition>
+        <label>Name</label>
+        <description>The name to use for the database field</description>
+        <autocomplete>tbx_category_custom_schema.name</autocomplete>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+        </admin>
+      </column>
+      <column>
+        <name>type</name>
+        <definition>ENUM('Text','Textarea','Checkbox','Select') NOT NULL</definition>
+        <label>Field Type</label>
+        <description>The form field type to use for this custom input field</description>
+        <default>Text</default>
+        <autocomplete>#Text,Textarea,Checkbox,Select</autocomplete>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>SET</bulkEdit>
+        </admin>
+      </column>
+      <column>
+        <name>label</name>
+        <definition>TEXT NOT NULL</definition>
+        <label>Label</label>
+        <description>The label to display for this field</description>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>-ADD,SUBTRACT,INCREMENT,DECREMENT</bulkEdit>
+          <validator>
+            <type>NOT_EMPTY</type>
+            <message>The Label field is required</message>
+          </validator>
+        </admin>
+      </column>
+      <column>
+        <name>tag_attributes</name>
+        <definition>TEXT</definition>
+        <label>Tag Attributes</label>
+        <description>Extra HTML attributes to use in the HTML tag for this field</description>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>-ADD,SUBTRACT,INCREMENT,DECREMENT</bulkEdit>
+        </admin>
+      </column>
+      <column>
+        <name>options</name>
+        <definition>TEXT</definition>
+        <label>Options</label>
+        <description>A comma separated list of values to use for the options of a select field</description>
+        <notes>Only visible when adding a select type field</notes>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>-ADD,SUBTRACT,INCREMENT,DECREMENT</bulkEdit>
+        </admin>
+      </column>
+      <column>
+        <name>validators</name>
+        <definition>TEXT</definition>
+        <label>Validators</label>
+        <description>The validators to use for this field</description>
+        <notes>PHP serialized value</notes>
+        <admin>
+          <search>false</search>
+          <sort>false</sort>
+          <create>true</create>
+          <edit>true</edit>
+        </admin>
+      </column>
+      <primaryKey>field_id</primaryKey>
+    </columns>
+  </table>
+  <!-- END tbx_category_custom_schema -->
+  <!-- START tbx_administrator -->
+  <table>
+    <name>tbx_administrator</name>
+    <privilege>ADMINISTRATORS</privilege>
+    <naming>
+      <type>administrator</type>
+      <textLower>administrator</textLower>
+      <textLowerPlural>administrators</textLowerPlural>
+      <textUpper>Administrator</textUpper>
+      <textUpperPlural>Administrators</textUpperPlural>
+      <function>Administrator</function>
+    </naming>
+    <email>
+      <field>tbx_administrator.email</field>
+      <nameField>tbx_administrator.name</nameField>
+      <text>Administrators</text>
+    </email>
+    <toolbar>
+      <icon>
+        <type>dialog</type>
+        <img>add-32x32.png</img>
+        <title>Add</title>
+        <function>tbxGenericShowAdd(administrator)</function>
+      </icon>
+      <icon>
+        <type>separator</type>
+      </icon>
+      <icon>
+        <type>dialog</type>
+        <img>edit-32x32.png</img>
+        <title>Edit</title>
+        <function>tbxGenericShowBulkEdit(administrator)</function>
+      </icon>
+      <icon>
+        <type>dialog</type>
+        <img>email-32x32.png</img>
+        <title>E-mail</title>
+        <function>tbxGenericShowEmail(administrator)</function>
+      </icon>
+      <icon>
+        <type>action</type>
+        <img>delete-32x32.png</img>
+        <title>Delete</title>
+        <function>tbxGenericAction(administrator,delete)</function>
+      </icon>
+      <icon>
+        <type>separator</type>
+      </icon>
+      <icon>
+        <type>link</type>
+        <img>help-32x32.png</img>
+        <title>Documentation</title>
+        <link>docs/cp-administrator.html</link>
+        <target>_blank</target>
+      </icon>
+    </toolbar>
+    <searches/>
+    <searchFields/>
+    <sortFields/>
+    <columns>
+      <column>
+        <name>username</name>
+        <definition>VARCHAR(32) NOT NULL PRIMARY KEY</definition>
+        <label>Username</label>
+        <description>The administrator account's username</description>
+        <default>null</default>
+        <autocomplete>tbx_administrator.username</autocomplete>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>false</edit>
+          <validator>
+            <type>NOT_EMPTY</type>
+            <message>The Username field is required</message>
+          </validator>
+          <validator>
+            <condition>not-empty</condition>
+            <type>IS_ALPHANUM</type>
+            <message>The Username field can contain only English letters and numbers</message>
+          </validator>
+        </admin>
+      </column>
+      <column>
+        <name>password</name>
+        <definition>CHAR(40) NOT NULL</definition>
+        <label>Password</label>
+        <description>The administrator account's password</description>
+        <notes>Stored as an SHA1 hash</notes>
+        <admin>
+          <search>false</search>
+          <sort>false</sort>
+          <create>true</create>
+          <edit>true</edit>
+        </admin>
+      </column>
+      <column>
+        <name>email</name>
+        <definition>TEXT NOT NULL</definition>
+        <label>E-mail Address</label>
+        <description>The administrator's e-mail address</description>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>-CLEAR,ADD,SUBTRACT,INCREMENT,DECREMENT</bulkEdit>
+          <validator>
+            <type>NOT_EMPTY</type>
+            <message>The E-mail Address field is required</message>
+          </validator>
+          <validator>
+            <condition>not-empty</condition>
+            <type>VALID_EMAIL</type>
+            <message>The E-mail Address provided is not properly formatted</message>
+          </validator>
+        </admin>
+      </column>
+      <column>
+        <name>name</name>
+        <definition>TEXT</definition>
+        <label>Name</label>
+        <description>The administrator's name</description>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>-CLEAR,ADD,SUBTRACT,INCREMENT,DECREMENT</bulkEdit>
+          <validator>
+            <type>NOT_EMPTY</type>
+            <message>The Name field is required</message>
+          </validator>
+        </admin>
+      </column>
+      <column>
+        <name>type</name>
+        <definition>ENUM('Editor','Superuser') NOT NULL</definition>
+        <label>Account Type</label>
+        <description>The type of administrator account</description>
+        <default>Editor</default>
+        <autocomplete>#Editor,Superuser</autocomplete>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>SET</bulkEdit>
+        </admin>
+      </column>
+      <column>
+        <name>privileges</name>
+        <definition>INT UNSIGNED NOT NULL</definition>
+        <label>Privileges</label>
+        <description>The administrator account privileges</description>
+        <default>0</default>
+        <admin>
+          <search>false</search>
+          <sort>false</sort>
+          <create>true</create>
+          <edit>true</edit>
+        </admin>
+      </column>
+      <primaryKey>username</primaryKey>
+    </columns>
+  </table>
+  <!-- END tbx_administrator -->
+  <!-- START tbx_administrator_session -->
+  <table>
+    <name>tbx_administrator_session</name>
+    <columns>
+      <column>
+        <name>username</name>
+        <definition>VARCHAR(32) NOT NULL</definition>
+      </column>
+      <column>
+        <name>session</name>
+        <definition>CHAR(40) NOT NULL</definition>
+      </column>
+      <column>
+        <name>browser</name>
+        <definition>CHAR(40) NOT NULL</definition>
+      </column>
+      <column>
+        <name>ip_address</name>
+        <definition>CHAR(40) NOT NULL</definition>
+      </column>
+      <column>
+        <name>timestamp</name>
+        <definition>INT NOT NULL</definition>
+      </column>
+      <index>
+        <column>username</column>
+        <column>session</column>
+      </index>
+    </columns>
+  </table>
+  <!-- END tbx_administrator_session -->
+  <!-- START tbx_administrator_login_history -->
+  <table>
+    <name>tbx_administrator_login_history</name>
+    <columns>
+      <column>
+        <name>username</name>
+        <definition>VARCHAR(32) NOT NULL</definition>
+      </column>
+      <column>
+        <name>date_login</name>
+        <definition>DATETIME NOT NULL</definition>
+      </column>
+      <column>
+        <name>ip_address</name>
+        <definition>CHAR(16) NOT NULL</definition>
+      </column>
+      <index>
+        <column>username</column>
+      </index>
+    </columns>
+  </table>
+  <!-- END tbx_administrator_login_history -->
+  <!-- START tbx_saved_search -->
+  <table>
+    <name>tbx_saved_search</name>
+    <columns>
+      <column>
+        <name>search_id</name>
+        <definition>INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT</definition>
+      </column>
+      <column>
+        <name>identifier</name>
+        <definition>VARCHAR(255)</definition>
+      </column>
+      <column>
+        <name>item_type</name>
+        <definition>VARCHAR(64)</definition>
+      </column>
+      <column>
+        <name>form</name>
+        <definition>TEXT</definition>
+      </column>
+      <primaryKey>search_id</primaryKey>
+      <index>
+        <column>identifier</column>
+      </index>
+    </columns>
+  </table>
+  <!-- END tbx_saved_search -->
+  <!-- START tbx_blacklist -->
+  <table>
+    <name>tbx_blacklist</name>
+    <privilege>BLACKLIST</privilege>
+    <naming>
+      <type>blacklist-item</type>
+      <textLower>blacklist item</textLower>
+      <textLowerPlural>blacklist items</textLowerPlural>
+      <textUpper>Blacklist Item</textUpper>
+      <textUpperPlural>Blacklist Items</textUpperPlural>
+      <function>BlacklistItem</function>
+    </naming>
+    <toolbar>
+      <icon>
+        <type>dialog</type>
+        <img>add-32x32.png</img>
+        <title>Add</title>
+        <function>tbxGenericShowAdd(blacklist-item)</function>
+      </icon>
+      <icon>
+        <type>separator</type>
+      </icon>
+      <icon>
+        <type>dialog</type>
+        <img>edit-32x32.png</img>
+        <title>Edit</title>
+        <function>tbxGenericShowBulkEdit(blacklist-item)</function>
+      </icon>
+      <icon>
+        <type>action</type>
+        <img>delete-32x32.png</img>
+        <title>Delete</title>
+        <function>tbxGenericAction(blacklist-item,delete)</function>
+      </icon>
+      <icon>
+        <type>separator</type>
+      </icon>
+      <icon>
+        <type>link</type>
+        <img>help-32x32.png</img>
+        <title>Documentation</title>
+        <link>docs/cp-blacklist.html</link>
+        <target>_blank</target>
+      </icon>
+    </toolbar>
+    <searches/>
+    <searchFields/>
+    <sortFields/>
+    <columns>
+      <column>
+        <name>blacklist_id</name>
+        <definition>INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT</definition>
+        <label>Blacklist ID</label>
+        <description>The ID number assigned to the blacklist item.  ID numbers are generated in sequential order automatically by the software.</description>
+        <default>null</default>
+        <admin>
+          <search>false</search>
+          <sort>false</sort>
+          <create>false</create>
+          <edit>false</edit>
+        </admin>
+      </column>
+      <column>
+        <name>type</name>
+        <definition>ENUM('User IP','E-mail','Domain/URL','Domain IP','Word','HTML','HTTP Header','DNS Server') NOT NULL</definition>
+        <label>Type</label>
+        <description>The type of blacklist item</description>
+        <default>User IP</default>
+        <autocomplete>#User IP,E-mail,Domain/URL,Domain IP,Word,HTML,HTTP Header,DNS Server</autocomplete>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>SET</bulkEdit>
+        </admin>
+      </column>
+      <column>
+        <name>regex</name>
+        <definition>TINYINT NOT NULL DEFAULT '0'</definition>
+        <label>Regular expression</label>
+        <description>Check this box if the value(s) is a regular expression</description>
+        <default>0</default>
+        <autocomplete>#Yes,No</autocomplete>
+        <admin>
+          <search>true</search>
+          <sort>false</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>SET</bulkEdit>
+        </admin>
+      </column>
+      <column>
+        <name>value</name>
+        <definition>TEXT</definition>
+        <label>Value</label>
+        <description>The value(s) you want to add to the blacklist. You can enter one item per line to add multiple items at once.</description>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>-CLEAR,ADD,SUBTRACT,INCREMENT,DECREMENT</bulkEdit>
+          <validator>
+            <type>NOT_EMPTY</type>
+            <message>The Value field is required</message>
+          </validator>
+        </admin>
+      </column>
+      <column>
+        <name>reason</name>
+        <definition>TEXT</definition>
+        <label>Reason</label>
+        <description>Enter a reason why you are blacklisting this item, if you wish. If this value is provided, it will be displayed to the user.</description>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>-ADD,SUBTRACT,INCREMENT,DECREMENT</bulkEdit>
+        </admin>
+      </column>
+      <primaryKey>blacklist_id</primaryKey>
+    </columns>
+  </table>
+  <!-- END tbx_blacklist -->
+  <!-- START tbx_upload -->
+  <table>
+    <name>tbx_upload</name>
+    <columns>
+      <column>
+        <name>upload_id</name>
+        <definition>INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT</definition>
+      </column>
+      <column>
+        <name>uri</name>
+        <definition>TEXT NOT NULL</definition>
+        <notes>The relative URI to the uploaded file</notes>
+      </column>
+      <column>
+        <name>original_name</name>
+        <definition>TEXT NOT NULL</definition>
+        <notes>The original name of the uploaded file</notes>
+      </column>
+      <primaryKey>upload_id</primaryKey>
+      <index>
+        <column>original_name(100)</column>
+      </index>
+    </columns>
+  </table>
+  <!-- END tbx_upload -->
+  <!-- START tbx_banner -->
+  <table>
+    <name>tbx_banner</name>
+    <join>
+      <table>tbx_sponsor</table>
+      <foreign>sponsor_id</foreign>
+      <local>sponsor_id</local>
+    </join>
+    <privilege>BANNERS</privilege>
+    <naming>
+      <type>banner</type>
+      <textLower>banner</textLower>
+      <textLowerPlural>banners</textLowerPlural>
+      <textUpper>Banner</textUpper>
+      <textUpperPlural>Banners</textUpperPlural>
+      <function>Banner</function>
+    </naming>
+    <toolbar>
+      <icon>
+        <type>dialog</type>
+        <img>add-32x32.png</img>
+        <title>Add</title>
+        <function>tbxGenericShowAdd(banner)</function>
+      </icon>
+      <icon>
+        <type>separator</type>
+      </icon>
+      <icon>
+        <type>dialog</type>
+        <img>edit-32x32.png</img>
+        <title>Edit</title>
+        <function>tbxGenericShowBulkEdit(banner)</function>
+      </icon>
+      <icon>
+        <type>action</type>
+        <img>delete-32x32.png</img>
+        <title>Delete</title>
+        <function>tbxGenericAction(banner,delete)</function>
+      </icon>
+      <icon>
+        <type>separator</type>
+      </icon>
+      <icon>
+        <type>link</type>
+        <img>help-32x32.png</img>
+        <title>Documentation</title>
+        <link>docs/cp-banner.html</link>
+        <target>_blank</target>
+      </icon>
+    </toolbar>
+    <searches/>
+    <searchFields/>
+    <sortFields/>
+    <columns>
+      <column>
+        <name>banner_id</name>
+        <definition>INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT</definition>
+        <label>Banner ID</label>
+        <description>The ID number assigned to the banner.  ID numbers are generated in sequential order automatically by the software.</description>
+        <default>null</default>
+        <admin>
+          <search>false</search>
+          <sort>false</sort>
+          <create>false</create>
+          <edit>false</edit>
+        </admin>
+      </column>
+      <column>
+        <name>sponsor_id</name>
+        <definition>INT UNSIGNED</definition>
+        <label>Sponsor</label>
+        <description>The sponsor from which this banner comes</description>
+        <default>null</default>
+        <autocomplete>tbx_sponsor.name</autocomplete>
+        <admin>
+          <search>false</search>
+          <sort>false</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>SET</bulkEdit>
+        </admin>
+      </column>
+      <column>
+        <name>upload_id</name>
+        <definition>INT UNSIGNED</definition>
+        <default>null</default>
+        <admin>
+          <search>false</search>
+          <sort>false</sort>
+          <create>false</create>
+          <edit>false</edit>
+        </admin>
+      </column>
+      <column>
+        <name>zone</name>
+        <definition>VARCHAR(255)</definition>
+        <label>Zone</label>
+        <description>The zone in which this banner can be displayed</description>
+        <default>null</default>
+        <autocomplete>tbx_banner.zone</autocomplete>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>-ADD,SUBTRACT,INCREMENT,DECREMENT</bulkEdit>
+        </admin>
+      </column>
+      <column>
+        <name>tags</name>
+        <definition>TEXT NOT NULL</definition>
+        <label>Tags</label>
+        <description>The tags that have been assigned to the video</description>
+        <admin>
+          <search>true</search>
+          <sort>false</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>-ADD,SUBTRACT,INCREMENT,DECREMENT</bulkEdit>
+        </admin>
+      </column>
+      <column>
+        <name>times_displayed</name>
+        <definition>INT UNSIGNED NOT NULL</definition>
+        <label>Times Displayed</label>
+        <description>The number of times this banner has been selected for display</description>
+        <default>0</default>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>SET,ADD,SUBTRACT,INCREMENT,DECREMENT</bulkEdit>
+          <validator>
+            <type>IS_NUMERIC</type>
+            <message>The Times Displayed field must be a numeric value</message>
+          </validator>
+        </admin>
+      </column>
+      <column>
+        <name>banner_html</name>
+        <definition>TEXT</definition>
+        <label>Banner HTML</label>
+        <description>The complete HTML code to use for this banner</description>
+        <admin>
+          <search>true</search>
+          <sort>false</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>-ADD,SUBTRACT,INCREMENT,DECREMENT</bulkEdit>
+          <validator>
+            <type>NOT_EMPTY</type>
+            <message>The Banner HTML field is required</message>
+          </validator>
+        </admin>
+      </column>
+      <primaryKey>banner_id</primaryKey>
+      <index>
+        <column>zone</column>
+      </index>
+      <fulltext>
+        <column>tags</column>
+      </fulltext>
+    </columns>
+  </table>
+  <!-- END tbx_banner -->
+  <!-- START tbx_sponsor -->
+  <table>
+    <name>tbx_sponsor</name>
+    <custom>tbx_sponsor_custom</custom>
+    <join>
+      <table>tbx_sponsor_custom</table>
+      <foreign>sponsor_id</foreign>
+      <local>sponsor_id</local>
+    </join>
+    <privilege>SPONSORS</privilege>
+    <naming>
+      <type>sponsor</type>
+      <textLower>sponsor</textLower>
+      <textLowerPlural>sponsors</textLowerPlural>
+      <textUpper>Sponsor</textUpper>
+      <textUpperPlural>Sponsors</textUpperPlural>
+      <function>Sponsor</function>
+    </naming>
+    <toolbar>
+      <icon>
+        <type>dialog</type>
+        <img>add-32x32.png</img>
+        <title>Add</title>
+        <function>tbxGenericShowAdd(sponsor)</function>
+      </icon>
+      <icon>
+        <type>separator</type>
+      </icon>
+      <icon>
+        <type>dialog</type>
+        <img>edit-32x32.png</img>
+        <title>Edit</title>
+        <function>tbxGenericShowBulkEdit(sponsor)</function>
+      </icon>
+      <icon>
+        <type>action</type>
+        <img>delete-32x32.png</img>
+        <title>Delete</title>
+        <function>tbxGenericAction(sponsor,delete)</function>
+      </icon>
+      <icon>
+        <type>separator</type>
+      </icon>
+      <icon>
+        <type>link</type>
+        <img>help-32x32.png</img>
+        <title>Documentation</title>
+        <link>docs/cp-sponsor.html</link>
+        <target>_blank</target>
+      </icon>
+    </toolbar>
+    <searches/>
+    <searchFields/>
+    <sortFields/>
+    <columns>
+      <column>
+        <name>sponsor_id</name>
+        <definition>INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT</definition>
+        <label>Sponsor ID</label>
+        <description>The ID number assigned to the sponsor.  ID numbers are generated in sequential order automatically by the software.</description>
+        <default>null</default>
+        <admin>
+          <search>false</search>
+          <sort>false</sort>
+          <create>false</create>
+          <edit>false</edit>
+        </admin>
+      </column>
+      <column>
+        <name>name</name>
+        <definition>TEXT</definition>
+        <label>Sponsor Name</label>
+        <description>The sponsor's name</description>
+        <autocomplete>tbx_sponsor.name</autocomplete>
+        <default/>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>APPEND,PREPEND,UPPERCASE_ALL,UPPERCASE_FIRST,LOWERCASE_ALL,RAW_SQL</bulkEdit>
+          <validator>
+            <type>NOT_EMPTY</type>
+            <message>The Sponsor Name field is required</message>
+          </validator>
+        </admin>
+      </column>
+      <column>
+        <name>url</name>
+        <definition>TEXT</definition>
+        <label>Sponsor URL</label>
+        <description>The sponsor's URL</description>
+        <autocomplete>tbx_sponsor.url</autocomplete>
+        <default/>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>-ADD,SUBTRACT,INCREMENT,DECREMENT</bulkEdit>
+          <validator>
+            <condition>not-empty</condition>
+            <type>VALID_HTTP_URL</type>
+            <message>The Sponsor URL field must be a properly formatted HTTP URL</message>
+          </validator>
+        </admin>
+      </column>
+      <column>
+        <name>us2257_url</name>
+        <definition>TEXT</definition>
+        <label>2257 URL</label>
+        <description>The URL to the sponsor's 2257 record keeping information page</description>
+        <autocomplete>tbx_sponsor.us2257_url</autocomplete>
+        <default/>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>-ADD,SUBTRACT,INCREMENT,DECREMENT</bulkEdit>
+          <validator>
+            <condition>not-empty</condition>
+            <type>VALID_HTTP_URL</type>
+            <message>The 2257 URL field must be a properly formatted HTTP URL</message>
+          </validator>
+        </admin>
+      </column>
+      <column>
+        <name>videos</name>
+        <definition>INT UNSIGNED NOT NULL</definition>
+        <label>Videos</label>
+        <description>The number of videos belonging to this sponsor</description>
+        <default>0</default>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>false</create>
+          <edit>false</edit>
+        </admin>
+      </column>
+      <primaryKey>sponsor_id</primaryKey>
+      <index>
+        <column>name(255)</column>
+      </index>
+      <index>
+        <column>videos</column>
+      </index>
+    </columns>
+  </table>
+  <!-- END tbx_sponsor -->
+  <!-- START tbx_sponsor_custom -->
+  <table>
+    <name>tbx_sponsor_custom</name>
+    <naming>
+      <type>custom-sponsor-field</type>
+      <textLower>custom sponsor field</textLower>
+      <textLowerPlural>custom sponsor fields</textLowerPlural>
+      <textUpper>Custom Sponsor Field</textUpper>
+      <textUpperPlural>Custom Sponsor Fields</textUpperPlural>
+    </naming>
+    <columns>
+      <column>
+        <name>sponsor_id</name>
+        <definition>INT UNSIGNED NOT NULL PRIMARY KEY</definition>
+        <admin>
+          <search>false</search>
+          <sort>false</sort>
+          <create>false</create>
+          <edit>false</edit>
+        </admin>
+      </column>
+      <primaryKey>sponsor_id</primaryKey>
+    </columns>
+  </table>
+  <!-- END tbx_sponsor_custom -->
+  <!-- START tbx_sponsor_custom_schema -->
+  <table>
+    <name>tbx_sponsor_custom_schema</name>
+    <privilege>DATABASE</privilege>
+    <naming>
+      <type>sponsor-custom-field</type>
+      <textLower>custom sponsor field</textLower>
+      <textLowerPlural>custom sponsor fields</textLowerPlural>
+      <textUpper>Custom Sponsor Field</textUpper>
+      <textUpperPlural>Custom Sponsor Fields</textUpperPlural>
+      <function>SponsorCustomField</function>
+    </naming>
+    <toolbar>
+      <icon>
+        <type>dialog</type>
+        <img>add-32x32.png</img>
+        <title>Add</title>
+        <function>tbxGenericShowAdd(sponsor-custom-field)</function>
+      </icon>
+      <icon>
+        <type>separator</type>
+      </icon>
+      <icon>
+        <type>dialog</type>
+        <img>edit-32x32.png</img>
+        <title>Edit</title>
+        <function>tbxGenericShowBulkEdit(sponsor-custom-field)</function>
+      </icon>
+      <icon>
+        <type>action</type>
+        <img>delete-32x32.png</img>
+        <title>Delete</title>
+        <function>tbxGenericAction(sponsor-custom-field,delete)</function>
+      </icon>
+      <icon>
+        <type>separator</type>
+      </icon>
+      <icon>
+        <type>link</type>
+        <img>help-32x32.png</img>
+        <title>Documentation</title>
+        <link>docs/cp-sponsor-custom-field.html</link>
+        <target>_blank</target>
+      </icon>
+    </toolbar>
+    <searches/>
+    <searchFields/>
+    <sortFields/>
+    <columns>
+      <column>
+        <name>field_id</name>
+        <definition>INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT</definition>
+        <label>Field ID</label>
+        <description>The ID number assigned to the field.  ID numbers are generated in sequential order automatically by the software.</description>
+        <default>null</default>
+        <admin>
+          <search>false</search>
+          <sort>false</sort>
+          <create>false</create>
+          <edit>false</edit>
+        </admin>
+      </column>
+      <column>
+        <name>name</name>
+        <definition>VARCHAR(32) NOT NULL</definition>
+        <label>Name</label>
+        <description>The name to use for the database field</description>
+        <autocomplete>tbx_category_custom_schema.name</autocomplete>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+        </admin>
+      </column>
+      <column>
+        <name>type</name>
+        <definition>ENUM('Text','Textarea','Checkbox','Select') NOT NULL</definition>
+        <label>Field Type</label>
+        <description>The form field type to use for this custom input field</description>
+        <default>Text</default>
+        <autocomplete>#Text,Textarea,Checkbox,Select</autocomplete>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>SET</bulkEdit>
+        </admin>
+      </column>
+      <column>
+        <name>label</name>
+        <definition>TEXT NOT NULL</definition>
+        <label>Label</label>
+        <description>The label to display for this field</description>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>-ADD,SUBTRACT,INCREMENT,DECREMENT</bulkEdit>
+        </admin>
+      </column>
+      <column>
+        <name>tag_attributes</name>
+        <definition>TEXT</definition>
+        <label>Tag Attributes</label>
+        <description>Extra HTML attributes to use in the HTML tag for this field</description>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>-ADD,SUBTRACT,INCREMENT,DECREMENT</bulkEdit>
+        </admin>
+      </column>
+      <column>
+        <name>options</name>
+        <definition>TEXT</definition>
+        <label>Options</label>
+        <description>A comma separated list of values to use for the options of a select field</description>
+        <notes>Only visible when adding a select type field</notes>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>-ADD,SUBTRACT,INCREMENT,DECREMENT</bulkEdit>
+        </admin>
+      </column>
+      <column>
+        <name>validators</name>
+        <definition>TEXT</definition>
+        <label>Validators</label>
+        <description>The validators to use for this field</description>
+        <notes>PHP serialized value</notes>
+        <admin>
+          <search>false</search>
+          <sort>false</sort>
+          <create>true</create>
+          <edit>true</edit>
+        </admin>
+      </column>
+      <primaryKey>field_id</primaryKey>
+    </columns>
+  </table>
+  <!-- END tbx_sponsor_custom_schema -->
+  <!-- START tbx_user_level -->
+  <table>
+    <name>tbx_user_level</name>
+    <privilege>USERS</privilege>
+    <naming>
+      <type>user-level</type>
+      <textLower>user level</textLower>
+      <textLowerPlural>user levels</textLowerPlural>
+      <textUpper>User Level</textUpper>
+      <textUpperPlural>User Levels</textUpperPlural>
+      <function>UserLevel</function>
+    </naming>
+    <toolbar>
+      <icon>
+        <type>dialog</type>
+        <img>add-32x32.png</img>
+        <title>Add</title>
+        <function>tbxGenericShowAdd(user-level)</function>
+      </icon>
+      <icon>
+        <type>separator</type>
+      </icon>
+      <icon>
+        <type>dialog</type>
+        <img>edit-32x32.png</img>
+        <title>Edit</title>
+        <function>tbxGenericShowBulkEdit(user-level)</function>
+      </icon>
+      <icon>
+        <type>action</type>
+        <img>delete-32x32.png</img>
+        <title>Delete</title>
+        <function>tbxGenericAction(user-level,delete)</function>
+      </icon>
+      <icon>
+        <type>separator</type>
+      </icon>
+      <icon>
+        <type>link</type>
+        <img>help-32x32.png</img>
+        <title>Documentation</title>
+        <link>docs/cp-user-level.html</link>
+        <target>_blank</target>
+      </icon>
+    </toolbar>
+    <searchFields/>
+    <sortFields/>
+    <columns>
+      <column>
+        <name>user_level_id</name>
+        <definition>INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT</definition>
+        <label>User Level ID</label>
+        <description>The ID number assigned to the user level.  ID numbers are generated in sequential order automatically by the software.</description>
+        <default>null</default>
+        <admin>
+          <search>false</search>
+          <sort>false</sort>
+          <create>false</create>
+          <edit>false</edit>
+        </admin>
+      </column>
+      <column>
+        <name>name</name>
+        <definition>TEXT NOT NULL</definition>
+        <label>Name</label>
+        <description>The friendly name assigned to this user level</description>
+        <autocomplete>tbx_user_level.name</autocomplete>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>-ADD,SUBTRACT,INCREMENT,DECREMENT</bulkEdit>
+          <validator>
+            <type>NOT_EMPTY</type>
+            <message>The Name field is required</message>
+          </validator>
+        </admin>
+      </column>
+      <column>
+        <name>daily_view_limit</name>
+        <definition>INT UNSIGNED NOT NULL</definition>
+        <label>View Limit</label>
+        <description>The number of videos this user level is allowed to view each day</description>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>SET,ADD,SUBTRACT,INCREMENT,DECREMENT</bulkEdit>
+          <validator>
+            <type>NOT_EMPTY</type>
+            <message>The View Limit field is required</message>
+          </validator>
+          <validator>
+            <condition>not-empty</condition>
+            <type>IS_NUMERIC</type>
+            <message>The View Limit must be numerical</message>
+          </validator>
+        </admin>
+      </column>
+      <column>
+        <name>daily_bandwidth_limit</name>
+        <definition>INT UNSIGNED NOT NULL</definition>
+        <label>Bandwidth Limit</label>
+        <description>The number of bytes this user level is allowed to consume each day</description>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>SET,ADD,SUBTRACT,INCREMENT,DECREMENT</bulkEdit>
+          <validator>
+            <type>NOT_EMPTY</type>
+            <message>The Bandwidth Limit field is required</message>
+          </validator>
+          <validator>
+            <condition>not-empty</condition>
+            <type>REGEX_MATCH</type>
+            <message>The Bandwidth Limit must be numerical</message>
+            <extras>~(\d+)\s*([A-Z]+)?~i</extras>
+          </validator>
+        </admin>
+      </column>
+      <column>
+        <name>is_guest</name>
+        <definition>TINYINT UNSIGNED NOT NULL</definition>
+        <label>Use for guests</label>
+        <default>0</default>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+        </admin>
+      </column>
+      <column>
+        <name>is_default</name>
+        <definition>TINYINT UNSIGNED NOT NULL</definition>
+        <label>Use as default</label>
+        <default>0</default>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+        </admin>
+      </column>
+      <primaryKey>user_level_id</primaryKey>
+      <unique>
+        <column>name(255)</column>
+      </unique>
+    </columns>
+  </table>
+  <!-- END tbx_user_level -->
+  <!-- START tbx_user -->
+  <table>
+    <name>tbx_user</name>
+    <custom>tbx_user_custom</custom>
+    <merge>tbx_user_stat</merge>
+    <join>
+      <table>tbx_user_custom</table>
+      <foreign>username</foreign>
+      <local>username</local>
+    </join>
+    <join>
+      <table>tbx_user_stat</table>
+      <foreign>username</foreign>
+      <local>username</local>
+    </join>
+    <join>
+      <table>tbx_user_level</table>
+      <foreign>user_level_id</foreign>
+      <local>user_level_id</local>
+    </join>
+    <privilege>USERS</privilege>
+    <naming>
+      <type>user</type>
+      <textLower>user</textLower>
+      <textLowerPlural>users</textLowerPlural>
+      <textUpper>User</textUpper>
+      <textUpperPlural>Users</textUpperPlural>
+      <function>User</function>
+    </naming>
+    <email>
+      <field>tbx_user.email</field>
+      <nameField>tbx_user.name</nameField>
+      <text>Users</text>
+    </email>
+    <toolbar>
+      <icon>
+        <type>dialog</type>
+        <img>add-32x32.png</img>
+        <title>Add</title>
+        <function>tbxGenericShowAdd(user)</function>
+      </icon>
+      <icon>
+        <type>separator</type>
+      </icon>
+      <icon>
+        <type>dialog</type>
+        <img>edit-32x32.png</img>
+        <title>Edit</title>
+        <function>tbxGenericShowBulkEdit(user)</function>
+      </icon>
+      <icon>
+        <type>dialog</type>
+        <img>email-32x32.png</img>
+        <title>E-mail</title>
+        <function>tbxGenericShowEmail(user)</function>
+      </icon>
+      <!--<icon>
+        <type>action</type>
+        <img>blacklist-32x32.png</img>
+        <title>Blacklist</title>
+        <function>tbxGenericAction(user,blacklist)</function>
+      </icon>-->
+      <icon>
+        <type>action</type>
+        <img>approve-32x32.png</img>
+        <title>Approve</title>
+        <function>tbxGenericAction(user,approve)</function>
+      </icon>
+      <icon>
+        <type>action</type>
+        <img>reject-32x32.png</img>
+        <title>Reject</title>
+        <function>tbxGenericAction(user,reject)</function>
+      </icon>
+      <icon>
+        <type>action</type>
+        <img>enable-32x32.png</img>
+        <title>Enable</title>
+        <function>tbxGenericAction(user,enable)</function>
+      </icon>
+      <icon>
+        <type>action</type>
+        <img>disable-32x32.png</img>
+        <title>Disable</title>
+        <function>tbxGenericAction(user,disable)</function>
+      </icon>
+      <icon>
+        <type>action</type>
+        <img>delete-32x32.png</img>
+        <title>Delete</title>
+        <function>tbxGenericAction(user,delete)</function>
+      </icon>
+      <icon>
+        <type>separator</type>
+      </icon>
+      <icon>
+        <type>link</type>
+        <img>help-32x32.png</img>
+        <title>Documentation</title>
+        <link>docs/cp-user.html</link>
+        <target>_blank</target>
+      </icon>
+    </toolbar>
+    <searches>
+      <search>
+        <identifier>pending</identifier>
+        <id>0</id>
+        <json>{text_search: '', search_field: ['tbx_user.status'], search_operator: [3], search_term: ['Pending'], search_connector: [''], sort_field: ['tbx_user.date_created'], sort_direction: ['ASC'], sort_connector: ['']}</json>
+      </search>
+      <search>
+        <identifier>user</identifier>
+        <id>0</id>
+        <json>{text_search: '', search_field: ['tbx_user.username'], search_operator: [3], search_term: ['##username##'], search_connector: [''], sort_field: ['tbx_user.date_created'], sort_direction: ['ASC'], sort_connector: ['']}</json>
+      </search>
+    </searches>
+    <searchFields/>
+    <sortFields/>
+    <detailedOption>true</detailedOption>
+    <columns>
+      <column>
+        <name>username</name>
+        <definition>VARCHAR(64) NOT NULL PRIMARY KEY</definition>
+        <label>Username</label>
+        <description>The account's username</description>
+        <default>null</default>
+        <autocomplete>tbx_user.username</autocomplete>
+        <user>
+          <create>true</create>
+          <edit>false</edit>
+          <validator>
+            <type>NOT_EMPTY</type>
+            <message>The Username field is required</message>
+          </validator>
+          <validator>
+            <condition>not-empty</condition>
+            <type>REGEX_MATCH</type>
+            <message>The Username field can contain only English letter, number and underscore characters</message>
+            <extras>~^[a-z0-9_]+$~i</extras>
+          </validator>
+        </user>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>false</edit>
+          <validator>
+            <type>NOT_EMPTY</type>
+            <message>The Username field is required</message>
+          </validator>
+          <validator>
+            <condition>not-empty</condition>
+            <type>REGEX_MATCH</type>
+            <message>The Username field can contain only English letter, number and underscore characters</message>
+            <extras>~^[a-z0-9_]+$~i</extras>
+          </validator>
+        </admin>
+      </column>
+      <column>
+        <name>password</name>
+        <definition>CHAR(40) NOT NULL</definition>
+        <label>Password</label>
+        <description>The account's password</description>
+        <notes>Stored as an SHA1 hash</notes>
+        <user>
+          <create>true</create>
+          <edit>true</edit>
+          <validator>
+            <type>NOT_EMPTY</type>
+            <message>The Password field is required</message>
+          </validator>
+        </user>
+        <admin>
+          <search>false</search>
+          <sort>false</sort>
+          <create>true</create>
+          <edit>true</edit>
+        </admin>
+      </column>
+      <column>
+        <name>email</name>
+        <definition>TEXT NOT NULL</definition>
+        <label>E-mail Address</label>
+        <description>The account's e-mail address</description>
+        <autocomplete>tbx_user.email</autocomplete>
+        <user>
+          <create>true</create>
+          <edit>true</edit>
+          <validator>
+            <type>NOT_EMPTY</type>
+            <message>The E-mail Address field is required</message>
+          </validator>
+          <validator>
+            <condition>not-empty</condition>
+            <type>VALID_EMAIL</type>
+            <message>The E-mail Address is not properly formatted</message>
+          </validator>
+        </user>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>-ADD,SUBTRACT,INCREMENT,DECREMENT</bulkEdit>
+          <validator>
+            <type>NOT_EMPTY</type>
+            <message>The E-mail Address field is required</message>
+          </validator>
+          <validator>
+            <condition>not-empty</condition>
+            <type>VALID_EMAIL</type>
+            <message>The E-mail Address is not properly formatted</message>
+          </validator>
+        </admin>
+      </column>
+      <column>
+        <name>date_created</name>
+        <definition>DATETIME NOT NULL</definition>
+        <label>Date Created</label>
+        <description>The date and time that this account was created</description>
+        <default>mysql:now</default>
+        <user>
+          <create>true</create>
+          <edit>false</edit>
+        </user>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <validator>
+            <type>NOT_EMPTY</type>
+            <message>The Date Created field is required</message>
+          </validator>
+          <validator>
+            <condition>not-empty</condition>
+            <type>VALID_DATETIME</type>
+            <message>The Date Created field must be in YYYY-MM-DD HH:MM:SS format</message>
+          </validator>
+        </admin>
+      </column>
+      <column>
+        <name>status</name>
+        <definition>ENUM('Submitted','Pending','Active','Disabled')</definition>
+        <label>Status</label>
+        <description>The account status</description>
+        <default>Pending</default>
+        <autocomplete>#Submitted,Pending,Active,Disabled</autocomplete>
+        <user>
+          <create>true</create>
+          <edit>false</edit>
+        </user>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>SET</bulkEdit>
+        </admin>
+      </column>
+      <column>
+        <name>user_level_id</name>
+        <definition>INT UNSIGNED</definition>
+        <label>User Level</label>
+        <description>The account user level</description>
+        <default>null</default>
+        <autocomplete>tbx_user_level.name</autocomplete>
+        <user>
+          <create>true</create>
+          <edit>false</edit>
+        </user>
+        <admin>
+          <search>false</search>
+          <sort>false</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>SET</bulkEdit>
+        </admin>
+      </column>
+      <column>
+        <name>avatar_id</name>
+        <definition>INT UNSIGNED</definition>
+        <label>Avatar</label>
+        <description>The user's uploaded avatar (image)</description>
+        <default>null</default>
+        <user>
+          <create>true</create>
+          <edit>true</edit>
+        </user>
+        <admin>
+          <search>false</search>
+          <sort>false</sort>
+          <create>true</create>
+          <edit>true</edit>
+        </admin>
+      </column>
+      <column>
+        <name>name</name>
+        <definition>TEXT</definition>
+        <label>Name</label>
+        <description>The user's name</description>
+        <user>
+          <create>true</create>
+          <edit>true</edit>
+        </user>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>-ADD,SUBTRACT,INCREMENT,DECREMENT</bulkEdit>
+        </admin>
+      </column>
+      <column>
+        <name>date_birth</name>
+        <definition>DATE</definition>
+        <label>Birthday</label>
+        <description>The user's birthday</description>
+        <default>null</default>
+        <user>
+          <create>true</create>
+          <edit>false</edit>
+        </user>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>-ADD,SUBTRACT,INCREMENT,DECREMENT</bulkEdit>
+          <validator>
+            <condition>not-empty</condition>
+            <type>VALID_DATE</type>
+            <message>The Birthday field must be in YYYY-MM-DD format</message>
+          </validator>
+        </admin>
+      </column>
+      <column>
+        <name>gender</name>
+        <definition>ENUM('Male','Female')</definition>
+        <label>Gender</label>
+        <description>The user's gender</description>
+        <default>Male</default>
+        <autocomplete>#Male,Female</autocomplete>
+        <user>
+          <create>true</create>
+          <edit>true</edit>
+        </user>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>SET</bulkEdit>
+        </admin>
+      </column>
+      <column>
+        <name>relationship</name>
+        <definition>ENUM('Single','Taken','Open')</definition>
+        <label>Relationship</label>
+        <description>The user's relationship status</description>
+        <default>Single</default>
+        <autocomplete>#Single,Taken,Open</autocomplete>
+        <user>
+          <create>true</create>
+          <edit>true</edit>
+        </user>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>SET</bulkEdit>
+        </admin>
+      </column>
+      <column>
+        <name>about</name>
+        <definition>TEXT</definition>
+        <label>About Me</label>
+        <description>Information about this user</description>
+        <user>
+          <create>true</create>
+          <edit>true</edit>
+        </user>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>-ADD,SUBTRACT,INCREMENT,DECREMENT</bulkEdit>
+        </admin>
+      </column>
+      <column>
+        <name>website_url</name>
+        <definition>TEXT</definition>
+        <label>Website URL</label>
+        <description>The URL of the user's website</description>
+        <user>
+          <create>true</create>
+          <edit>true</edit>
+        </user>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>-ADD,SUBTRACT,INCREMENT,DECREMENT</bulkEdit>
+        </admin>
+      </column>
+      <column>
+        <name>hometown</name>
+        <definition>TEXT</definition>
+        <label>Hometown</label>
+        <description>The town in which the user grew up</description>
+        <user>
+          <create>true</create>
+          <edit>true</edit>
+        </user>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>-ADD,SUBTRACT,INCREMENT,DECREMENT</bulkEdit>
+        </admin>
+      </column>
+      <column>
+        <name>current_city</name>
+        <definition>TEXT</definition>
+        <label>Current City</label>
+        <description>The city in which the user is currently located</description>
+        <user>
+          <create>true</create>
+          <edit>true</edit>
+        </user>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>-ADD,SUBTRACT,INCREMENT,DECREMENT</bulkEdit>
+        </admin>
+      </column>
+      <column>
+        <name>postal_code</name>
+        <definition>VARCHAR(16)</definition>
+        <label>Postal Code</label>
+        <description>The postal code in which the user is currently located</description>
+        <user>
+          <create>true</create>
+          <edit>true</edit>
+        </user>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>-ADD,SUBTRACT,INCREMENT,DECREMENT</bulkEdit>
+        </admin>
+      </column>
+      <column>
+        <name>current_country</name>
+        <definition>TEXT</definition>
+        <label>Current Country</label>
+        <description>The country in which the user is currently located</description>
+        <user>
+          <create>true</create>
+          <edit>true</edit>
+        </user>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>-ADD,SUBTRACT,INCREMENT,DECREMENT</bulkEdit>
+        </admin>
+      </column>
+      <column>
+        <name>occupations</name>
+        <definition>TEXT</definition>
+        <label>Occupations</label>
+        <description>Jobs that the user has had</description>
+        <user>
+          <create>true</create>
+          <edit>true</edit>
+        </user>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>-ADD,SUBTRACT,INCREMENT,DECREMENT</bulkEdit>
+        </admin>
+      </column>
+      <column>
+        <name>companies</name>
+        <definition>TEXT</definition>
+        <label>Companies</label>
+        <description>Companies for which the user has worked</description>
+        <user>
+          <create>true</create>
+          <edit>true</edit>
+        </user>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>-ADD,SUBTRACT,INCREMENT,DECREMENT</bulkEdit>
+        </admin>
+      </column>
+      <column>
+        <name>schools</name>
+        <definition>TEXT</definition>
+        <label>Schools</label>
+        <description>Schools which the user has attended</description>
+        <user>
+          <create>true</create>
+          <edit>true</edit>
+        </user>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>-ADD,SUBTRACT,INCREMENT,DECREMENT</bulkEdit>
+        </admin>
+      </column>
+      <column>
+        <name>hobbies</name>
+        <definition>TEXT</definition>
+        <label>Hobbies</label>
+        <description>Hobbies and interests that the user has</description>
+        <user>
+          <create>true</create>
+          <edit>true</edit>
+        </user>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>-ADD,SUBTRACT,INCREMENT,DECREMENT</bulkEdit>
+        </admin>
+      </column>
+      <column>
+        <name>movies</name>
+        <definition>TEXT</definition>
+        <label>Favorite Shows/Movies</label>
+        <description>The user's favorite movies and/or TV shows</description>
+        <user>
+          <create>true</create>
+          <edit>true</edit>
+        </user>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>-ADD,SUBTRACT,INCREMENT,DECREMENT</bulkEdit>
+        </admin>
+      </column>
+      <column>
+        <name>music</name>
+        <definition>TEXT</definition>
+        <label>Favorite Music</label>
+        <description>The user's favorite musicians and/or genres</description>
+        <user>
+          <create>true</create>
+          <edit>true</edit>
+        </user>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>-ADD,SUBTRACT,INCREMENT,DECREMENT</bulkEdit>
+        </admin>
+      </column>
+      <column>
+        <name>books</name>
+        <definition>TEXT</definition>
+        <label>Favorite Books</label>
+        <description>The user's favorite books and/or genres</description>
+        <user>
+          <create>true</create>
+          <edit>true</edit>
+        </user>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>-ADD,SUBTRACT,INCREMENT,DECREMENT</bulkEdit>
+        </admin>
+      </column>
+      <primaryKey>username</primaryKey>
+      <index>
+        <column>date_created</column>
+      </index>
+      <index>
+        <column>email(255)</column>
+      </index>
+    </columns>
+  </table>
+  <!-- END tbx_user -->
+  <!-- START tbx_user_stat -->
+  <table>
+    <name>tbx_user_stat</name>
+    <naming>
+      <textUpper>User Stat</textUpper>
+      <textUpperPlural>User Stats</textUpperPlural>
+    </naming>
+    <columns>
+      <column>
+        <name>username</name>
+        <definition>VARCHAR(64) NOT NULL PRIMARY KEY</definition>
+        <label>Username</label>
+        <description>The account's username</description>
+        <admin>
+          <search>false</search>
+          <sort>false</sort>
+          <create>false</create>
+          <edit>false</edit>
+        </admin>
+        <user>
+          <create>true</create>
+        </user>
+      </column>
+      <column>
+        <name>date_last_login</name>
+        <definition>DATETIME</definition>
+        <label>Last Login</label>
+        <description>The date and time that this user last logged in</description>
+        <default>null</default>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>false</create>
+          <edit>false</edit>
+        </admin>
+      </column>
+      <column>
+        <name>today_video_views</name>
+        <definition>INT UNSIGNED DEFAULT '0'</definition>
+        <label>Video Views Today</label>
+        <description>The number of times others have viewed this user's videos today</description>
+        <default>0</default>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+        </admin>
+      </column>
+      <column>
+        <name>today_profile_views</name>
+        <definition>INT UNSIGNED DEFAULT '0'</definition>
+        <label>Profile Views Today</label>
+        <description>The number of times others have viewed this user's profile today</description>
+        <default>0</default>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+        </admin>
+      </column>
+      <column>
+        <name>today_videos_watched</name>
+        <definition>INT UNSIGNED DEFAULT '0'</definition>
+        <label>Videos Watched Today</label>
+        <description>The number of videos this user has watched today</description>
+        <default>0</default>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+        </admin>
+      </column>
+      <column>
+        <name>today_bandwidth_used</name>
+        <definition>INT UNSIGNED DEFAULT '0'</definition>
+        <label>Bandwidth Used Today</label>
+        <description>The amount of bandwidth the user has consumed today (in bytes)</description>
+        <default>0</default>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+        </admin>
+      </column>
+      <column>
+        <name>today_videos_uploaded</name>
+        <definition>INT UNSIGNED DEFAULT '0'</definition>
+        <label>Videos Uploaded Today</label>
+        <description>The number of videos this user has uploaded today</description>
+        <default>0</default>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+        </admin>
+      </column>
+      <column>
+        <name>today_comments_submitted</name>
+        <definition>INT UNSIGNED DEFAULT '0'</definition>
+        <label>Comments Submitted Today</label>
+        <description>The number of comments this user has submitted today</description>
+        <default>0</default>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>false</create>
+          <edit>false</edit>
+        </admin>
+      </column>
+      <column>
+        <name>week_video_views</name>
+        <definition>INT UNSIGNED DEFAULT '0'</definition>
+        <label>Video Views This Week</label>
+        <description>The number of times others have viewed this user's videos this week</description>
+        <default>0</default>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+        </admin>
+      </column>
+      <column>
+        <name>week_profile_views</name>
+        <definition>INT UNSIGNED DEFAULT '0'</definition>
+        <label>Profile Views This Week</label>
+        <description>The number of times others have viewed this user's profile this week</description>
+        <default>0</default>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+        </admin>
+      </column>
+      <column>
+        <name>week_videos_watched</name>
+        <definition>INT UNSIGNED DEFAULT '0'</definition>
+        <label>Videos Watched This Week</label>
+        <description>The number of videos this user has watched this week</description>
+        <default>0</default>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+        </admin>
+      </column>
+      <column>
+        <name>week_bandwidth_used</name>
+        <definition>INT UNSIGNED DEFAULT '0'</definition>
+        <label>Bandwidth Used This Week</label>
+        <description>The amount of bandwidth the user has consumed this week (in bytes)</description>
+        <default>0</default>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+        </admin>
+      </column>
+      <column>
+        <name>week_videos_uploaded</name>
+        <definition>INT UNSIGNED DEFAULT '0'</definition>
+        <label>Videos Uploaded This Week</label>
+        <description>The number of videos this user has uploaded this week</description>
+        <default>0</default>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+        </admin>
+      </column>
+      <column>
+        <name>week_comments_submitted</name>
+        <definition>INT UNSIGNED DEFAULT '0'</definition>
+        <label>Comments Submitted This Week</label>
+        <description>The number of comments this user has submitted this week</description>
+        <default>0</default>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>false</create>
+          <edit>false</edit>
+        </admin>
+      </column>
+      <column>
+        <name>month_video_views</name>
+        <definition>INT UNSIGNED DEFAULT '0'</definition>
+        <label>Video Views This Month</label>
+        <description>The number of times others have viewed this user's videos this month</description>
+        <default>0</default>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+        </admin>
+      </column>
+      <column>
+        <name>month_profile_views</name>
+        <definition>INT UNSIGNED DEFAULT '0'</definition>
+        <label>Profile Views This Month</label>
+        <description>The number of times others have viewed this user's profile this month</description>
+        <default>0</default>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+        </admin>
+      </column>
+      <column>
+        <name>month_videos_watched</name>
+        <definition>INT UNSIGNED DEFAULT '0'</definition>
+        <label>Videos Watched This Month</label>
+        <description>The number of videos this user has watched this month</description>
+        <default>0</default>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+        </admin>
+      </column>
+      <column>
+        <name>month_bandwidth_used</name>
+        <definition>INT UNSIGNED DEFAULT '0'</definition>
+        <label>Bandwidth Used This Month</label>
+        <description>The amount of bandwidth the user has consumed this month (in bytes)</description>
+        <default>0</default>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+        </admin>
+      </column>
+      <column>
+        <name>month_videos_uploaded</name>
+        <definition>INT UNSIGNED DEFAULT '0'</definition>
+        <label>Videos Uploaded This Month</label>
+        <description>The number of videos this user has uploaded this month</description>
+        <default>0</default>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+        </admin>
+      </column>
+      <column>
+        <name>month_comments_submitted</name>
+        <definition>INT UNSIGNED DEFAULT '0'</definition>
+        <label>Comments Submitted This Month</label>
+        <description>The number of comments this user has submitted this month</description>
+        <default>0</default>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>false</create>
+          <edit>false</edit>
+        </admin>
+      </column>
+      <column>
+        <name>total_video_views</name>
+        <definition>INT UNSIGNED DEFAULT '0'</definition>
+        <label>Video Views Total</label>
+        <description>The number of times others have viewed this user's videos total</description>
+        <default>0</default>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+        </admin>
+      </column>
+      <column>
+        <name>total_profile_views</name>
+        <definition>INT UNSIGNED DEFAULT '0'</definition>
+        <label>Profile Views Total</label>
+        <description>The number of times others have viewed this user's profile total</description>
+        <default>0</default>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+        </admin>
+      </column>
+      <column>
+        <name>total_videos_watched</name>
+        <definition>INT UNSIGNED DEFAULT '0'</definition>
+        <label>Videos Watched Total</label>
+        <description>The number of videos this user has watched total</description>
+        <default>0</default>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+        </admin>
+      </column>
+      <column>
+        <name>total_bandwidth_used</name>
+        <definition>INT UNSIGNED DEFAULT '0'</definition>
+        <label>Bandwidth Used Total</label>
+        <description>The amount of bandwidth the user has consumed total (in bytes)</description>
+        <default>0</default>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+        </admin>
+      </column>
+      <column>
+        <name>total_videos_uploaded</name>
+        <definition>INT UNSIGNED DEFAULT '0'</definition>
+        <label>Videos Uploaded Total</label>
+        <description>The number of videos this user has uploaded total</description>
+        <default>0</default>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+        </admin>
+      </column>
+      <column>
+        <name>total_comments_submitted</name>
+        <definition>INT UNSIGNED DEFAULT '0'</definition>
+        <label>Comments Submitted Total</label>
+        <description>The number of comments this user has submitted total</description>
+        <default>0</default>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>false</create>
+          <edit>false</edit>
+        </admin>
+      </column>
+      <primaryKey>username</primaryKey>
+    </columns>
+  </table>
+  <!-- END tbx_user_stat -->
+  <!-- START tbx_user_custom -->
+  <table>
+    <name>tbx_user_custom</name>
+    <naming>
+      <textUpper>Custom User Field</textUpper>
+      <textUpperPlural>Custom User Fields</textUpperPlural>
+    </naming>
+    <columns>
+      <column>
+        <name>username</name>
+        <definition>VARCHAR(64) NOT NULL PRIMARY KEY</definition>
+        <admin>
+          <search>false</search>
+          <sort>false</sort>
+          <create>false</create>
+          <edit>false</edit>
+        </admin>
+      </column>
+      <primaryKey>username</primaryKey>
+    </columns>
+  </table>
+  <!-- START tbx_user_custom -->
+  <!-- START tbx_user_custom_schema -->
+  <table>
+    <name>tbx_user_custom_schema</name>
+    <privilege>DATABASE</privilege>
+    <naming>
+      <type>user-custom-field</type>
+      <textLower>custom user field</textLower>
+      <textLowerPlural>custom user fields</textLowerPlural>
+      <textUpper>Custom User Field</textUpper>
+      <textUpperPlural>Custom User Fields</textUpperPlural>
+      <function>UserCustomField</function>
+    </naming>
+    <toolbar>
+      <icon>
+        <type>dialog</type>
+        <img>add-32x32.png</img>
+        <title>Add</title>
+        <function>tbxGenericShowAdd(user-custom-field)</function>
+      </icon>
+      <icon>
+        <type>separator</type>
+      </icon>
+      <icon>
+        <type>dialog</type>
+        <img>edit-32x32.png</img>
+        <title>Edit</title>
+        <function>tbxGenericShowBulkEdit(user-custom-field)</function>
+      </icon>
+      <icon>
+        <type>action</type>
+        <img>delete-32x32.png</img>
+        <title>Delete</title>
+        <function>tbxGenericAction(user-custom-field,delete)</function>
+      </icon>
+      <icon>
+        <type>separator</type>
+      </icon>
+      <icon>
+        <type>link</type>
+        <img>help-32x32.png</img>
+        <title>Documentation</title>
+        <link>docs/cp-user-custom-field.html</link>
+        <target>_blank</target>
+      </icon>
+    </toolbar>
+    <searches/>
+    <searchFields/>
+    <sortFields/>
+    <columns>
+      <column>
+        <name>field_id</name>
+        <definition>INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT</definition>
+        <label>Field ID</label>
+        <description>The ID number assigned to the field.  ID numbers are generated in sequential order automatically by the software.</description>
+        <default>null</default>
+        <admin>
+          <search>false</search>
+          <sort>false</sort>
+          <create>false</create>
+          <edit>false</edit>
+        </admin>
+      </column>
+      <column>
+        <name>name</name>
+        <definition>VARCHAR(32) NOT NULL</definition>
+        <label>Name</label>
+        <description>The name to use for the database field</description>
+        <autocomplete>tbx_user_custom_schema.name</autocomplete>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+        </admin>
+      </column>
+      <column>
+        <name>type</name>
+        <definition>ENUM('Text','Textarea','Checkbox','Select') NOT NULL</definition>
+        <label>Field Type</label>
+        <description>The form field type to use for this custom input field</description>
+        <default>Text</default>
+        <autocomplete>#Text,Textarea,Checkbox,Select</autocomplete>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>SET</bulkEdit>
+        </admin>
+      </column>
+      <column>
+        <name>label</name>
+        <definition>TEXT NOT NULL</definition>
+        <label>Label</label>
+        <description>The label to display for this field</description>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>-ADD,SUBTRACT,INCREMENT,DECREMENT</bulkEdit>
+        </admin>
+      </column>
+      <column>
+        <name>tag_attributes</name>
+        <definition>TEXT</definition>
+        <label>Tag Attributes</label>
+        <description>Extra HTML attributes to use in the HTML tag for this field</description>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>-ADD,SUBTRACT,INCREMENT,DECREMENT</bulkEdit>
+        </admin>
+      </column>
+      <column>
+        <name>options</name>
+        <definition>TEXT</definition>
+        <label>Options</label>
+        <description>A comma separated list of values to use for the options of a select field</description>
+        <notes>Only visible when adding a select type field</notes>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>-ADD,SUBTRACT,INCREMENT,DECREMENT</bulkEdit>
+        </admin>
+      </column>
+      <column>
+        <name>validators</name>
+        <definition>TEXT</definition>
+        <label>Validators</label>
+        <description>The validators to use for this field</description>
+        <notes>PHP serialized value</notes>
+        <admin>
+          <search>false</search>
+          <sort>false</sort>
+          <create>true</create>
+          <edit>true</edit>
+        </admin>
+      </column>
+      <column>
+        <name>on_submit</name>
+        <definition>TINYINT UNSIGNED</definition>
+        <label>Display on submission form</label>
+        <description>Check if you want this field to appear on the submission form</description>
+        <default>1</default>
+        <autocomplete>#Yes,No</autocomplete>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>SET</bulkEdit>
+        </admin>
+      </column>
+      <column>
+        <name>on_edit</name>
+        <definition>TINYINT UNSIGNED</definition>
+        <label>Display on editing form</label>
+        <description>Check if you want this field to appear on the editing form</description>
+        <default>1</default>
+        <autocomplete>#Yes,No</autocomplete>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>SET</bulkEdit>
+        </admin>
+      </column>
+      <primaryKey>field_id</primaryKey>
+    </columns>
+  </table>
+  <!-- END tbx_user_custom_schema -->
+  <!-- START tbx_user_favorite -->
+  <table>
+    <name>tbx_user_favorite</name>
+    <columns>
+      <column>
+        <name>username</name>
+        <definition>VARCHAR(64) NOT NULL</definition>
+      </column>
+      <column>
+        <name>video_id</name>
+        <definition>INT UNSIGNED NOT NULL</definition>
+      </column>
+      <unique>
+        <column>username</column>
+        <column>video_id</column>
+      </unique>
+      <index>
+        <column>video_id</column>
+      </index>
+    </columns>
+  </table>
+  <!-- END tbx_user_favorite -->
+  <!-- START tbx_user_session -->
+  <table>
+    <name>tbx_user_session</name>
+    <columns>
+      <column>
+        <name>username</name>
+        <definition>VARCHAR(64) NOT NULL</definition>
+      </column>
+      <column>
+        <name>session</name>
+        <definition>CHAR(40) NOT NULL</definition>
+      </column>
+      <column>
+        <name>browser</name>
+        <definition>CHAR(40) NOT NULL</definition>
+      </column>
+      <column>
+        <name>ip_address</name>
+        <definition>CHAR(40) NOT NULL</definition>
+      </column>
+      <column>
+        <name>timestamp</name>
+        <definition>INT NOT NULL</definition>
+      </column>
+      <index>
+        <column>username</column>
+        <column>session</column>
+      </index>
+    </columns>
+  </table>
+  <!-- END tbx_user_session -->
+  <!-- START tbx_user_register_code -->
+  <table>
+    <name>tbx_user_register_code</name>
+    <naming>
+      <type>user-register-code</type>
+    </naming>
+    <columns>
+      <column>
+        <name>username</name>
+        <definition>VARCHAR(64) NOT NULL</definition>
+      </column>
+      <column>
+        <name>register_code</name>
+        <definition>VARCHAR(40) NOT NULL</definition>
+      </column>
+      <column>
+        <name>timestamp</name>
+        <definition>INT NOT NULL</definition>
+      </column>
+      <index>
+        <column>username</column>
+      </index>
+      <index>
+        <column>register_code</column>
+      </index>
+    </columns>
+  </table>
+  <!-- END tbx_user_register_code -->
+  <!-- START tbx_user_reset_code -->
+  <table>
+    <name>tbx_user_reset_code</name>
+    <naming>
+      <type>user-reset-code</type>
+    </naming>
+    <columns>
+      <column>
+        <name>username</name>
+        <definition>VARCHAR(64) NOT NULL</definition>
+      </column>
+      <column>
+        <name>reset_code</name>
+        <definition>VARCHAR(40) NOT NULL</definition>
+      </column>
+      <column>
+        <name>timestamp</name>
+        <definition>INT NOT NULL</definition>
+      </column>
+      <index>
+        <column>username</column>
+      </index>
+      <index>
+        <column>reset_code</column>
+      </index>
+    </columns>
+  </table>
+  <!-- END tbx_user_reset_code -->
+  <!-- START tbx_search_term -->
+  <table>
+    <name>tbx_search_term</name>
+    <privilege>SEARCH_TERMS</privilege>
+    <naming>
+      <type>search-term</type>
+      <textLower>search term</textLower>
+      <textLowerPlural>search terms</textLowerPlural>
+      <textUpper>Search Term</textUpper>
+      <textUpperPlural>Search Terms</textUpperPlural>
+      <function>SearchTerm</function>
+    </naming>
+    <toolbar>
+      <icon>
+        <type>dialog</type>
+        <img>add-32x32.png</img>
+        <title>Add</title>
+        <function>tbxGenericShowAdd(search-term)</function>
+      </icon>
+      <icon>
+        <type>separator</type>
+      </icon>
+      <icon>
+        <type>dialog</type>
+        <img>edit-32x32.png</img>
+        <title>Edit</title>
+        <function>tbxGenericShowBulkEdit(search-term)</function>
+      </icon>
+      <icon>
+        <type>action</type>
+        <img>delete-32x32.png</img>
+        <title>Delete</title>
+        <function>tbxGenericAction(search-term,delete)</function>
+      </icon>
+      <icon>
+        <type>separator</type>
+      </icon>
+      <icon>
+        <type>link</type>
+        <img>help-32x32.png</img>
+        <title>Documentation</title>
+        <link>docs/cp-search-term.html</link>
+        <target>_blank</target>
+      </icon>
+    </toolbar>
+    <searches/>
+    <searchFields/>
+    <sortFields/>
+    <columns>
+      <column>
+        <name>term_id</name>
+        <definition>INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT</definition>
+        <label>Term ID</label>
+        <description>The ID number assigned to the term.  ID numbers are generated in sequential order automatically by the software.</description>
+        <default>null</default>
+        <admin>
+          <search>false</search>
+          <sort>false</sort>
+          <create>false</create>
+          <edit>false</edit>
+        </admin>
+      </column>
+      <column>
+        <name>term</name>
+        <definition>VARCHAR(255)</definition>
+        <label>Search Term</label>
+        <description>The search term</description>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <validator>
+            <type>NOT_EMPTY</type>
+            <message>The Search Term field is required</message>
+          </validator>
+        </admin>
+      </column>
+      <column>
+        <name>frequency</name>
+        <definition>INT UNSIGNED NOT NULL</definition>
+        <label>Frequency</label>
+        <description>The number of times this search term has been entered</description>
+        <default>0</default>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>ADD,SUBTRACT,INCREMENT,DECREMENT</bulkEdit>
+          <validator>
+            <type>NOT_EMPTY</type>
+            <message>The Frequency field is required</message>
+          </validator>
+          <validator>
+            <condition>not-empty</condition>
+            <type>IS_NUMERIC</type>
+            <message>The Frequency field must be numeric</message>
+          </validator>
+        </admin>
+      </column>
+      <primaryKey>term_id</primaryKey>
+      <unique>
+        <column>term</column>
+      </unique>
+    </columns>
+  </table>
+  <!-- END tbx_search_term -->
+  <!-- START tbx_search_term_new -->
+  <table>
+    <name>tbx_search_term_new</name>
+    <naming>
+      <type>search-term-new</type>
+    </naming>
+    <columns>
+      <column>
+        <name>term_id</name>
+        <definition>INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT</definition>
+      </column>
+      <column>
+        <name>term</name>
+        <definition>VARCHAR(255)</definition>
+      </column>
+      <column>
+        <name>frequency</name>
+        <definition>INT UNSIGNED NOT NULL</definition>
+      </column>
+      <primaryKey>term_id</primaryKey>
+      <unique>
+        <column>term</column>
+      </unique>
+    </columns>
+  </table>
+  <!-- END tbx_search_term_new -->
+  <!-- START tbx_video_feed -->
+  <table>
+    <name>tbx_video_feed</name>
+    <join>
+      <table>tbx_sponsor</table>
+      <foreign>sponsor_id</foreign>
+      <local>sponsor_id</local>
+    </join>
+    <join>
+      <table>tbx_category</table>
+      <foreign>category_id</foreign>
+      <local>category_id</local>
+    </join>
+    <privilege>VIDEO_FEEDS</privilege>
+    <naming>
+      <type>video-feed</type>
+      <textLower>video feed</textLower>
+      <textLowerPlural>video feeds</textLowerPlural>
+      <textUpper>Video Feed</textUpper>
+      <textUpperPlural>Video Feeds</textUpperPlural>
+      <function>VideoFeed</function>
+    </naming>
+    <toolbar>
+      <icon>
+        <type>dialog</type>
+        <img>add-32x32.png</img>
+        <title>Add</title>
+        <function>tbxGenericShowAdd(video-feed)</function>
+      </icon>
+      <icon>
+        <type>separator</type>
+      </icon>
+      <icon>
+        <type>dialog</type>
+        <img>edit-32x32.png</img>
+        <title>Edit</title>
+        <function>tbxGenericShowBulkEdit(video-feed)</function>
+      </icon>
+      <icon>
+        <type>action</type>
+        <img>delete-32x32.png</img>
+        <title>Delete</title>
+        <function>tbxGenericAction(video-feed,delete)</function>
+      </icon>
+      <icon>
+        <type>separator</type>
+      </icon>
+      <icon>
+        <type>link</type>
+        <img>help-32x32.png</img>
+        <title>Documentation</title>
+        <link>docs/cp-video-feed.html</link>
+        <target>_blank</target>
+      </icon>
+    </toolbar>
+    <searches/>
+    <searchFields/>
+    <sortFields/>
+    <columns>
+      <column>
+        <name>feed_id</name>
+        <definition>INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT</definition>
+        <label>Feed ID</label>
+        <description>The ID number assigned to the feed.  ID numbers are generated in sequential order automatically by the software.</description>
+        <default>null</default>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>false</create>
+          <edit>false</edit>
+        </admin>
+      </column>
+      <column>
+        <name>name</name>
+        <definition>TEXT NOT NULL</definition>
+        <label>Feed Name</label>
+        <description>A name for the feed, for easier identification</description>
+        <autocomplete>tbx_video_feed.name</autocomplete>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>-CLEAR,ADD,SUBTRACT,INCREMENT,DECREMENT</bulkEdit>
+          <validator>
+            <type>NOT_EMPTY</type>
+            <message>The Feed Name field is required</message>
+          </validator>
+        </admin>
+      </column>
+      <column>
+        <name>feed_url</name>
+        <definition>TEXT NOT NULL</definition>
+        <label>Feed URL</label>
+        <description>The full URL to the feed</description>
+        <autocomplete>tbx_video_feed.feed_url</autocomplete>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>-CLEAR,ADD,SUBTRACT,INCREMENT,DECREMENT</bulkEdit>
+          <validator>
+            <type>NOT_EMPTY</type>
+            <message>The Feed URL field is required</message>
+          </validator>
+          <validator>
+            <condition>not-empty</condition>
+            <type>VALID_HTTP_URL</type>
+            <message>The Feed URL field is not a valid HTTP URL</message>
+          </validator>
+        </admin>
+      </column>
+      <column>
+        <name>type</name>
+        <definition>ENUM('XML Videos Feed','YouTube Feed')</definition>
+        <label>Feed Type</label>
+        <description>The type of feed</description>
+        <autocomplete>#XML Videos Feed,YouTube Feed</autocomplete>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>SET</bulkEdit>
+        </admin>
+      </column>
+      <column>
+        <name>date_last_read</name>
+        <definition>DATETIME</definition>
+        <label>Last Read</label>
+        <description>The date and time this feed was last read from</description>
+        <default>null</default>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>false</create>
+          <edit>false</edit>
+        </admin>
+      </column>
+      <column>
+        <name>sponsor_id</name>
+        <definition>INT UNSIGNED</definition>
+        <label>Sponsor</label>
+        <description>The sponsor associated with this feed</description>
+        <default>null</default>
+        <autocomplete>tbx_sponsor.name</autocomplete>
+        <admin>
+          <search>false</search>
+          <sort>false</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>SET,CLEAR</bulkEdit>
+        </admin>
+      </column>
+      <column>
+        <name>category_id</name>
+        <definition>INT UNSIGNED NOT NULL</definition>
+        <label>Category</label>
+        <description>The default category to use for videos imported from this feed</description>
+        <autocomplete>tbx_category.name</autocomplete>
+        <admin>
+          <search>false</search>
+          <sort>false</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>SET</bulkEdit>
+        </admin>
+      </column>
+      <column>
+        <name>username</name>
+        <definition>VARCHAR(64)</definition>
+        <label>Username</label>
+        <description>The username to set for videos imported from this feed</description>
+        <default>null</default>
+        <autocomplete>tbx_user.username</autocomplete>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>SET,CLEAR</bulkEdit>
+        </admin>
+      </column>
+      <column>
+        <name>status</name>
+        <definition>ENUM('Pending','Scheduled','Active','Disabled') NOT NULL</definition>
+        <label>Status</label>
+        <description>The status to set for videos imported from this feed</description>
+        <default>Active</default>
+        <autocomplete>#Pending,Scheduled,Active,Disabled</autocomplete>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>SET</bulkEdit>
+        </admin>
+      </column>
+      <column>
+        <name>allow_comments</name>
+        <definition>ENUM('No','Yes - Add Immediately','Yes - Require Approval') NOT NULL</definition>
+        <label>Comments Allowed</label>
+        <description>Indicates if comments are allowed for this video</description>
+        <default>Yes - Add Immediately</default>
+        <autocomplete>#No,Yes - Add Immediately,Yes - Require Approval</autocomplete>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>SET</bulkEdit>
+        </admin>
+      </column>
+      <column>
+        <name>allow_ratings</name>
+        <definition>TINYINT UNSIGNED NOT NULL</definition>
+        <label>Allow ratings</label>
+        <description>Indicates if ratings are allowed for this video</description>
+        <autocomplete>#Yes,No</autocomplete>
+        <default>1</default>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>SET</bulkEdit>
+        </admin>
+      </column>
+      <column>
+        <name>allow_embedding</name>
+        <definition>TINYINT UNSIGNED NOT NULL</definition>
+        <label>Allow embedding</label>
+        <description>Indicates if this video can be embedded in remote sites</description>
+        <autocomplete>#Yes,No</autocomplete>
+        <default>1</default>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>SET</bulkEdit>
+        </admin>
+      </column>
+      <column>
+        <name>is_private</name>
+        <definition>TINYINT UNSIGNED NOT NULL</definition>
+        <label>Make private</label>
+        <description>Set videos imported from this feed as private</description>
+        <autocomplete>#Yes,No</autocomplete>
+        <default>0</default>
+        <admin>
+          <search>true</search>
+          <sort>true</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>SET</bulkEdit>
+        </admin>
+      </column>
+      <primaryKey>feed_id</primaryKey>
+      <index>
+        <column>feed_url(255)</column>
+      </index>
+      <index>
+        <column>name(255)</column>
+      </index>
+      <column>
+        <name>flag_convert</name>
+        <label>Queue for conversion</label>
+        <definition>TINYINT UNSIGNED NOT NULL</definition>
+        <description>Queue videos imported from this feed for conversion</description>
+        <default>0</default>
+        <autocomplete>#Yes,No</autocomplete>
+        <admin>
+          <search>false</search>
+          <sort>false</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>SET</bulkEdit>
+        </admin>
+      </column>
+      <column>
+        <name>flag_thumb</name>
+        <label>Queue for thumbnail generation</label>
+        <definition>TINYINT UNSIGNED NOT NULL</definition>
+        <description>Queue videos imported from this feed for thumbnail generation</description>
+        <default>0</default>
+        <autocomplete>#Yes,No</autocomplete>
+        <admin>
+          <search>false</search>
+          <sort>false</sort>
+          <create>true</create>
+          <edit>true</edit>
+          <bulkEdit>SET</bulkEdit>
+        </admin>
+      </column>
+    </columns>
+  </table>
+  <!-- END tbx_video_feed -->
+  <!-- START tbx_video_feed_history -->
+  <table>
+    <name>tbx_video_feed_history</name>
+    <naming>
+      <type>video-feed-history</type>
+    </naming>
+    <columns>
+      <column>
+        <name>feed_id</name>
+        <definition>INT UNSIGNED NOT NULL</definition>
+      </column>
+      <column>
+        <name>unique_id</name>
+        <definition>TEXT NOT NULL</definition>
+      </column>
+      <unique>
+        <column>feed_id</column>
+        <column>unique_id(255)</column>
+      </unique>
+    </columns>
+  </table>
+  <!-- END tbx_video_feed_history -->
+  <!-- START tbx_stored_value -->
+  <table>
+    <name>tbx_stored_value</name>
+    <naming>
+      <type>stored-value</type>
+    </naming>
+    <columns>
+      <column>
+        <name>name</name>
+        <definition>VARCHAR(100) NOT NULL PRIMARY KEY</definition>
+      </column>
+      <column>
+        <name>value</name>
+        <definition>TEXT NOT NULL</definition>
+      </column>
+      <primaryKey>name</primaryKey>
+    </columns>
+  </table>
+  <!-- END tbx_stored_value -->
+  <!-- START tbx_captcha -->
+  <table>
+    <name>tbx_captcha</name>
+    <naming>
+      <type>captcha</type>
+    </naming>
+    <columns>
+      <column>
+        <name>session</name>
+        <definition>VARCHAR(40) NOT NULL</definition>
+      </column>
+      <column>
+        <name>code</name>
+        <definition>VARCHAR(64) NOT NULL</definition>
+      </column>
+      <column>
+        <name>timestamp</name>
+        <definition>INT NOT NULL</definition>
+      </column>
+    </columns>
+  </table>
+  <!-- END tbx_captcha -->
+  <!-- START tbx_conversion_queue -->
+  <table>
+    <name>tbx_conversion_queue</name>
+    <naming>
+      <type>conversion-queue</type>
+    </naming>
+    <columns>
+      <column>
+        <name>video_id</name>
+        <definition>INT UNSIGNED NOT NULL PRIMARY KEY</definition>
+      </column>
+      <column>
+        <name>queued</name>
+        <definition>INT NOT NULL</definition>
+      </column>
+      <column>
+        <name>date_started</name>
+        <definition>DATETIME</definition>
+        <default>null</default>
+      </column>
+      <primaryKey>video_id</primaryKey>
+      <index>
+        <column>queued</column>
+      </index>
+    </columns>
+  </table>
+  <!-- END tbx_conversion_queue -->
+  <!-- START tbx_thumb_queue -->
+  <table>
+    <name>tbx_thumb_queue</name>
+    <naming>
+      <type>thumb-queue</type>
+    </naming>
+    <columns>
+      <column>
+        <name>video_id</name>
+        <definition>INT UNSIGNED NOT NULL PRIMARY KEY</definition>
+      </column>
+      <column>
+        <name>queued</name>
+        <definition>INT NOT NULL</definition>
+      </column>
+      <column>
+        <name>date_started</name>
+        <definition>DATETIME</definition>
+        <default>null</default>
+      </column>
+      <primaryKey>video_id</primaryKey>
+      <index>
+        <column>queued</column>
+      </index>
+    </columns>
+  </table>
+  <!-- END tbx_thumb_queue -->
+  <!-- START tbx_guest_usage -->
+  <table>
+    <name>tbx_guest_usage</name>
+    <naming>
+      <type>guest-usage</type>
+    </naming>
+    <columns>
+      <column>
+        <name>ip</name>
+        <definition>INT UNSIGNED NOT NULL PRIMARY KEY</definition>
+      </column>
+      <column>
+        <name>bandwidth</name>
+        <definition>INT UNSIGNED NOT NULL</definition>
+        <default>0</default>
+      </column>
+      <column>
+        <name>watched</name>
+        <definition>INT UNSIGNED NOT NULL</definition>
+        <default>0</default>
+      </column>
+      <primaryKey>ip</primaryKey>
+    </columns>
+  </table>
+  <!-- END tbx_guest_usage -->
+  <!-- START tbx_imported -->
+  <table>
+    <name>tbx_imported</name>
+    <naming>
+      <type>imported</type>
+    </naming>
+    <columns>
+      <column>
+        <name>video_url</name>
+        <definition>TEXT</definition>
+      </column>
+      <index>
+        <column>video_url(255)</column>
+      </index>
+    </columns>
+  </table>
+  <!-- END tbx_imported -->
+</database>

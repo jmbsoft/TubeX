@@ -1,0 +1,246 @@
+<html>
+<head>
+    <title>TubeX Documentation</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <style>
+    ul.wider b {
+      width: 30%;
+    }
+
+    ul.wider span {
+      width: 69%;
+    }
+    </style>
+</head>
+
+<body>
+
+  <div class="main-content">
+
+    <div class="header-main">Language File</div>
+
+    <div class="toc-link"><a href="index.html">Table of Contents</a></div>
+
+    <a name="format" class="header-section">Language File Format</a>
+    <div class="section">
+      The language file is formatted as a standard UTF-8 encoded PHP .ini file and will look like this when you open it in a text editor:
+
+      <br /><br />
+
+      <div class="centered">
+        <img src="images/language.png" title="Fields" />
+      </div>
+
+      <ul>
+        <b>Comment -</b> <span>Comments in the language file start with a semi-colon (;) at the beginning of the line.
+                         You can use comments to make any notes in the language file that you like.</span><br />
+
+        <b>Section -</b> <span>Sections are used to separate settings so they can be more clearly distinguished both when editing the
+                         language file and when editing the software templates.  Section names are enclosed inside square brackets ([ and ]).
+                         DO NOT modify the section names!</span><br />
+
+        <b>Setting Name -</b> <span>Setting names are used to specify the value that will be used in the templates to access the actual phrase
+                              that you want to appear.  DO NOT modify the setting names!</span><br />
+
+        <b>Setting Value -</b> <span>The setting values are where you will make all of the changes to the language file.  You can modify the strings as you like to adjust the
+                               phrasing or translate the values into your native language.  Setting values must be enclosed in double quotes (") and must not
+                               contain any double quotes other then at the beginning and end of the value.</span><br />
+      </ul>
+    </div>
+
+
+
+    <span class="header-section">Replacement Values</span>
+    <div class="section">
+      Several of the language strings contain replacement values (%d, %s, etc) that will be replaced with a value depending on the context of the text.  Each of the language strings
+      that contains replacement values is covered below.
+
+      <ul class="wider">
+        <b>Alphanumeric -</b> <span>%s: The field name</span><br />
+
+        <b>Blacklisted -</b> <span>%s: The item that is blacklisted</span><br />
+
+        <b>Comment throttle -</b> <span>%d: The comment throttle period</span><br />
+
+        <b>E-mail -</b> <span>%s: The field name</span><br />
+
+        <b>HTTP URL -</b> <span>%s: The field name</span><br />
+
+        <b>Invalid image dimensions -</b> <span>%s: The maximum image dimensions allowed in WxH format</span><br />
+
+        <b>Invalid image size -</b> <span>%s: The maximum image filesize allowed</span><br />
+
+        <b>Invalid Length -</b> <span>
+                                  %s: The field name<br />
+                                  %d: The minimum number of characters<br />
+                                  %d: The maximum number of characters
+                                </span><br />
+
+        <b>Invalid Num Tags -</b> <span>
+                                    %d: The minimum number of tags<br />
+                                    %d: The maximum number of tags
+                                  </span><br />
+
+        <b>Length Greater Equal -</b> <span>
+                                        %s: The field name<br />
+                                        %d: The minimum number of characters allowed
+                                      </span><br />
+
+        <b>Length too long -</b> <span>
+                                   %s: The field name<br />
+                                   %d: The maximum number of characters allowed
+                                 </span><br />
+
+        <b>Numeric -</b> <span>%s: The field name</span><br />
+
+        <b>Required -</b> <span>%s: The field name</span><br />
+
+        <b>Unable to process uploaded file -</b> <span>%s: The file upload error message</span><br />
+
+        <b>Account submitted active -</b> <span>%s: The base_uri software configuration variable</span><br />
+
+        <b>Avatar restriction -</b> <span>
+                                      %s: The Avatar Dimensions software setting<br />
+                                      %s: The Avatar Filesize software setting<br />
+                                      %s: The Avatar Extensions software setting
+                                    </span><br />
+
+        <b>Comment restriction -</b> <span>%d: The comment maximum length software setting</span><br />
+
+        <b>day ago -</b> <span>%d: Numeric value indicating the timeframe</span><br />
+
+        <b>days ago -</b> <span>%d: Numeric value indicating the timeframe</span><br />
+
+        <b>Description restriction -</b> <span>
+                                           %d: The minimum video description length<br />
+                                           %d: The maximum video description length
+                                         </span><br />
+
+        <b>HTTP Error -</b> <span>%s: The error message generated during the HTTP request</span><br />
+
+        <b>I agree to terms and privacy -</b> <span>
+                                                %s: The base_uri software configuration variable<br />
+                                                %s: The base_uri software configuration variable
+                                              </span><br />
+
+        <b>Join Today -</b> <span>%s: The Site Title software setting</span><br />
+
+        <b>Login Now -</b> <span>%s: The Site Title software setting</span><br />
+
+        <b>month ago -</b> <span>%d: Numeric value indicating the timeframe</span><br />
+
+        <b>months ago -</b> <span>%d: Numeric value indicating the timeframe</span><br />
+
+        <b>Sign In or Sign Up now -</b> <span>
+                                          %s: The base_uri software configuration variable<br />
+                                          %s: The base_uri software configuration variable
+                                        </span><br />
+
+        <b>Tags restriction -</b> <span>
+                                     %d: The minimum number of tags<br />
+                                     %d: The maximum number of tags<br />
+                                     %d: The minimum allowed individual tag length
+                                   </span><br />
+
+        <b>Title restriction -</b> <span>
+                                     %d: The minimum video title length<br />
+                                     %d: The maximum video title length
+                                   </span><br />
+
+        <b>Video duration restriction -</b> <span>%s: The maximum allowed video duration</span><br />
+
+        <b>Video extension restriction -</b> <span>%s: The allowed video file extensions</span><br />
+
+        <b>Video size restriction -</b> <span>%s: The maximum allowed video file size</span><br />
+
+        <b>week ago -</b> <span>%d: Numeric value indicating the timeframe</span><br />
+
+        <b>weeks ago -</b> <span>%d: Numeric value indicating the timeframe</span><br />
+
+        <b>year ago -</b> <span>%d: Numeric value indicating the timeframe</span><br />
+
+        <b>years ago -</b> <span>%d: Numeric value indicating the timeframe</span><br />
+      </ul>
+
+    </div>
+
+
+
+    <span class="header-section">Editing the Default Language File</span>
+    <div class="section">
+      The default language file shipped with the software is for US English.  This file can be modified if you would like to adjust the
+      phrasing used for the messages displayed to end users.  If you would prefer to translate the language file into a different language,
+      please use the instructions in the <a href="#custom">Creating a Custom Language File</a> section.
+
+      <br /><br />
+
+      To make changes to the default language file, use the following instructions:
+
+      <ol>
+        <li> Download the en_US.ini file from the language directory of your TubeX installation</li>
+
+        <br />
+
+        <li> Open the en_US.ini file in any UTF-8 capable text editor (<a href="http://www.editplus.com/" target="_blank">EditPlus</a> works well for Windows,
+             and you can probably find other free alternatives for Windows and other operating systems)</li>
+
+        <br />
+
+        <li> Modify the language file as you like, being sure to maintain the correct format as described in the <a href="#format">Language File Format</a> section.</li>
+
+        <br />
+
+        <li> Once you have made all the changes you like, save the en_US.ini file (making sure to maintain the UTF-8 encoding) and then upload the file back to your
+             server replacing the existing copy.</li>
+
+        <br />
+
+        <li> In the TubeX control panel run the Templates &gt; Recompile Templates and Templates &gt; Flush Template Cache function to have the new settings take effect.</li>
+
+      </ol>
+    </div>
+
+
+
+    <a name="custom" class="header-section">Creating a Custom Language File</a>
+    <div class="section">
+      If you would like to create a custom language file for your native language, use the following instructions:
+
+      <ol>
+        <li> Download the en_US.ini file from the language directory of your TubeX installation</li>
+
+        <br />
+
+        <li> Rename the en_US.ini file to the filename of your choice (the file must have a .ini file extension).  It is recommended that you use the same format,
+             which specifies the language (en) and territory (US) in the filename.  For example, if you were creating a language file containing the French language
+             for Canadian users, you would use a filename of fr_CA.ini</li>
+
+        <br />
+
+        <li> Open the language file file in any UTF-8 capable text editor (<a href="http://www.editplus.com/" target="_blank">EditPlus</a> works well for Windows,
+             and you can probably find other free alternatives for Windows and other operating systems)</li>
+
+        <br />
+
+        <li> Modify the language file as you like, being sure to maintain the correct format as described in the <a href="#format">Language File Format</a> section.</li>
+
+        <br />
+
+        <li> Once you have made all the changes you like, save the language file (making sure to maintain the UTF-8 encoding and using a .ini file extension) and then upload
+             that file to the language directory of your TubeX installation.</li>
+
+        <br />
+
+        <li> In the TubeX control panel, access the Settings &gt; Global Settings interface.  In the Localization Settings section, set the Language setting to the value that corresponds with
+             the new file that you uplaoded (if you uploaded a file named fr_CA.ini, select fr_CA from the drop down field).  Save the software settings.</li>
+
+        <br />
+
+        <li> Finally, in the TubeX control panel run the Templates &gt; Recompile Templates and Templates &gt; Flush Template Cache function to have the new settings take effect.</li>
+      </ol>
+    </div>
+
+  </div>
+
+</body>
+</html>

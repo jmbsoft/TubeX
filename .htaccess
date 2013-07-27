@@ -1,0 +1,47 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  RewriteRule ^video/([0-9]+)/?.*$ index.php?r=video&id=$1 [L]
+  RewriteRule ^private/([0-9]+)/([0-9a-z]+)/?$ index.php?r=private&id=$1&pid=$2 [L]
+
+  RewriteRule ^videos/newest/?([0-9]+)?/?$ index.php?r=videos-newest&p=$1 [L]
+  RewriteRule ^videos/([^/]+)?/?([^/]+)?/?([0-9]+)?/?$ index.php?r=videos&p=$3&s=$1&t=$2 [L]
+
+  RewriteRule ^video-comments/([0-9]+)/?([0-9]+)?/?$ index.php?r=video-comments&d=&id=$1&p=$2 [L]
+  RewriteRule ^video-comments-ajax/([0-9]+)/?([0-9]+)?/?$ index.php?r=video-comments&d=ajax&id=$1&p=$2 [L]
+  RewriteRule ^video-comments-iframe/([0-9]+)/?([0-9]+)?/?$ index.php?r=video-comments&d=iframe&id=$1&p=$2 [L]
+
+  RewriteRule ^tag/([^/]+)/?([0-9]+)?/?$ index.php?r=tag&tag=$1&p=$2 [L]
+
+  RewriteRule ^search/([^/]+)/?([0-9]+)?/?$ index.php?r=search&term=$1&p=$2 [L]
+
+  RewriteRule ^category/([^/]+)/?([0-9]+)?/?$ index.php?r=category&c=$1&p=$2 [L]
+  RewriteRule ^categories/?$ index.php?r=categories [L]
+
+  RewriteRule ^user/?$ user.php [L]
+  RewriteRule ^user/([^/]+)/?$ user.php?r=$1 [L]
+  RewriteRule ^user/reset-confirm/(.*)/?$ user.php?r=reset-confirm&code=$1 [L]
+  RewriteRule ^user/register-confirm/(.*)/?$ user.php?r=register-confirm&code=$1 [L]
+  RewriteRule ^user/(favorites)/([0-9]+)?/?$ user.php?r=$1&p=$2 [L]
+  RewriteRule ^user/([^/]+)/([0-9]+)?/?$ user.php?r=$1&video_id=$2 [L]
+
+  RewriteRule ^profile/([^/]+)/?$ index.php?r=profile&u=$1 [L]
+
+  RewriteRule ^upload/?$ upload.php [L]
+
+  RewriteRule ^feeds/newest/?([0-9]+)?/?$ custom.php?t=rss-feed-newest&p=$1 [L]
+</IfModule>
+
+
+<IfModule mod_security.c>
+  SecFilterEngine Off
+  SecFilterScanPOST Off
+</IfModule>
+
+<IfModule mod_deflate.c>
+  SetEnvIfNoCase Request_URI \.(swf|flv|mp4)$ no-gzip dont-vary
+</IfModule>
+
+<IfModule mod_gzip.c>
+  mod_gzip_on No
+</IfModule>

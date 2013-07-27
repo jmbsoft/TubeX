@@ -1,0 +1,68 @@
+<html>
+<head>
+    <title>TubeX Documentation</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body>
+  <div class="main-content">
+    <div class="header-main">Custom Sponsor Fields</div>
+
+    <div class="toc-link"><a href="index.html">Table of Contents</a></div>
+
+    <span class="header-section">Managing Custom Sponsor Fields</span>
+    <div class="section">
+      Managing custom sponsor fields is done by accessing the Sponsors &gt; Custom Fields &gt; Search Custom Sponsor Fields function in the control panel menu.
+      From this interface you can add new custom sponsor fields and search, edit, or delete the existing custom sponsor fields.  For an overview of searching,
+      adding, editing, and deleting items, please see the <a href="cp-basics.html">Control Panel Basics</a> section of this software manual.
+    </div>
+
+
+    <span class="header-section">Database Fields</span>
+    <div class="section">
+      Custom Sponsor Fields have the following fields associated with them:
+      <ul>
+        <b>Name -</b> <span>The name to use for the database field.  Field names may contain English letters, numbers, and the underscore (_) character.</span><br />
+
+        <b>Field Type -</b> <span>The form field type to use for this custom input field.
+
+                            <br /><br />
+
+                            <div class="bold">Text</div>
+                            &lt;input type="text"&gt;
+                            <br /><br />
+
+                            <div class="bold">Textarea</div>
+                            &lt;textarea&gt;&lt;/textarea&gt;
+                            <br /><br />
+
+                            <div class="bold">Checkbox</div>
+                            &lt;input type="checkbox"&gt;
+                            <br /><br />
+
+                            <div class="bold">Select</div>
+                            &lt;select&gt;&lt;/select&gt;
+                            </span><br />
+
+        <b>Label -</b> <span>The label to display on web based forms for this field</span><br />
+
+        <b>Tag Attributes -</b> <span>Extra HTML attributes to use in the HTML tag for this field  For example, you may want to specify the size of a text input
+                                field in which case you would enter this:
+
+                                <xmp>size="40"</xmp>
+                                </span>
+
+        <b>Options -</b> <span>A comma separated list of values to use for the options of a select field</span><br />
+
+        <b>Validators -</b> <span>The validators to use for this field.  Select the validator type (see <a href="validators.html">Custom Field Validators</a>)
+                            and the error message that should be displayed when the validation fails.  Some validator types require the Extras field to be filled
+                            in and that will be noted in the Custom Field Validators documentation.
+
+                            <br /><br />
+
+                            Multiple validators can be used for each field.  Click the <img src="../images/add-16x16.png" style="vertical-align: middle" />
+                            icon to add a validator, or the <img src="../images/remove-16x16.png" style="vertical-align: middle" /> icon to remove a validator</span><br />
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,373 @@
+<html>
+<head>
+    <title>TubeX Documentation</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+
+<body>
+
+  <div class="main-content">
+
+    <div class="header-main">Control Panel Searching Basics</div>
+
+    <div class="toc-link"><a href="index.html">Table of Contents</a></div>
+
+    <span class="header-section">Search Page Fields</span>
+
+    <div class="section">
+      Any time you access a search interface, you will find search input fields near the top of the page that will look
+      something like this:
+
+      <br /><br />
+
+      <div class="centered">
+        <img src="images/cp-search-fields.png" title="Fields" border="1" />
+      </div>
+
+      <br />
+
+      These search fields will allow you to quickly locate the specific items you are looking for.  The control panel search functions
+      offer you a tremendous amount of power because you can search multiple fields at once to drill down and find exactly what you are
+      looking for.  You can also sort the results any way you like, and do nested sub-sorting to as deep a level as you like.  The
+      following sections will descibe each of the form fields in much more detail.
+    </div>
+
+
+
+    <span class="header-section">Text Search Fields</span>
+
+    <div class="section">
+
+      Text search fields will only appear on a few of the search pages in the control panel interface.  Using this search field you
+      can perform what is known as a "full text" search against the items in the database.  TubeX uses MySQL's built-in fulltext
+      searching capabilities for these types of searches.  While you can accomplish the same type of search using the standard search
+      fields, a text search will generally be much faster especially on large data sets.  Text search fields will look like this:
+
+      <br /><br />
+
+      <div class="centered">
+        <img src="images/cp-search-fulltext-fields.png" title="Fields" />
+      </div>
+
+      <ul>
+        <b>Search Term -</b> <span>Enter the term (or terms) that you would like to search for in this field</span><br />
+
+        <b>Search Type -</b> <span>Text searches can be done using two different search algorithms:
+
+                             <div class="bold" style="margin-top: 1em;">Natural Language</div>
+                             This search type will take the search term you enter and try to find the most relevent matches.  The
+                             search results will be returned in order, from most relevent to least relevent.  The Sort fields will
+                             not have any affect when using this type of search.
+
+                             This type of search does have a few limitations (set by MySQL):
+
+                             <br /><br />
+
+                             - Any words that appear in more than 50% of the items in the database will not be found as matches<br />
+                             - Any words that are too short will be ignored (default is 4 characters)<br />
+                             - Any common words that match the built in stop-word list (the, some, this, that, etc) will be ignored
+
+                             <div class="bold" style="margin-top: 1em;">Boolean Mode</div>
+                             This search type will allow you to search for matches on any words of a phrase, all words of a phrase, an
+                             exact phrase, and much more.
+
+                             <br /><br />
+
+                             <div class="message-notice">
+                               Much of this information is taken directly from the
+                               <a href="http://dev.mysql.com/doc/refman/4.1/en/index.html" target="_blank">MySQL manual</a>.
+                             </div>
+
+                             <br />
+
+                             Some words are ignored in boolean mode searches:<br />
+                             - Any words that are too short will be ignored (default is 4 characters)<br />
+                             - Any common words that match the built in stop-word list (the, some, this, that, etc) will be ignored
+
+                             <br /><br />
+
+                             The boolean full-text search capability supports the following operators:
+
+                             <br /><br />
+
+                             <ul>
+                               <div class="larger bold mono">+</div>
+                               A leading plus sign indicates that this word must be present in each row that is returned.
+
+                               <br /><br />
+
+                               <div class="larger bold mono">-</div>
+                               A leading minus sign indicates that this word must not be present in any of the rows that are returned.
+
+                               <br /><br />
+
+                               Note: The - operator acts only to exclude rows that are otherwise matched by other search terms. Thus,
+                               a boolean-mode search that contains only terms preceded by - returns an empty result. It does not
+                               Match "all rows except those containing any of the excluded terms"
+
+                               <br /><br />
+
+                               <div class="larger bold mono">(no operator)</div>
+                               By default (when neither + nor - is specified) the word is optional, but the rows that contain it are
+                               rated higher.
+
+                               <br /><br />
+
+                               <div class="larger bold mono">*</div>
+                               The asterisk serves as the truncation (or wildcard) operator. Unlike the other operators, it should be
+                               appended to the word to be affected.  Words match if they begin with the word preceding the * operator.
+
+                               <br /><br />
+
+                               <div class="larger bold mono">"</div>
+                               A phrase that is enclosed within double quote characters matches only rows that contain the phrase
+                               literally, as it was typed.
+                             </ul>
+
+                             <br /><br />
+
+                             The following examples demonstrate some search strings that use boolean full-text operators:
+
+                             <br /><br />
+
+                             <ul>
+                               <div class="larger bold mono">apple banana</div>
+                               Find rows that contain at least one of the two words.
+
+                               <br /><br />
+
+                               <div class="larger bold mono">+apple +juice</div>
+                               Find rows that contain both words.
+
+                               <br /><br />
+
+                               <div class="larger bold mono">+apple macintosh</div>
+                               Find rows that contain the word apple, but rank rows higher if they also contain macintosh
+
+                               <br /><br />
+
+                               <div class="larger bold mono">+apple -macintosh</div>
+                               Find rows that contain the word apple, but not macintosh
+
+                               <br /><br />
+
+                               <div class="larger bold mono">apple*</div>
+                               Find rows that contain words such as apple, apples, applesauce or applet
+
+                               <br /><br />
+
+                               <div class="larger bold mono">"some words"</div>
+                                Find rows that contain the exact phrase "some words" (for example, rows that contain "some words of
+                                wisdom" but not "some noise words".  Note that the " characters that enclose the phrase are operator
+                                characters that delimit the phrase. They are not the quotes that enclose the search string itself.
+                             </ul>
+
+                             </span><br />
+      </ul>
+    </div>
+
+
+
+    <span class="header-section">Search Fields</span>
+
+    <div class="section">
+
+      The Search fields will appear on all search pages in the control panel, and are the heart of the search function.  Using these
+      fields you can select the database fields to search, the type of matching to perform, and the search term you would like to use.
+      You can also connect searches together using AND or OR logic!  The search fields will look something like this:
+
+      <br /><br />
+
+      <div class="centered">
+        <img src="images/cp-search-search-fields.png" title="Fields" />
+      </div>
+
+      <ul>
+        <b>Search Field -</b> <span>Select the database field in which you would like to perform the search.  The database fields are
+                              grouped by type (the bold italicized entries) which allow you to search a wide variety of database fields
+                              related to the current item type you are searching</span><br />
+
+        <b>Search Type -</b> <span>TubeX supports a large number of search types which you can use to find exactly what you are looking
+                             for.  Those search types are:
+
+                             <br /><br />
+
+                             <div class="bold">Contains</div>
+                             Match items that contain the entered search term
+                             <br /><br />
+
+                             <div class="bold">!Contains</div>
+                             Match items that do not contain the entered search term
+                             <br /><br />
+
+                             <div class="bold">=</div>
+                             Match items that exactly match the entered search term
+                             <br /><br />
+
+                             <div class="bold">!=</div>
+                             Match items that do not exactly match the entered search term
+                             <br /><br />
+
+                             <div class="bold">&gt;</div>
+                             Match items that are greater than the entered search term
+                             <br /><br />
+
+                             <div class="bold">&gt;=</div>
+                             Match items that are greater than or equal to the entered search term
+                             <br /><br />
+
+                             <div class="bold">&lt;</div>
+                             Match items that are less than the entered search term
+                             <br /><br />
+
+                             <div class="bold">&lt;=</div>
+                             Match items that are less than or equal to the entered search term
+                             <br /><br />
+
+                             <div class="bold">Starts With</div>
+                             Match items that start with the entered search term
+                             <br /><br />
+
+                             <div class="bold">!Starts With</div>
+                             Match items that do not start with the entered search term
+                             <br /><br />
+
+                             <div class="bold">Ends With</div>
+                             Match items that end with the entered search term
+                             <br /><br />
+
+                             <div class="bold">!Ends With</div>
+                             Match items that do not end with the entered search term
+                             <br /><br />
+
+                             <div class="bold">Between</div>
+                             Match items that are between the entered search term<br />
+                             For this search type, you must enter two values separated by a comma for the search term
+                             <br /><br />
+
+                             <div class="bold">!Between</div>
+                             Match items that are not between the entered search term<br />
+                             For this search type, you must enter two values separated by a comma for the search term
+                             <br /><br />
+
+                             <div class="bold">In</div>
+                             Match items that match exactly one of the items entered for the search term<br />
+                             For this search type, you must enter a comma separated list of values for the search term
+                             <br /><br />
+
+                             <div class="bold">!In</div>
+                             Match items that do not match exactly one of the items entered for the search term<br />
+                             For this search type, you must enter a comma separated list of values for the search term
+                             <br /><br />
+
+                             <div class="bold">Empty</div>
+                             Match items that are empty (empty string or NULL)<br />
+                             Leave the search term empty for this type
+                             <br /><br />
+
+                             <div class="bold">!Empty</div>
+                             Match items that are not empty (empty string or NULL)<br />
+                             Leave the search term empty for this type
+                             <br /><br />
+
+                             <div class="bold">Is Null</div>
+                             Match items that are the special SQL NULL value<br />
+                             Leave the search term empty for this type
+                             <br /><br />
+
+                             <div class="bold">!Null</div>
+                             Match items that are not the special SQL NULL value<br />
+                             Leave the search term empty for this type
+                             <br /><br />
+
+                             <div class="bold">Length =</div>
+                             Match items with a string length equal to the number entered as the search term
+                             <br /><br />
+
+                             <div class="bold">Length &gt;</div>
+                             Match items with a string length greater than the number entered as the search term
+                             <br /><br />
+
+                             <div class="bold">Length &lt;</div>
+                             Match items with a string length less than the number entered as the search term
+                             <br /><br />
+
+                             <div class="bold">Regex</div>
+                             Match items that match the
+                             <a href="http://dev.mysql.com/doc/refman/4.1/en/regexp.html" target="_blank">regular expression</a>
+                             entered as the search term
+                             <br /><br />
+
+                             <div class="bold">!Regex</div>
+                             Match items that do not match the
+                             <a href="http://dev.mysql.com/doc/refman/4.1/en/regexp.html" target="_blank">regular expression</a>
+                             entered as the search term
+                             <br /><br />
+
+                             </span><br />
+        <b>Search Term -</b> <span>Enter the term that you would like to search for in this field</span><br />
+
+        <b>Connector -</b> <span>The connector field allows you to search multiple database fields at once.  You can select either AND
+                           or OR as the connector.  When you select one of these options, you will see a new set of Search fields
+                           appear directly below.  If you then change this option back to the empty value, the additional Search fields
+                           will be removed.
+
+                           <br /><br />
+
+                           <div class="bold">AND</div>
+                           Both (the one containing the AND, and the one directly after) of the searches must match in order for the
+                           item to be returned as a result
+                           <br /><br />
+
+                           <div class="bold">OR</div>
+                           Either (the one containing the OR, and the one directly after) of the two sets of searches can match in
+                           order for the item to be returned as a result
+                           <br /><br />
+
+                           </span><br />
+      </ul>
+    </div>
+
+
+
+    <span class="header-section">Sort Fields</span>
+
+    <div class="section">
+      The sort fields allow you to control how the search results are sorted and how many are displayed on each page.  They will look
+      something like this:
+
+      <br /><br />
+
+      <div class="centered">
+        <img src="images/cp-search-sort-fields.png" title="Fields" />
+      </div>
+
+      <ul>
+        <b>Sort Field -</b> <span>Select the database field by which you would like the search results sorted.  The sort fields are
+                            grouped by type (the bold italicized entries) which allow you to sort by a wide variety of database fields
+                            related to the current item type you are searching</span><br />
+
+        <b>Sort Direction -</b> <span>Select the direction in which the search results should be sorted.  Ascending will sort from
+                                smallest to largest, and Descending will sort from largest to smallest</span><br />
+
+        <b>Connector -</b> <span>The connector field allows you to do sub-sorting of the search results.  If you select the "then"
+                           option, you will see a new set of sorting fields appear which you can use to control how items with the same
+                           value for the previous sorting item will be sorted.  Selecting the empty value will cause the additional set
+                           of fields to be removed.
+
+                           <br /><br />
+
+                           As an example, assume you wanted to sort the user accounts by their birthday first.  It is possible that
+                           several user accounts will have the same birthday, so you can use a connector to sub-sort those accounts.
+                           You might decide to sub-sort them by their signup date so you can see which person with a particular
+                           birthday signed up first.</span><br />
+
+        <b>Per Page -</b> <span>Enter the number of search results to show on each page.  This can be any numerical value greater than
+                          zero</span><br />
+      </ul>
+    </div>
+
+  </div>
+
+</body>
+</html>

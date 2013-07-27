@@ -1,0 +1,1 @@
+a:2:{s:7:"subject";s:40:"[{$g_config.site_name}] Account Rejected";s:7:"message";s:203:"Unfortunately, your account request at {$g_config.site_name} has been rejected!<br /><br />{if $g_user.reject_reason}<br />The reason for rejection is:<br />{$g_user.reject_reason}<br />{/if}<br /><br />";}

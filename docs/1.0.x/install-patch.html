@@ -1,0 +1,74 @@
+<html>
+<head>
+    <title>TubeX Documentation</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+
+<body>
+
+  <div class="main-content">
+
+    <div class="header-main">Patching Your Installation</div>
+
+    <div class="toc-link"><a href="index.html">Table of Contents</a></div>
+
+    <span class="header-section">When To Patch</span>
+    <div class="section">
+      Unless otherwise noted, use these instructions for updating your TubeX installation from any older version to any newer version.  You can patch the installation
+      any time there is a new release, but it is not required that you upgrade to every new release.  These instructions can be used to upgrade your installation
+      even if you skipped a previous version of the software.
+    </div>
+
+
+
+    <span class="header-section">Patching Steps</span>
+    <div class="section">
+      Patching your installation is very simple, and can be done using the steps listed below.
+
+      <ol>
+        <li> Upload the files from the new version of the software to your server, overwriting the existing copies.  All of the files that will need to be uploaded are listed below, where
+        Base directory is the directory on your server in which TubeX is installed and the remaining are the actual sub-directory names within that directory.
+
+        <br /><br />
+
+        <ul>
+          <b>Base directory -</b> all .php files and the .htaccess file<br />
+          <b>admin directory -</b> all files <i class="bold" style="color: blue;">except install.php</i> and all sub-directories <br />
+          <b>classes directory -</b> all files <i class="bold" style="color: blue;">except Config.php</i> and all sub-directories<br />
+          <b>includes directory -</b> Only the global.php and rollover files<br />
+          <b>js directory -</b> all files<br />
+          <b>player directory -</b> all files<br />
+          <b>swfupload directory -</b> all files<br />
+        </ul>
+
+        <br />
+
+        <li> Once those files have been transferred, point your browser to the patch.php script in the admin directory of your TubeX installation.  Accessing this
+        script through your browser will perform any required updates to the MySQL database or software files.  Once you access the patch.php script and get a message
+        indicating that the software has been patched successfully, login to the TubeX control panel.
+
+
+        <br />
+        <br />
+
+        <li> In the TubeX control panel, access the Settings &gt; Global Settings interface.  Depending on what features were added, there
+        may be some new settings for you configure.  Even if there are not any new settings, you will need to save the settings which will force the
+        software to check the values you have supplied and perform any necessary updates.
+
+
+        <br />
+        <br />
+
+        <li> The final step in the control panel is to run the Templates &gt; Recompile Templates and Templates &gt; Flush Template Cache functions.  These functions will
+        update your templates with any changes that have been made to the template compiler and flush the template cache so that the pages will be regenerated based on the
+        updates.
+
+      </ol>
+
+      The upgrade process is now complete and you can continue using the software as you regularly would.
+    </div>
+
+  </div>
+
+</body>
+</html>

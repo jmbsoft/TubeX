@@ -1,0 +1,327 @@
+<html>
+<head>
+    <title>TubeX Documentation</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <style>
+    ul.wider b {
+      width: 30%;
+    }
+
+    ul.wider span {
+      width: 69%;
+    }
+    </style>
+</head>
+<body>
+  <div class="main-content">
+    <div class="header-main">Videos</div>
+
+    <div class="toc-link"><a href="index.html">Table of Contents</a></div>
+
+    <span class="header-section">Managing Videos</span>
+    <div class="section">
+      Managing videos is done by accessing the Videos &gt; Search Videos function in the control panel menu.
+      From this interface you can add new videos and search, edit, or delete the existing videos.  For an overview of searching,
+      adding, editing, and deleting items, please see the <a href="cp-basics.html">Control Panel Basics</a> section of this software manual.
+    </div>
+
+
+
+    <span class="header-section">Videos &amp; Clips</span>
+    <div class="section">
+      In TubeX there is an important distinction between Videos and Clips.  When talking about a Video, that is referencing a complete video object which contains
+      the video title, description, tags, category, and clips.
+
+      <br /><br />
+
+      A Clip, on the other hand, is an individual video file or embed code that is associated with a video.  Each video can have multiple clips, but each clip can
+      only be associated with a single video.
+    </div>
+
+
+
+    <span class="header-section">Video Sources</span>
+    <div class="section">
+      Videos can be added through the control panel from a number of different sources.  Those are:
+
+      <ul>
+        <b>Uploads -</b> <span>
+                           This option allows you to upload files from your computer.  Multiple files can be uploaded, and multiple
+                           file types are supported.  Click the <img src="../images/add-16x16.png" style="vertical-align: middle" /> icon to add more upload fields,
+                           or the <img src="../images/remove-16x16.png" style="vertical-align: middle" /> icon to remove an upload field.  The supported file types are:
+
+                           <br /><br />
+
+                           <div class="bold">Video Files</div>
+                           Any video files that are uploaded will be used as the clips for the video.  Multiple video files can be uploaded
+                           for a single video.
+                           <br /><br />
+
+                           <div class="bold">JPEG Image Files</div>
+                           Any JPEG image files that are uploaded will be resized (if possible) and used as the preview thumbnails for the video
+                           if it is not possible for the software to automatically generate thumbnails from the video files that were uploaded.
+                           <br /><br />
+
+                           <div class="bold">Zip Archives</div>
+                           Zip files are supported on servers where the PHP zip extension is installed.  All video files will be extracted
+                           from the archive and used as the clips for the video.  All JPEG image files will be extracted, resized if possible,
+                           and used as the preview thumbnails for the video if it is not possible for the software to automatically generate
+                           thumbnails from the video files that were extracted.
+
+                         </span><br />
+
+        <b>URLs -</b> <span>
+                        This option allows you to enter URLs to files hosted on HTTP servers.  Multiple URLs can be entered, and multiple file types
+                        are supported.  Click the <img src="../images/add-16x16.png" style="vertical-align: middle" /> icon to add more URL fields,
+                        or the <img src="../images/remove-16x16.png" style="vertical-align: middle" /> icon to remove an URL field.  The supported file types are:
+
+                        <br /><br />
+
+                        <div class="message-notice">
+                          If you select the hotlink option, the software will not be able to determine the video duration so you will need to fill in
+                          the Video Duration field!
+                        </div>
+
+                        <br />
+
+                        <div class="bold">Video Files</div>
+                        You can enter the direct URL to a video file.  Multiple video file URLs can be entered for a single video.
+                        If you choose the hotlink option, the videos will be loaded from the URL you enter.  Otherwise, the videos will
+                        be downloaded and served from your server.
+                        <br /><br />
+
+                        <div class="bold">JPEG Image Files</div>
+                        You can enter the direct URL to a JPEG image file.  Multiple image file URLs can be entered for a single video.
+                        The JPEG image files will be downloaded from the URL(s), resized if possible, and used as the preview thumbnails
+                        for the video if you have selected to hotlink the videos or the software is not able to automatically generate
+                        preview thumbnails from the video files.
+                        <br /><br />
+
+                        <div class="bold">Zip Archives</div>
+                        Zip files are supported on servers where the PHP zip extension is installed.  The Zip Archives will be downloaded to your server.
+                        All video files will be extracted and used as the clips for the video.  All JPEG image files will be extracted, resized if possible,
+                        and used as the preview thumbnails for the video if it is not possible for the software to automatically generate
+                        thumbnails from the video files that were extracted.
+
+                      </span><br />
+
+        <b>Gallery -</b> <span>
+                           This option allows you to enter the HTTP URL of a TGP gallery that contains videos.  A TGP gallery is considered to be a page
+                           which contains JPEG images which link directly to video files.  The software will locate all of the JPEG images that link to
+                           video files, and download the JPEG images to your server.  If you select the hotlink option, the videos will be linked from
+                           the server hosting the gallery, otherwise they will be downloaded and served from your server.
+
+                           <br /><br />
+
+                           <div class="message-notice">
+                             If you select the hotlink option, the software will not be able to determine the video duration so you will need to fill in
+                             the Video Duration field!
+                           </div>
+
+                           <br />
+
+                           The JPEG images from the gallery will be resized if possible and used as preview thumbnails for the video when the hotlink option
+                           is enabled or if the software is unable to automatically generate thumbnails from the downloaded video files.
+                         </span><br />
+
+        <b>Embed Code -</b> <span>
+                              This option allows you to specify the exact &lt;embed&gt; or &lt;object&gt; code to use for the video.  This is useful for embedding
+                              videos from other tube sites.
+
+                              <br /><br />
+
+                              When using this source type, it is necessary to fill in the Video Duration field specifying the length of the video.  You can also optionally
+                              upload thumbnail preview images (JPEG format) to be used for the video, since the software cannot generate preview thumbnails from embed code.
+                            </span><br />
+      </ul>
+
+      Some of the video sources have additional settings and options.  Those are:
+
+      <ul class="wider">
+        <b>Hotlink video clips -</b> <span>This will be an option for URLs and Gallery sources.  If this box is checked, the video files will be hotlinked from the
+                                     server where the URL points (for URLs source) or where the gallery is hosted (for Gallery source).  Be sure to verify that hotlinking
+                                     is allowed before you use this option!</span><br />
+
+        <b>Queue for thumbnail generation -</b> <span>This will be an option for URLs and Gallery sources.  Check this box to have the video added to the thumbnail generation queue.
+                                                Thumbnail generation will download the video file(s) from the remote server and generate preview thumbnails from them.  The video files will be
+                                                deleted after the thumbnails have been generated, and the videos will be hotlinked when viewed on your site.
+
+                                                <br /><br />
+
+                                                <div class="message-notice">
+                                                  This is only valid when hotlinking the video clips
+                                                </div>
+                                                </span><br />
+
+        <b>Queue video for conversion  -</b> <span>This will be an option for all sources except Embed Code.  Check this box to have the video(s) added to the conversion queue.
+                                             The conversion queue will download the video file(s) (if necessary), convert them into the format you have specified in the Global Settings interface,
+                                             and the converted videos will be hosted from your server.  Videos that are queued for conversion will not appear on your site until they
+                                             have been converted.</span><br />
+      </ul>
+
+
+    </div>
+
+
+
+    <span class="header-section">Database Fields</span>
+    <div class="section">
+      Videos have the following fields associated with them:
+
+      <ul>
+        <b>Title -</b> <span>The title that has been assigned to the video</span><br />
+
+        <b>Description -</b> <span>The description that has been assigned to the video</span><br />
+
+        <b>Tags -</b> <span>The tags that have been assigned to the video</span><br />
+
+        <b>Username -</b> <span>The username of the account that is associated with this video</span><br />
+
+        <b>Date Added -</b> <span>The date and time the video was added to the database</span><br />
+
+        <b>Date/Time Recorded -</b> <span>The date the video was recorded</span><br />
+
+        <b>Location Recorded -</b> <span>The location where the video was recorded</span><br />
+
+        <b>Category -</b> <span>The category in which this video appears</span><br />
+
+        <b>Sponsor -</b> <span>The sponsor from which this video comes</span><br />
+
+        <b>Comments Allowed -</b> <span>Indicates if comments are allowed for this video.  Options are as follows:
+
+                                  <br /><br />
+
+                                  <div class="bold">No</div>
+                                  Comments are not allowed at all for this video.
+
+                                  <br /><br />
+
+                                  <div class="bold">Yes - Add Immediately</div>
+                                  Comments are allowed and will be appear immediately without any type of review
+                                  <br /><br />
+
+                                  <div class="bold">Yes - Require Approval</div>
+                                  Comments are allowed but must be approved by an administrator before they will appear
+                                  </span><br />
+
+        <b>Private -</b> <span>Indicates if this video should be private.  Private videos have special URLs and will not be displayed
+                         with the other videos on your site.  Only users that have the special URL will be able to access the video.</span><br />
+
+        <b>Featured -</b> <span>Indicates if this video should be a featured video.  Featured videos can be displayed in special sections of your
+                          site if you wish.  This will depend on your template configuration.</span><br />
+
+        <b>Allow ratings -</b> <span>Indicates if ratings are allowed for this video</span><br />
+
+        <b>Allow embedding -</b> <span>Not currently supported; will be added in a future update<br />
+                                 <strike>Indicates if this video can be embedded in remote sites</strike></span><br />
+      </ul>
+    </div>
+
+
+
+    <span class="header-section">Individual Functions</span>
+    <div class="section">
+      Besides the <a href="cp-common-functions.html">Common Functions</a> available for most items, videos also have some custom functions that can be run.  The icons that appear for each video in
+      the Search Videos interface are described below.
+
+      <ul>
+        <b><img src="../images/comments-22x22.png" /> -</b> <span>View the comments for this video.  This will take you to the Search Comments interface which will display
+                                                            only the comments for this video.</span><br />
+
+        <b><img src="../images/approve-22x22.png" /> -</b> <span>Approve this video.  This will only be available for videos with Pending status.  Approving a video will change
+                                                           the video's status to Active and send the email-video-approved.tpl e-mail message to the user who submitted this video (if any)</span><br />
+
+        <b><img src="../images/reject-22x22.png" /> -</b> <span>Reject this video.  This will only be available for videos with Pending status.  Rejecting a video will delete the video
+                                                          from the database permanently and send the email-video-rejected.tpl e-mail message to the user who submitted this video (if any)
+
+                                                          <br /><br />
+
+                                                          When you reject a video you also have the option to select a rejection reason.  There will be a drop-down selection list that you can
+                                                          choose from.  To setup these reasons, use the <a href="cp-reason.html">Search Reasons</a> interface.
+                                                          </span><br />
+
+        <b><img src="../images/enable-22x22.png" /> -</b> <span>Enable this video.  This will only be available for videos with Disabled status.  Enabling a video will change it's status back
+                                                          to Active and it will be visible on your site.</span><br />
+
+        <b><img src="../images/disable-22x22.png" /> -</b> <span>Disable this video.  This will only be available for videos with Active status.  Disabling a video will change it's status to
+                                                           Disabled and it will no longer be visible on your site.</span><br />
+
+        <b><img src="../images/flag-22x22.png" /> -</b> <span>Display a dialog which will show you the reasons (if any) that users have flagged this video.  From that dialog you can delete or
+                                                        disable the video as well as clear out the flag reasons.</span><br />
+
+        <b><img src="../images/featured-22x22.png" /> -</b> <span>Display a dialog which will show the reasons (if any) that users have submitted feature requests for this video.  From that dialog
+                                                            you can feature or un-feature the video as well as clear out the reasons.
+
+                                                            <br /><br />
+
+                                                            This icon will be greyed for videos that are not featured, and will appear as it is here for videos that are featured.
+
+                                                            </span><br />
+
+        <b><img src="../images/conversion-queue-22x22.png" /> -</b> <span>Add this video to the conversion queue</span><br />
+
+        <b><img src="../images/thumb-queue-22x22.png" /> -</b> <span>Add this video to the thumbnail generation queue</span><br />
+      </ul>
+    </div>
+
+
+
+    <span class="header-section">Bulk Functions</span>
+    <div class="section">
+      Besides the <a href="cp-common-functions.html">Common Functions</a> available for most items, videos also have some custom functions that can be run.  The icons that appear in the toolbar
+      which can be run on multiple videos at once are covered below.
+
+      <ul>
+
+        <b><img src="../images/approve-32x32.png" /> -</b> <span>Approve the checked or matching videos.  Only videos with Pending status will be affected by this function.
+                                                           Approving a video will change the video's status to Active and send the email-video-approved.tpl e-mail message to the
+                                                           user who submitted this video (if any)</span><br />
+
+        <b><img src="../images/reject-32x32.png" /> -</b> <span>Reject the checked or matching videos.  Only videos with Pending status will be affected by this function.
+                                                          Rejecting a video will delete the video from the database permanently and send the email-video-rejected.tpl e-mail
+                                                          message to the user who submitted this video (if any)
+                                                          </span><br />
+
+        <b><img src="../images/enable-32x32.png" /> -</b> <span>Enable the checked or matching videos.  Only videos with Disabled status will be affected by this function.
+                                                          Enabling a video will change it's status back to Active and it will be visible on your site.</span><br />
+
+        <b><img src="../images/disable-32x32.png" /> -</b> <span>Disable the checked or matching videos.  Only videos with Active status will be affected by this function.
+                                                           Disabling a video will change it's status to Disabled and it will no longer be visible on your site.</span><br />
+
+        <b><img src="../images/featured-32x32.png" /> -</b> <span>Feature the checked or matching videos.  Only videos that are not currently featured will be affected by
+                                                            this function</span><br />
+
+        <b><img src="../images/featured-off-32x32.png" /> -</b> <span>Un-feature the checked or matching videos.  Only videos that are currently featured will be affected by
+                                                            this function</span><br />
+
+        <b><img src="../images/conversion-queue-32x32.png" /> -</b> <span>Add the checked or matching videos to the conversion queue</span><br />
+
+        <b><img src="../images/thumb-queue-32x32.png" /> -</b> <span>Add the checked or matching videos to the thumbnail generation queue</span><br />
+      </ul>
+    </div>
+
+
+
+    <span class="header-section">Video Status</span>
+    <div class="section">
+      Videos can have one of 4 values for their status, depending on how they have been processed and what software settings you are using.
+
+      <ul>
+        <b>Pending -</b> <span>These are videos that have been uploaded or otherwise added to the database but not yet approved by an administrator.  These videos
+                         will not appear on your site until they have been approved.  You will get Pending videos when you have the <i class="bold">Review uploaded
+                         videos before displaying on site</i> software setting enabled.</span><br />
+
+        <b>Queued -</b> <span>These are videos that have been uploaded and are in the queue to be converted.  These videos will not appear on your site until
+                        they have been converted.  You will get Queued videos when you have the <i class="bold">Convert uploaded videos</i>
+                        software setting enabled.</span><br />
+
+        <b>Active -</b> <span>These are videos which are currently visible on your site</span><br />
+
+        <b>Disabled -</b> <span>These are videos that have been disabled by an administrator.  Disabled videos will remain in your database, but will not appear
+                          on your site.  Disabled videos can only be re-activated by an administrator.</span><br />
+      </ul>
+
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,336 @@
+<html>
+<head>
+    <title>TubeX Documentation</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+
+<body>
+
+  <div class="main-content">
+
+    <div class="header-main">Software Settings</div>
+
+    <div class="toc-link"><a href="index.html">Table of Contents</a></div>
+
+    <span class="header-section">Base Settings</span>
+
+    <div class="section">
+      <ul>
+      <b>Site Name -</b> <span>The name of your website</span><br />
+
+      <b>Meta Description -</b> <span>The value to use for meta description tags on TubeX generated pages</span><br />
+
+      <b>Meta Keywords -</b> <span>The value to use for meta keyword tags on TubeX generated pages</span><br />
+
+      <b>Using Cron -</b> <span>Check this box if you are using cron to rollover stats, run the conversion queue, etc</span><br />
+      </ul>
+    </div>
+
+
+    <span class="header-section">Directory and URL Settings</span>
+
+    <div class="section">
+      <ul>
+      <b>Document Root -</b> <span>Enter the full directory path to the base directory of your website (not the TubeX installation
+                             directory unless you installed TubeX in the base of your site!)</span><br />
+
+      <b>TubeX URL -</b> <span>The full HTTP URL to the base directory of your TubeX installation</span><br />
+
+      <b>No Thumbnail URL -</b> <span>The full or virtual HTTP URL to the image file that should be displayed when a video does not
+                                have any preview thumbnails created</span><br />
+
+      <b>Cookie Domain -</b> <span>The domain name to use when setting authentication and other cookies for users.  This must contain
+                             the domain name on which the software is installed.</span><br />
+
+      <b>Cookie Path -</b> <span>The directory path to use when setting authentication and other cookies for users.  This must at least
+                           include the directory in which TubeX is installed</span><br />
+
+      <b>Use mod_rewrite -</b> <span>If your server has the mod_rewrite module installed and you want to be able to use search engine
+                               friendly URLs (recommended), check this box</span><br />
+      </ul>
+    </div>
+
+
+    <span class="header-section">E-mail Settings</span>
+
+    <div class="section">
+      <ul>
+
+      <b>E-mail Address -</b> <span>Enter the e-mail address that will be used for the From address of all messages sent by TubeX
+                              </span><br />
+
+      <b>E-mail Name -</b> <span>Enter the name that will appear in user's e-mail programs for e-mail messages sent by TubeX
+                           </span><br />
+
+      <b>E-mail Method -</b> <span>Select the method to use for sending e-mail messages.  In most cases the PHP mail() function should
+                             work fine.  If it does not, contact your server administrator to see which method they recommend
+                             </span><br />
+
+      <b>Sendmail Path -</b> <span>If you are using Sendmail for the E-mail Method, enter the full directory path and filename of the
+                             sendmail executable on your server.</span><br />
+
+      <b>SMTP Hostname -</b> <span>If using SMTP, enter the hostname of the SMTP server</span><br />
+
+      <b>SMTP Port -</b> <span>If using SMTP, enter the port on which the SMTP server is listening</span><br />
+
+      <b>Use SSL -</b> <span>Check this if your SMTP server requires an SSL encrypted connection</span><br />
+
+      <b>SMTP Username -</b> <span>If using SMTP and the SMTP server requires a username and password, enter the username here</span><br />
+
+      <b>SMTP Password -</b> <span>If using SMTP and the SMTP server requires a username and password, enter the password here</span><br />
+      </ul>
+    </div>
+
+
+    <span class="header-section">Template &amp; Localization Settings</span>
+
+    <div class="section">
+      <ul>
+
+      <b>Template Set - </b> <span>Select the template set you would like to use for the end-user pages.  This gives you the choice of the base template
+                         set you would like to use, however you can modify the templates to your liking after selecting the set to start with.</span>
+
+      <b>Language -</b> <span>Select the language file to use for the end-user pages.  The software currently only ships with a US
+                        English language file (en_US)</span><br />
+
+      <b>Timezone -</b> <span>Select the timezone in which you are located</span><br />
+
+      <b>Date Format -</b> <span>A string that specifies the <a href="date-time-formats.html">format</a> to use for date values</span><br />
+
+      <b>Time Format -</b> <span>A string that specifies the <a href="date-time-formats.html">format</a> to use for time values</span><br />
+
+      <b>Decimal Point -</b> <span>The value to use for the decimal point in numbers</span><br />
+
+      <b>Thousands Seperator -</b> <span>The value to use for the thousands separator in numbers</span><br />
+      </ul>
+    </div>
+
+
+    <span class="header-section">User Account Settings</span>
+
+    <div class="section">
+      <ul>
+      <b>Avatar Dimensions -</b> <span>Enter the maximum allowed dimensions for user uploaded avatar images.  This must be in WxH
+                                 format</span><br />
+
+      <b>Avatar Filesize -</b> <span>Enter the maximum allowed filesize for user uploaded avatar images.  This can either be a numerical
+                               value (interpreted as bytes) or a numerical value followed by one of these suffixes: KB, MB, GB</span><br />
+
+      <b>Avatar Extensions -</b> <span>A comma separated list of the file extensions allowed for user uploaded avatar images.  Include
+                                 only the file extension with no periods! (Example: jpg,png,gif)</span><br />
+
+      <b>Confirm by E-mail -</b> <span>Check this box if you want all new user accounts to confirm their account submission by clicking
+                                 on a link contained in an e-mail message sent to the e-mail address they used for their account
+                                 </span><br />
+
+      <b>Strip HTML -</b> <span>Check this box to have all HTML tags stripped out of the account data submitted by users (recommended)
+                          </span><br />
+      </ul>
+    </div>
+
+
+    <span class="header-section">Video Conversion Settings</span>
+
+    <div class="section">
+      <ul>
+
+      <b>File Extensions -</b> <span>A comma separated list of file extensions that should be considered video files</span><br />
+
+      <b>Video Format -</b> <span>The format to use for converted videos
+
+                            <br /><br />
+
+                            <div class="bold">MP4 (H.264/AAC)</div>
+                            This format will use the H.264 video codec and AAC audio codec for converted videos.  These videos will
+                            play in flash player 9.0.115 or newer and offer the best quality. (recommended)
+                            <br /><br />
+
+                            <div class="bold">FLV (VP6/MP3)</div>
+                            This format will use the VP6 video codec and MP3 audio codec for converted videos.  These videos
+                            will play in flash player 8 or newer and offer the second best quality.  However, converting to this format
+                            is very CPU intensive and I have found it to be the slowest of the three.
+                            <br /><br />
+
+                            <div class="bold">FLV (H.263/MP3)</div>
+                            This format will use the H.263 video codec and MP3 audio codec for converted videos.  These videos will
+                            play in older versions of flash, but offer the worst quality.  One advantage is this format will use the
+                            least CPU and videos will be converted fastest in this format.
+                            </span><br />
+
+      <b>Video Size -</b> <span>The dimensions to use for converted videos.  This must be in WxH format!</span><br />
+
+      <b>Video Quality -</b> <span>The bitrate or quality setting to use for the video portion of converted videos
+
+                             <br /><br />
+
+                             <div class="bold">MP4 (H.264/AAC)</div>
+                             This format allows entering either a quality value or a bitrate value.  Quality values range from 2 to 40,
+                             with larger numbers offering better quality.  Entering a value larger than 40 in this field will be
+                             considered as a bitrate value.  A reasonable range for a bitrate setting is 512 to 5000, with larger
+                             numbers offering better quality.
+
+                             <br /><br />
+
+                             If you are most concerned about video quality, use a quality setting.  Something in the neighborhood of 26
+                             is a good compromise between filesize and quality.
+
+                             <br /><br />
+
+                             If you are most concerned about filesize, use a bitrate setting.  H.264 does quite well even at low
+                             bitrates so you can go toward the low side (700 for SD video, 2000 for HD video) to really save
+                             bandwidth and disk space.
+
+                             <br /><br />
+
+                             <div class="bold">FLV (VP6/MP3)</div>
+                             This format allows only a bitrate setting.  A reasonable range for a bitrate setting is 512 to
+                             5000, with larger numbers offering better quality.  This codec does not perform as well at lower
+                             bitrates, so you will probably want to start with something around 1000.
+                             <br /><br />
+
+                             <div class="bold">FLV (H.263/MP3)</div>
+                             This format allows only a bitrate setting.  A reasonable range for a bitrate setting is 512 to 5000, with
+                             larger numbers offering better quality.  This codec does not perform nearly as well at lower bitrates, so
+                             you will probably want to start with something around 1200.
+                             <br /><br />
+
+                             </span><br />
+
+      <b>Audio Bitrate -</b> <span>The bitrate to use for the audio portion of converted videos.  Values of 56 up to 256 are acceptable.
+                             Larger bitrates will give you better quality at the cost of larger files.  For MP3 audio, 128 is a good
+                             compromise and for AAC 96.</span><br />
+
+      <b>Thumbnail Size -</b> <span>The dimensions to use for thumbnails created from videos.  This must be in WxH format!</span><br />
+
+      <b>Thumbnail Quality -</b> <span>The JPEG quality to use for generated thumbnails.  Larger numbers will give you higher quality
+                                 images at the cost of larger files.  A setting of 80 is a good compromise between quality and size
+                                 </span><br />
+
+      <b>Thumbnail Amount -</b> <span>The number of thumbnails to generate for each video.  This allows selection from multiple thumbnails
+                                of the image that will be used as a preview for the video.</span><br />
+
+      <b>Letterbox -</b> <span>Check this box to have the video thumbnails letterboxed (black bars added) to maintain the aspect ratio of the video
+                         while fitting the thumbnail into the size specified for <i>Thumbnail Size</i>.  If this box is left unchecked, the thumbnails
+                         will instead be cropped to fit into the size specified for <i>Thumbnail Size</i></span><br />
+      </ul>
+    </div>
+
+
+    <span class="header-section">Video Upload Settings</span>
+
+    <div class="section">
+      <ul>
+      <b>Allow Uploads -</b> <span>Check this box if you want to allow users to upload videos</span><br />
+
+      <b>Check Duplicates -</b> <span>Check this box if you want the software to check for duplicate videos (using md5sum)</span><br />
+
+      <b>Allow Private -</b> <span>Check this box if you want to allow users to make their videos private</span><br />
+
+      <b>Convert Videos -</b> <span>Check this box if you want uploaded videos to be converted into the format you have selected.
+                              This option will use a significant amount of server resources and is therefore recommended only for
+                              high end dedicated servers.  The video conversion process can take anywhere from a few seconds to
+                              several hours to complete, during which the uploaded videos will not be viewable.  Be sure to take this
+                              into account when deciding on this option!
+                              </span><br />
+
+      <b>Review Uploads -</b> <span>Check this box if you want an administrator to review all uploaded videos before they become
+                              visible on your site</span><br />
+
+      <b>Allowed Extensions -</b> <span>Enter a comma separated list of the file extensions allowed for uploaded videos.  Include
+                                  only the file extension with no periods! (Example: mpg,avi,flv,mov,mp4)</span><br />
+
+      <b>Maximum Size -</b> <span>Enter the maximum filesize for uploaded videos.  This can either be a numerical (interpreted as
+                            bytes) or a numerical value followed by one of these suffixes: KB, MB, GB
+
+                            <br /><br />
+
+                            The maximum upload size is limited by the PHP upload_max_filesize setting and cannot be larger than that
+                            value.  For your convenience this setting is displayed next to this field.</span><br />
+
+      <b>Maximum Duration -</b> <span>The maximum duration allowed for uploaded videos.  This must be in HH:MM:SS format.
+                                For example, to limit videos to 15 minutes use 00:15:00</span><br />
+
+      <b>Title Length -</b> <span>The minimum and maximum number of characters allowed in the submitted video title</span><br />
+
+      <b>Description Length -</b> <span>The minimum and maxmimum number of characters allowed in the submitted video description
+                                  </span><br />
+
+      <b>Tags Required -</b> <span>The minimum and maximum number of tags allowed for video submission.  The minimum value can be 0 if
+                             you want to allow videos to be submitted without tags</span><br />
+
+      <b>Strip HTML -</b> <span>Check this box to have all HTML tags stripped out of the video data submitted by users (recommended)
+                          </span><br />
+      </ul>
+    </div>
+
+
+    <span class="header-section">Comment Settings</span>
+
+    <div class="section">
+      <ul>
+      <b>Maximum Length -</b> <span>The maximum number of characters that a comment may contain</span><br />
+
+      <b>Throttle Period -</b> <span>The number of seconds a user must wait before they can submit another comment for the same video
+                               </span><br />
+
+      <b>Strip HTML -</b> <span> this box to have all HTML tags stripped out of the comments submitted by users (recommended)
+                          </span><br />
+      </ul>
+    </div>
+
+
+    <span class="header-section">CAPTCHA Settings</span>
+
+    <div class="section">
+      TubeX supports the use of verification codes displayed as images, otherwise known as a CAPTCHA.  Use these settings to configure the
+      strings that will appear on the CAPTCHA images and on which forms the images will appear.
+
+      <ul>
+      <b>String Length -</b> <span>The minimum and maximum number of characters to use for CAPTCHA codes.  Note that this does not
+                             apply if you are using the words file for CAPTCHA codes.</span><br />
+
+      <b>Use Words -</b> <span>Use the includes/words.php file as the source for values displayed as CAPTCHA codes.</span><br />
+
+      <b>On Signup -</b> <span>Check this to require that users enter a CAPTCHA code to create a new account</span><br />
+
+      <b>On Upload -</b> <span>Check this to require that users enter a CAPTCHA code to upload a video</span><br />
+
+      <b>On Comment -</b> <span>Check this to require that users enter a CAPTCHA code to submit a comment</span><br />
+      </ul>
+    </div>
+
+
+    <span class="header-section">Cache Settings</span>
+
+    <div class="section">
+      TubeX uses a caching system for many of the end-user pages that it generates.  This caching system helps to reduce the load
+      on your server by preventing pages from being dynamically generated each time someone hits the page.
+
+      <br /><br />
+
+      For example, assume that you have set a 3600 second (1 hour) cache for your main page.  The first visitor to that page will cause
+      it to be generated and placed into the cache.  Any other visits to that page within the next hour by any user will result in the
+      cached version of that page being displayed.  After the 3600 seconds has elapsed, the next visitor to the page will cause it to
+      be re-generated (updated with any new videos, new stats, etc) and placed back into the cache.  The cycle then repeats itself.
+
+      <ul>
+      <b>Main Page -</b> <span>The number of seconds to cache the main page</span><br />
+
+      <b>Search Page -</b> <span>The number of seconds to cache the search results pages</span><br />
+
+      <b>Categories Page -</b> <span>The number of seconds to cache the categories page</span><br />
+
+      <b>Browse Videos Page -</b> <span>The number of seconds to cache the browse videos pages</span><br />
+
+      <b>Video Page -</b> <span>The number of seconds to cache the watch video page</span><br />
+
+      <b>Profile Page -</b> <span>The number of seconds to cache the user profile page</span><br />
+
+      <b>Comments Page -</b> <span>The number of seconds to cache the video comments page</span><br />
+      </ul>
+    </div>
+
+  </div>
+
+</body>
+</html>

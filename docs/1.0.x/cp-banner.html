@@ -1,0 +1,82 @@
+<html>
+<head>
+    <title>TubeX Documentation</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body>
+  <div class="main-content">
+    <div class="header-main">Banners</div>
+
+    <div class="toc-link"><a href="index.html">Table of Contents</a></div>
+
+    <span class="header-section">Managing Banners</span>
+    <div class="section">
+      Managing banners is done by accessing the Settings &gt; Banners &gt; Search Banners function in the control panel menu.
+      From this interface you can add new banners and search, edit, or delete the existing banners.  For an overview of searching,
+      adding, editing, and deleting items, please see the <a href="cp-basics.html">Control Panel Basics</a> section of this software manual.
+    </div>
+
+
+
+    <span class="header-section">Database Fields</span>
+    <div class="section">
+      Banners have the following fields associated with them:
+
+      <ul>
+        <b>Banner ID -</b> <span>The ID number assigned to the banner.  ID numbers are generated in sequential order automatically by the software.</span><br />
+
+        <b>Sponsor -</b> <span>The sponsor associated with this banner</span><br />
+
+        <b>Zone -</b> <span>The zone in which this banner can be displayed.  Zones can be any text string that you like, and will be used with the zone attribute
+                      of the {banner} template function.  For example, if you wanted to restrict the banners that are displayed directly under the search bar you
+                      might use a zone named "Under Search Bar".  All banners that you want to be able to appear in that location should be assigned the same Zone.
+
+                      <br /><br />
+
+                      Then in your site templates you can use a {banner} function like so:
+
+                      <xmp>{banner zone="Under Search Bar"}</xmp>
+                      </span><br />
+
+        <b>Tags -</b> <span>The tags that have been assigned to the banner.  The tags attribute of the {banner} template function can be used to select only banners
+                      with specific tags</span><br />
+
+        <b>Times Displayed -</b> <span>The number of times this banner has been selected for display</span><br />
+
+        <b>Banner HTML -</b> <span>
+                               The complete HTML code to use for this banner.  Within this HTML code there are some template variables that you can utilize:
+
+                               <br /><br />
+
+                               <div class="bold">{$upload_file}</div>
+                               See the <i>Uploading Content</i> section below for a complete description.
+
+                               <br /><br />
+
+                               <div class="bold">{$sponsor_url}</div>
+                               If you have selected a sponsor for this banner, this value will be replaced by the URL associated with that sponsor.
+                             </span><br />
+      </ul>
+    </div>
+
+
+
+    <span class="header-section">Uploading Content</span>
+    <div class="section">
+      When adding or editing a banner you have the option to upload some content which will be associated with the banner.  This is useful if you want to upload an image file,
+      a swf flash file, or anything else.  When uploading content it is necessary to use the special template variable {$upload_file} in the Banner HTML value
+      to specify where you want the URL of the uploaded content to be placed.
+
+      <br /><br />
+
+      For example, assume you are uploading a JPEG image named banner.jpg.  You would select that file to be the upload content and for the Banner HTML you would use something like this:
+
+      <xmp><a href="http://www.sponsor.com/"><img src="{$upload_file}" border="0" /></a></xmp>
+
+      The software will process the file that you upload and replace the {$upload_file} template variable with the correct path to the uploaded file.
+    </div>
+
+
+  </div>
+</body>
+</html>

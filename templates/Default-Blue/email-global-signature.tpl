@@ -1,0 +1,1 @@
+<br /><br />Regards,<br />{$g_config.site_name} Administrator<br /><a href="{$g_config.base_url}/" target="_blank">{$g_config.base_url}/</a>

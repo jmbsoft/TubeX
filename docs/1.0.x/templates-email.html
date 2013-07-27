@@ -1,0 +1,155 @@
+<html>
+<head>
+    <title>TubeX Documentation</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+
+<body>
+
+  <div class="main-content">
+
+    <div class="header-main">E-mail Templates</div>
+
+    <div class="toc-link"><a href="index.html">Table of Contents</a></div>
+
+    <span class="header-section">Template Editing Interface</span>
+    <div class="section">
+      Editing the e-mail templates is done through the Templates &gt; E-mail Templates function in the control panel.  That interface will look
+      something like this:
+
+      <br /><br />
+
+      <div class="centered">
+        <img src="images/cp-templates-email.png" title="Site Templates" />
+      </div>
+
+      <ul>
+        <b>Available Templates -</b> <span>This section will list all of the available site templates that you can edit.  When you first access
+                                     the page, only this section will be shown.  Click on a template name to load that template for editing.</span><br />
+
+        <b>Message Subject -</b> <span>Enter the subject you would like to use for the e-mail message</span><br />
+
+        <b>Formatting Controls -</b> <span>Use the formatting controls to adjust how text will appear in the message body.  There are controls to center, bold, adjust font, etc.</span><br />
+
+        <b>Message Body -</b> <span>Enter the body of the e-mail message</span><br />
+
+        <b>Toolbar Functions -</b> <span>Use the toolbar functions to peform the following actions:
+
+                                   <br /><br />
+
+                                   <img src="../images/search-replace-32x32.png" />
+                                   <span>Click this icon to bring up the Search and Replace dialog where you can perform a search and replace on many templates at once.</span><br />
+
+
+                                   <img src="../images/save-32x32.png" />
+                                   <span>Click this icon to save the currently loaded template</span><br />
+
+                                   <img src="../images/reload-32x32.png" />
+                                   <span>Click this icon to reload the template code for the currently loaded template.  This is useful when you do a search and replace which
+                                   affects the current template you are editing.</span><br />
+
+                                   <img src="../images/help-32x32.png" />
+                                   <span>Click this icon to access this documentation file</span>
+                                   </span>
+      </ul>
+    </div>
+
+
+    <span class="header-section">Search and Replace</span>
+    <div class="section">
+      TubeX allows you to make quick changes to your templates in bulk with the Search and Replace function.  When you access the Search and Replace function a dialog will appear that will allow you
+      to select the templates that you want to perform this action on, the code to search for in the template, and the replacement code to use.  Multiple templates can be selected by holding down the shift or ctrl
+      keys on your keyboard as you click on templates in the selection list.  Once you have selected the templates and entered the search and replacement code, press the Apply Changes button to start the task.
+      Once completed a notification message will be displayed letting you know how many replacements were made.
+    </div>
+
+
+    <span class="header-section">Greeting and Signature Templates</span>
+    <div class="section">
+      There are two special e-mail templates that you can edit which only allow configuring of the Message Body and do not have a Subject.  Those are:
+
+      <ul>
+        <b style="width: 20%;">email-global-greeting.tpl -</b> <span>Use this template to control the text that is appended to the beginning of every e-mail message sent by the software.
+                                                               This is a good place to put a simple greeting.</span><br />
+
+        <b style="width: 20%;">email-global-signature.tpl -</b> <span>Use this template to control the text that is appended to the end of every e-mail message sent by the software.  This is
+                                                                a good place to put your signature, a privacy notice, a link to your site, etc.</span><br />
+      </ul>
+
+    </div>
+
+
+    <span class="header-section">Templates &amp; Their Variables</span>
+    <div class="section">
+      All of the e-mail templates will have the following two variables set:
+
+      <ul>
+        <b>$g_config -</b> <span class="nmb">The software settings (see <a href="templates-common.html#g_config" target="_blank">Common Template Variables</a>)</span><br />
+        <b>$g_user -</b> <span class="nmb">The user account settings (see <a href="templates-common.html#user" target="_blank">Common Template Variables</a>)</span><br />
+      </ul>
+
+      Below you will find a list of all the e-mail templates shipped with the software, a description of when the template is used, and details on the template variables
+      available (if any) on that template.
+
+      <br /><br />
+
+      <div class="bold large">email-user-added.tpl</div>
+      <ul>
+        This e-mail message will be sent to a user after they add their account, but only if you are not requiring e-mail confirmation or reviewing new accounts.
+      </ul>
+
+
+      <div class="bold large">email-user-approved.tpl</div>
+      <ul>
+        This e-mail message will be sent to a user when their account is approved by an administrator (when the <i class="bold">Review new user accounts</i> software setting is enabled).
+      </ul>
+
+
+      <div class="bold large">email-user-confirm.tpl</div>
+      <ul>
+        This e-mail message will be sent to a user after they signup, but only if the <i class="bold">All new user accounts must be confirmed by e-mail</i> software setting is enabled.
+      </ul>
+
+
+      <div class="bold large">email-user-pending.tpl</div>
+      <ul>
+        This e-mail message will be sent to a user after they signup, but only if the <i class="bold">Review new user accounts</i> software setting is enabled.
+      </ul>
+
+
+      <div class="bold large">email-user-rejected.tpl</div>
+      <ul>
+        This e-mail message will be sent to a user when their account is rejected by an administrator (when the <i class="bold">Review new user accounts</i> software setting is enabled).
+        The $g_user variable will contain one additional value if you selected a rejection reason:
+
+        <br /><br />
+
+        <b>$g_user.reject_reason - </b> <span>The Description value of the rejection reason</span>
+      </ul>
+
+
+      <div class="bold large">email-user-reset-confirm.tpl</div>
+      <ul>
+        This e-mail message will be sent to a user when they use the lost password form.  The message will contain a link that the user must click on to confirm that they requested their
+        password be reset.
+
+        <br /><br />
+
+        <b>$g_code -</b> <span class="nmb">The confirmation code that will need to be contained in the link the user clicks</span><br />
+      </ul>
+
+
+      <div class="bold large">email-user-reset.tpl</div>
+      <ul>
+        This e-mail message will be sent to a user when they have confirmed their lost password request by clicking on the confirmation link supplied in the e-mail message they received.
+
+        <br /><br />
+
+        <b>$g_password -</b> <span class="nmb">The new password that has been generated for this user account</span><br />
+      </ul>
+    </div>
+
+  </div>
+
+</body>
+</html>

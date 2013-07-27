@@ -1,0 +1,307 @@
+1.0.0-SS - 01/24/2011
+=====================
+- Added JW Player 5.4 support (01/24/2011)
+- Added new video-player-flash-jw.tpl template (01/24/2011)
+
+
+
+1.0.0-SS - 01/15/2011
+=====================
+- Fixed issue with videos containing a ' in their title not playing (01/15/2011)
+- Videos that do not allow embedding no longer display that option in the video player (01/15/2011)
+- Fixed alphabetize issue with {searchterms} template function (01/15/2011)
+
+
+
+1.0.0-SS - 01/07/2011
+=====================
+- Fixed issue that caused category names to be improperly handled when used in the category setting of the {videos} template function (06/01/2010)
+- Fixed issue that prevented usernames from being recorded for ratings when guest ratings are enabled (06/01/2010)
+- Added count of banners in the Sponsors > Search Sponsors interface (01/05/2011)
+- Fixed issue that prevented tally of user comment stats from being incremented (01/05/2011)
+- Updated WMV video player to latest version (01/05/2011)
+- Updated video-player-silverlight.tpl to workaround issue with additional clips not always playing when clicked (01/05/2011)
+- Switched default Flash video player to Flowplayer (01/05/2011)
+- Updated video-player-flash.tpl to work with Flowplayer (01/07/2011)
+- Added overlay to the flash video player when the video is paused or completed - great place for banners! (01/07/2011)
+- Added {sponsors} template function (01/07/2011)
+
+
+
+1.0.0-SS - 04/27/2010
+=====================
+- Fixed issue that prevented videos associated with a sponsor from being deleted when the sponsor is deleted (04/27/2010)
+
+
+1.0.0-SS - 04/23/2010
+=====================
+- Added --sort-direction argument to the cron.php script when activiting scheduled videos (04/23/2010)
+
+
+1.0.0-SS - 03/22/2010
+=====================
+- Removed dependency on ionCube Loader (03/18/2010)
+- Software now provided as 100% source code (03/18/2010)
+- Fixed issue with all ratings being recorded as guest ratings (03/20/2010)
+- Updated frame grabber to better handle bad return values from buggy versions of glob() (03/20/2010)
+
+
+1.0.0-SS - 03/09/2010
+=====================
+- Fixed issue with template values not being properly set for e-mail messages sent when adding an account (03/09/2010)
+- Updated SQL queries to improve support for older versions of MySQL (03/09/2010)
+
+
+1.0.0-SS - 03/08/2010
+=====================
+- Fixed issue with comment throttling not allowing additional comments to be added no matter how long between (02/24/2010)
+- Fixed error message displayed when viewing private videos (03/08/2010)
+- Improved handling of uploaded thumbnails when editing a video in the control panel (03/08/2010)
+
+
+1.0.0-SS - 01/25/2010
+=====================
+- General code cleanup and tweaks (01/25/2009)
+
+
+1.0.0-SS - 01/13/2010
+=====================
+- Exceptions generated when displaying a template are now caught and logged to the error log (01/13/2009)
+
+
+1.0.0-SS - 12/30/2009
+=====================
+- Updated patch.php script to properly patch the database.xml file (12/30/2009)
+
+
+1.0.0-SS - 12/28/2009
+=====================
+- Added workaround for bug in PHP 5.3.0 and 5.3.1 that prevents the parse_ini_file function from working properly (12/28/2009)
+- Updated mplayer and mencoder detection to reject old versions (1.0rc1 and 1.0rc2) which are not compatible with TubeX (12/28/2009)
+- Updated custom template page caching to better handle multiple pages generated from the same template (12/28/2009)
+- Added ability to search the Clip URL/Embed Code in the Search Videos interface (12/28/2009)
+- Implemented spl_autoload_register for class autoloading when available (12/28/2009)
+- Added option to allow guests to rate videos (see support forum for special upgrade instructions) (12/28/2009)
+
+
+
+1.0.0-SS - 12/17/2009
+=====================
+- Fixed issue that prevented uppercase characters from being properly handled in custom template filenames (11/24/2009)
+- Fixed issue that prevented custom template page caching from working properly (11/27/2009)
+- Fixed issue that prevented multiple videos from being featured or unfeatured in the Search Videos interface (12/17/2009)
+
+
+
+1.0.0-SS - 11/16/2009
+=====================
+- Added warning message that videos will be deleted when deleting categories (11/06/2009)
+- Fixed issue with calendar that caused duplicated days in November (11/16/2009)
+- Fixed detection of Safari 4 web browser as a supported browser for the control panel (11/16/2009)
+- Fixed issue with calendar that caused time to not be set properly when updating a date/time field (11/16/2009)
+- Fixed issue that caused NULL values to be generated in database backup when empty strings should have been used (11/16/2009)
+
+
+
+1.0.0-SS - 11/05/2009
+=====================
+- Added ability to update the video duration when editing a single video (11/05/2009)
+- Fixed issue that prevented the Site Template Search and Replace function from working properly (11/05/2009)
+
+
+
+1.0.0-SS - 10/28/2009
+=====================
+- Fixed issue that prevented the video views stat from incrementing for user accounts (10/28/2009)
+- Added option to generate thumbnails with or without letterboxing (10/28/2009)
+- Added ability to re-generate thumbnails for locally hosted videos (10/28/2009)
+- Default value of RAND() is now used for the --sort option of the --activate-scheduled cron command (10/28/2009)
+- Video duration will be updated when thumbnails are generated for remote hosted videos that currently have no duration set (10/28/2009)
+- loader.php script now appends the "start" request parameter to the video URL in order to support video streaming (10/28/2009)
+
+
+
+1.0.0-SS - 10/20/2009
+=====================
+- Fixed issue that prevented the video duration from being set properly for single videos added through the control panel (10/20/2009)
+
+
+
+1.0.0-SS - 10/12/2009
+=====================
+- Updated Mailer class to send e-mails using UTF-8 character set (09/12/2009)
+- Updated Video Feeds to support Scheduled status for imported galleries (10/12/2009)
+- Videos that are not Active  no longer have their title linked to the end-user page in the Search Videos interface (10/12/2009)
+- Bulk editing of the video duration now accepts both seconds and HH:MM:SS format (10/12/2009)
+
+
+
+1.0.0-SS - 09/07/2009
+=====================
+- Fixed issue that prevented options field from appearing when editing custom database fields (08/24/2009)
+- Fixed issue with video status not being properly set for videos imported from feeds (09/04/2009)
+- Added ability to queue videos for conversion and thumbnail generation when imported from XML videos feeds (09/07/2009)
+- Added {$sponsor_url} template variable for use in Banner HTML when adding/editing banners (09/07/2009)
+
+
+
+1.0.0 - 08/18/2009
+==================
+- Added logging of output from MP4Box for easier troubleshooting (08/05/2009)
+- Video title in Search Videos now links to the end-user video watch page (08/10/2009)
+- Fixed MySQL compatibility issue with loader.php script (08/10/2009)
+- Added ability to search the # of Thumbnails field for videos (08/10/2009)
+
+
+
+1.0.0 BETA - 08/05/2009
+=======================
+- Finalized support for VP6 video encoding (08/04/2009)
+- Fixed MySQL database error message generated on older versions of MySQL when confirming account submission (08/04/2009)
+- Fixed issue that prevented the rawhtml template variable modifier from working (08/04/2009)
+- Added ability to bulk edit the Duration field for videos (08/05/2009)
+
+
+
+1.0.0 BETA - 07/28/2009
+=======================
+- Added ability to create custom end-user pages (07/27/2009)
+- Added custom.php script to handle custom end-user pages (07/27/2009)
+- Added example custom end-user page custom-rss-feed-newest.tpl (07/27/2009)
+- Improved detection of third party programs (mplayer, mencoder, ffmpeg, etc) (07/27/2009)
+- Added t_chop_words template modifier function (07/27/2009)
+- Added Scheduled status for videos allowing them to be queued and activated at a later time for display on the site (07/28/2009)
+- Added --activate-scheduled option for cron.php script to activate scheduled videos (07/28/2009)
+
+
+
+1.0.0 BETA - 07/24/2009
+=======================
+- Fixed issue with tags not being updated properly after video conversion (07/20/2009)
+- Added utility script to regenerate the tags and tag frequencies (07/21/2009)
+- Updated server capabilities detection to find incorrectly named MP4Box program on FreeBSD systems (07/21/2009)
+- Fixed issue that could cause a division by zero error in QueueProcessor.php (07/22/2009)
+- Added workaround for XML videos feeds that claim to be UTF-8 encoded but contain non-UTF-8 characters (07/22/2009)
+
+
+
+1.0.0 BETA - 07/20/2009
+=======================
+- Fixed issue with blank signup e-mail message (07/13/2009)
+- Fixed issue with database error message when viewing flagged or featured reasons for a video (07/16/2009)
+- Changed default search mode for end-user searches to a boolean mode search (07/16/2009)
+- Added ability to add videos to the thumbnail generation queue from the Search Videos interface (07/17/2009)
+- Added ability to add videos to the conversion queue from the Search Videos interface (07/17/2009)
+- Rewrite of the conversion and thumbnail generation queue processors (07/17/2009)
+- Added ability to start, stop and clear the thumbnail generation queue from the control panel (07/17/2009)
+- Added ability to start, stop and clear the conversion queue from the control panel (07/17/2009)
+- The _cache and _compiled directories are now included in the software distribution (07/17/2009)
+- Improved handling of tags to remove special characters and MySQL stop words (07/20/2009)
+
+
+
+1.0.0 BETA - 07/10/2009
+=======================
+- Search terms are now filtered against the Word blacklist items (07/10/2009)
+- Added ability to import videos from TGP galleries (07/10/2009)
+- Fixed issue with video watch limit not being properly enforced (07/10/2009)
+
+
+
+1.0.0 BETA - 07/09/2009
+=======================
+- Fixed error message generated when editing a video that does not have an associated sponsor (07/09/2009)
+- Fixed issue with Times Displayed not being properly updated for banners (07/09/2009)
+- Fixed issue which prevented videos being removed from the thumbnail generation queue when deleted (07/09/2009)
+- Fixed database error message (DELETE FROM ...) generated by thumbnail generation queue (07/09/2009)
+- Fixed issue with search term tracking not working properly with all template sets (07/09/2009)
+- Updated the star rating system in templates to improve performance and cross-browser compatibility (07/09/2009)
+- Fixed issue with pagination links on non-Rewrite template sets (07/09/2009)
+- Added option to skip checking if a video has been imported before (07/09/2009)
+- Thumbnail Size setting is now visible even if thumbnail generation is not possible on the server (07/09/2009)
+
+
+
+1.0.0 BETA - 07/08/2009
+=======================
+- Patching script now updates the database.xml file automatically with the new tbx_imported table (07/01/2009)
+- Added thumbail generation queue to create thumbnails for remotely hosted videos (07/01/2009)
+- Added option to queue imported videos for conversion (07/01/2009)
+- Added option to queue imported videos for thumbnail generation (07/01/2009)
+- Added ability to edit embed code for videos (07/01/2009)
+- Added ability to edit clip URLs for videos (07/01/2009)
+- Added ability to delete individual thumbnails for videos (07/01/2009)
+- Default values filled in when adding an account through the control panel (07/02/2009)
+- Suggestion for URL Name provided when adding categories (07/02/2009)
+- Minor tweak to the pagination templates (07/02/2009)
+- Template system directory structure updated (see additional patching instructions in the TubeX forum) (07/02/2009)
+- Added ability to assign (by uploading) an image to each category (07/02/2009)
+- Fixed issue that prevented "Strip HTML tags" options from working properly (07/02/2009)
+- Updated display of stars over video thumbnails in the Default-Blue-Rewrite template to work with all thumb sizes (07/06/2009)
+- Fixed issue with automatic categorization when one or more categories had the Auto Category Term field empty (07/06/2009)
+- Fixed issue with videos not being properly deleted when their associated category is deleted (07/06/2009)
+- Fixed issue that prevented video counts for sponsors from being generated properly (07/06/2009)
+- Icon to view video conversion error log now stays and acts as a toggle for the display of the error log text (07/06/2009)
+- Fixed duplicate entries in the tbx_imported database table (07/06/2009)
+- Added new template sets Adult-Dark and Adult-Light (07/06/2009)
+- Added ability to upload thumbnail images for a video when editing through the control panel (07/06/2009)
+- Improved handling of malformed import data (07/07/2009)
+- Added black frame detection to the video thumbnail grabber (07/07/2009)
+
+
+
+1.0.0 BETA - 06/30/2009
+=======================
+- Tweaks to meta description and keywords values in default template set (06/29/2009)
+- Fixed issue with $video.video_id not being properly assigned for videos that do not have a thumbnail preview (06/29/2009)
+- Cache cleared for categories.tpl when a category is added, edited or deleted and when a video is added, edited or deleted (06/29/2009)
+- Private video tags no longer count toward the tag frequency (06/29/2009)
+- Added ability to limit search to specific categories in end-user search (06/29/2009)
+- Default template set now loads video comments through AJAX instead of iframe (06/29/2009)
+- Default template set now displays animation of preview thumbnails when user hovers mouse over (06/29/2009)
+- Added video import function to import videos from delimited data (by copy-and-paste, upload, or URL) (06/30/2009)
+- Documentation complete (06/30/2009)
+- Distribution now contains the default template which does not use mod_rewrite (in designs folder) (06/30/2009)
+
+
+
+1.0.0 BETA - 06/26/2009
+=======================
+- Additional documentation added (06/25/2009)
+- Added missing "Review new user accounts" software setting (06/25/2009)
+- Updated chmod calls so a warning will not be generated on non-owned files and directories (06/25/2009)
+- Updated all PHP code to not use short PHP tags (06/25/2009)
+- Updated XML videos feed import test to better detect valid and invalid feeds (06/25/2009)
+- Updated XML videos feed import to delete temporary thumbnail images when resizing is complete (06/25/2009)
+- Updated user account deletion function to better handle deletion of the user's videos (06/25/2009)
+- Fixed "non-recoverable program error..." message when adding a video from a URL with one or more images (06/25/2009)
+- Fixed issue with multiple attributes in {template} functions not parsing properly (06/25/2009)
+- Additional documentation added (06/26/2009)
+- Added link to documentation from the Database > Utilities control panel function (06/26/2009)
+- Updated setting of PHP include_path to prevent conflicts with other libraries installed on the server (06/26/2009)
+- Added checks to prevent adding videos and video feeds when no categories have been created (06/26/2009)
+- Added check to prevent Embed videos from being added to the conversion queue (06/26/2009)
+- Fixed error message when doing a search-and-replace on the global e-mail templates (06/26/2009)
+- Updated documentation links in control panel interface (06/26/2009)
+- Added meta description and keywords (both global and per-category) to the default template set (06/26/2009)
+- Updated XML Videos Feed reader to better handle malformed feeds (06/26/2009)
+
+
+
+1.0.0 BETA - 06/24/2009
+=======================
+- Fixed issue with User Fields, Sponsor Fields and Category Fields links pointing to the wrong location (06/22/2009)
+- Removed use of PHP_INT_MAX (appears some PHP installations don't handle constant this properly) (06/22/2009)
+- Fixed issue with File Extensions field being required in Global Settings when video conversion is not supported on the server (06/23/2009)
+- Validation of Username entered in control panel when adding or editing a video (06/23/2009)
+- Added admin/patch.php script used to perform any necessary updates for new releases (06/23/2009)
+- Improved automatic detection of the Document Root directory (06/23/2009)
+- Improved detection of whether video conversion is supported on the server (06/23/2009)
+- Additional documentation added (06/24/2009)
+- Fixed issue with "A non-recoverable program error has occurred" error message displayed when adding videos from URL (06/24/2009)
+
+
+
+1.0.0 BETA - 06/22/2009
+=======================
+- Initial public release

@@ -1,0 +1,257 @@
+* {
+  font-family: 'Trebuchet MS', Arial;
+  font-size: 10pt;
+}
+
+a:link {
+  color: #FF0000;
+}
+
+a:visited {
+  color: #AA0000;
+}
+
+a:link:hover {
+  color: #AFAFAF;
+}
+
+pre {
+  font-family: monospace;
+}
+
+ul b {
+  vertical-align: top;
+  display: inline-block;
+  width: 18%;
+  text-align: right;
+}
+
+ul span {
+  display: inline-block;
+  margin-bottom: 1em;
+  width: 70%;
+}
+
+ul img {
+  vertical-align: top;
+  margin-bottom: 1em;
+}
+
+xmp {
+  font-family: monospace;
+}
+
+
+
+/** CLASSES **/
+.main-content {
+  width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 600px;
+}
+
+.header-main {
+  font-size: 200%;
+  font-weight: bold;
+  text-align: center;
+}
+
+.header-section {
+  border-bottom: 1px solid #afafaf;
+  font-weight: bold;
+  font-size: 130%;
+  margin: 2em 0 0.5em 0;
+  display: block;
+}
+
+.section {
+  margin: 1em 10px 0 30px;
+}
+
+.toc-link {
+  float: right;
+}
+
+.message-notice {
+  border: 1px solid #0b198c;
+  background-color: #f5f5ff;
+  padding: 4px;
+  color: #0b198c;
+  font-weight: bold;
+}
+
+.centered {
+  text-align: center;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.large {
+  font-size: 110%;
+}
+
+.larger {
+  font-size: 125%;
+}
+
+.largest {
+  font-size: 150%;
+}
+
+.mono {
+  font-family: monospace;
+}
+
+.code {
+  font-family: monospace;
+  background-color: #ececec;
+  border: 1px solid #B8B4AE;
+  padding: 4px;
+  margin-left: 20px;
+  overflow: auto;
+}
+
+.mt {
+  margin-top: 2em;
+}
+
+.nmb {
+  margin-bottom: 0;
+}
+
+
+/*
+{
+    background-color: #ffffff;
+    font-family:      'Trebuchet MS';
+    font-size:        10pt;
+}
+
+
+a
+{
+    color:           Red;
+}
+
+
+a:hover
+{
+    color:           Red;
+}
+
+
+a.helplink
+{
+    font-weight:     bold;
+    color:           Blue;
+}
+
+
+a.helplink:visited
+{
+    font-weight:     bold;
+    color:           Blue;
+}
+
+
+td
+{
+    font-family:      Verdana;
+}
+
+.code {
+  border: 1px solid #afafaf;
+  background-color: #ececec;
+  padding: 10px;
+  overflow: auto;
+}
+
+.small
+{
+    font-family:      Verdana;
+}
+
+
+.grey
+{
+    color: #aaa;
+}
+
+
+.large
+{
+    font-size:   24px;
+    font-weight: bold;
+}
+
+
+
+.tab
+{
+    font-size:        11px;
+    font-weight:      bold;
+    padding:          2px 5px 2px 5px;
+    background-color: Maroon;
+    width:            20%;
+    color:            White;
+}
+
+
+.card
+{
+    font-size:        11px;
+    border:  1px solid Maroon;
+    padding: 2px 5px 2px 5px;
+
+}
+
+
+.important
+{
+    color: blue;
+    font-weight: bold;
+}
+
+
+.red
+{
+    color: red;
+    font-weight: bold;
+}
+
+.centered
+{
+    text-align: center;
+}
+
+.main-content
+{
+    width: 900px;
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.note
+{
+  border: 1px solid #0b198c;
+  background-color: #f5f5ff;
+  padding: 4px;
+  color: #0b198c;
+  font-weight: bold;
+  /*font-size: 8pt;
+}
+
+table.fields td
+{
+  font-size: 8pt;
+}
+
+.heading
+{
+  font-size: 11pt;
+  border-bottom: 1px solid #666;
+}*/

@@ -1,0 +1,518 @@
+<html>
+<head>
+    <title>TubeX Documentation</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+
+<body>
+
+  <div class="main-content">
+
+    <div class="header-main">Template System Overview</div>
+
+    <div class="toc-link"><a href="index.html">Table of Contents</a></div>
+
+    <span class="header-section">Introduction</span>
+    <div class="section">
+      The TubeX template system is very powerful and allows you to create nearly any type of design for the software generated pages.  The template system is also used in the
+      e-mail messages that the software sends, so you can control the content of those messages as well.  This document will give you an overview of the basic template features
+      you will need to understand.
+    </div>
+
+
+
+    <span class="header-section">Basic Syntax</span>
+    <div class="section">
+      With the TubeX template system, all template tags are enclosed within the delimiters { and }.  All content outside of delimiters is displayed as static content, or unchanged.
+      When the TubeX template parser encounters template tags, it attempts to interpret them, and displays the appropriate output in their place.
+    </div>
+
+
+    <span class="header-section">Comments</span>
+    <div class="section">
+      Template comments are surrounded by asterisks, which are in turn surrounded by the delimiter tags like so:
+
+      <xmp>{* this is a comment *}</xmp>
+
+      Template comments are NOT displayed in the final output of the template, unlike &lt;!-- HTML comments --&gt; these are useful for making internal notes in the templates which
+      no one will see in the generated output.  Unlike the majority of the template commands, template comments may span multiple lines, which means the beginning {* delimiter and ending *} delimiter
+      are not required to be on the same line in the template code.
+    </div>
+
+
+    <span class="header-section">Variables</span>
+    <div class="section">
+      Template variables start with the dollar sign ($) and can contain numbers, letters and underscores like so:
+
+      <xmp>{$g_config}
+{$video.description}
+{$user.username}</xmp>
+
+      When a template variable is encountered by the template parser, the entire
+      template tag (including delimiters) is replaced by the value of that variable.  Each of the templates will have different variables that you can use within them, so be sure to
+      review the other template sections of the manual to find out what variables are available in each template.
+    </div>
+
+
+    <span class="header-section">Variable Modifiers</span>
+    <div class="section">
+      In addition to simply displaying variables, you can also apply modifier functions to them.  This is useful for formatting purposes, for example, when displaying a date you can
+      specify the format that the date should appear in.  Variable modifiers follow the variable name and are separated from it by a | character like so:
+
+      <xmp>{$video.date_added|t_age}</xmp>
+
+      In the example above the TubeX function t_age is applied to the {$video.date_added} variable before it is displayed in the template.  You can use any of the built in PHP functions
+      as long as it takes the variable you specified as the first parameter.
+
+      <br /><br />
+
+      It is also possible to specify additional function arguments with the modifiers.  Function arguments will come after the variable modifier and will be enclosed in parenthesis.
+      So, for example, if you wanted to use the PHP function number_format() you would do that like so:
+
+      <xmp>{$variable|number_format(2,'.',',')}</xmp>
+
+      This would call the number_format PHP function with the arguments like this:
+
+      <xmp>number_format($variable, 2, '.', ',')</xmp>
+
+      TubeX includes some builtin template modifiers, which are described below:
+
+      <ul>
+        <div class="bold large mt">t_age</div>
+        <ul>
+          This modifier will convert a date or datetime value into an age string:<br />
+          Today, 1 day ago, 2 days ago, ..., 1 week ago, 2 weeks ago, ..., 1 month ago, 2 months ago, ..., 1 year ago, 2 years ago, ...
+        </ul>
+
+        <div class="bold large mt">t_formfield</div>
+        <ul>
+          This modifier will generate an HTML form field (text, textarea, checkbox, select) form custom database fields
+        </ul>
+
+        <div class="bold large mt">t_translate</div>
+        <ul>
+          This modifier will translate the string stored in the template variable using the language file
+        </ul>
+
+        <div class="bold large mt">t_duration</div>
+        <ul>
+          This will convert a value in seconds to HH:MM:SS format
+        </ul>
+
+        <div class="bold large mt">t_tostring</div>
+        <ul>
+          This will convert a numeric value into a friendly string (e.g. 18234 to 18,234)
+        </ul>
+
+        <div class="bold large mt">t_chop</div>
+        <ul>
+          This will truncate a string to a specific length, and append a string to the end indicating that it has been truncated.  This
+          modifier takes two arguments: length, string to append
+
+          <br /><br />
+
+          <div class="bold">t_chop(50,'...')</div>
+          This example will truncate the string to 50 characters and append ... to the end of the truncated string
+        </ul>
+
+        <div class="bold large mt">t_chop_words</div>
+        <ul>
+          This is identical to the t_chop function with the exception that whole words will be maintained  (i.e. truncation will not occur in the middle of a word) when truncating the string.
+        </ul>
+
+        <div class="bold large mt">t_nearesthalf</div>
+        <ul>
+          This will round a decimal number (e.g. 3.2761) to the nearest half number (3.5).  Very useful for generating star values for video ratings.
+        </ul>
+
+        <div class="bold large mt">t_urlify</div>
+        <ul>
+          This will convert a string into a value that is suitable for use in a HTTP URL.  This function takes a single argument: the number of words to limit
+          the generated value to.  All non alpha-numeric (English) characters will be removed from the string and replaced with a dash (-) character.
+        </ul>
+
+        <div class="bold large mt">t_datetime</div>
+        <ul>
+          This will convert a datetime value into a string formatted as you like.  This function takes a single argument: the
+          <a href="date-time-formats.html" target="_blank">date/time format</a> to use.
+        </ul>
+
+        <div class="bold large mt">t_date</div>
+        <ul>
+          This will convert a date value into a string formatted as you like.  This function takes a single argument: the
+          <a href="date-time-formats.html" target="_blank">date format</a> to use.
+        </ul>
+      </ul>
+    </div>
+
+
+
+    <span class="header-section">Functions</span>
+    <div class="section">
+      Function tags appear much like variable tags, but do not start with a dollar sign.  These template tags will contain a function name followed by optional function attributes like so:
+
+      <xmp>{function attribute1="value1" attribute2="value2"}</xmp>
+
+      Some functions are block functions which have both an opening and closing tag.  All of the HTML code that is inside the opening and closing tags will be processed by these functions.
+      Block functions look like this:
+
+      <xmp>{function attribute1="value1" attribute2="value2"}
+  Some HTML code
+  or other template values
+{/function}</xmp>
+
+      The template system provides some stock functions which are available in all templates, and some custom functions which are only available in specific templates.  The
+      Stock Functions are described in this section of the manual.  Other functions that are available on specific pages will be covered in the appropriate sections of this manual.
+    </div>
+
+
+    <a name="stock" class="header-section">Stock Functions</a>
+    <div class="section">
+      The TubeX template system offers several stock functions that can be used in any of the software templates.  These stock functions are described here.
+
+      <ul>
+      <div class="bold large mt">{if}, {else}, {elseif}</div>
+      <ul>
+        <xmp>{if $name == 'Fred'}
+  Your name is Fred
+{else}
+  I don't know your name
+{/if}
+
+{if $name == 'Fred'}
+  Your name is Fred
+{elseif $name == 'Sally'}
+  Your name is Sally
+{else}
+  I don't know your name
+{/if}</xmp>
+
+        The {if} function allows you to conditionally include sections of a template in the output.  For example, if you wanted to display gallery links in bold text only if they
+        are partner submitted galleries you could use the {if} template function.  The {if} template function works much like the if statement in programming languages, and also
+        offers the {else} and {elseif} functions.  Every {if} tag must be paired with a closing {/if} tag.  The {elseif} and {else} tags must be contained within the {if} and
+        {/if} tags.
+
+        <br />
+        <br />
+
+        In the {if} and {elseif} tags all PHP conditionals and functions are recognized, such as ||, or, &amp;&amp;, and, is_array(), etc.  The conditionals and functions must be enclosed
+        in the { and } delimiters and there must be a space after the "if" function name.
+      </ul>
+
+
+
+      <div class="bold large mt">{foreach}, {foreachelse}, {foreachdone}</div>
+      <ul>
+        <xmp>{foreach from=$array_variable var=$loop_variable counter=$counter_variable}
+  Array item: {$loop_variable.item_name}<br />
+{foreachelse}
+  There are no items to display
+{/foreach}</xmp>
+
+        The {foreach} function allows you to loop over any array of values.  For example, when displaying galleries on your TGP pages you would use this function to display each gallery using the
+        HTML code contained within the {foreach} block function, instead of having to write the same code over and over again.  Every {foreach} tag must be paired with a closing {/foreach} tag.
+
+        <br />
+        <br />
+
+        The {foreach} function has 3 available attributes:
+
+        <br />
+        <br />
+
+        <ul>
+          <b>from</b> - This specifies the template variable to loop over<br />
+          <b>var</b> - This specifies the variable name to use within the {foreach} block to display the values contained in the array<br />
+          <b>counter</b> - This specifies the variable name that will be incremented for each item in the array
+        </ul>
+
+        <br />
+
+        The from and var attributes are required; the counter attribute is optional.
+
+        <br />
+        <br />
+
+        If you would like to display some alternate HTML code when the array value is empty, you can use the {foreachelse} function.  It must be contained with the {foreach} and {/foreach} tags.
+        The HTML code that comes between the {foreachelse} and {/foreach} tags will be displayed when there are no values in the array specified in the from attribute.
+
+        <br />
+        <br />
+
+        You can break out of a {foreach} section early by using the {foreachdone} template function.  When this is encountered, the {foreach} loop will immediately stop and will not continue
+        processing the remainder of the items.
+
+      </ul>
+
+
+
+      <div class="bold large mt">{insert}</div>
+      <ul>
+        <xmp>{foreach from=$from var=$var counter=$counter}
+  {insert counter=$counter location=+5 max=15}
+    This code will be displayed in the locations specified
+  {/insert}
+{/foreach}</xmp>
+
+        The {insert} function can be used inside the {foreach} and {range} template functions to display HTML code at specific positions that you define.   For example, when displaying galleries
+        on your TGP pages you could use this function to insert the necessary HTML code to create a HTML table to display your gallery links as thumbnails in a 5x5 layout.  Every {insert} tag
+        must be paired with a closing {/insert} tag and both the opening and closing tags must be located inside a {foreach} or {range} section.
+
+        The {insert} function has 3 avialable attributes:
+
+        <br />
+        <br />
+
+        <ul>
+          <b>counter</b> - This specifies the name of the counter value that was specified in the {foreach} or {range} function<br />
+          <b>location</b> - This specifies the location(s) where you want the HTML code displayed (more on this below)<br />
+          <b>max</b> - This specifies the maximum counter value after which no further inserts will be done.
+        </ul>
+
+        <br />
+
+        There are three ways you can specify a location: a single insertion, multiple insertions, or multiple insertions at regular intervals.  To specify a single insertion, enter the location
+        as a number by itself.  To specify multiple insertions, enter a comma separated list of locations.  To specify multiple insertions at regular intervals, enter the interval with a + sign in
+        front of it.  The location numbers you use are related to the counter value you are working with.  Here are a few examples:
+
+        <br />
+        <br />
+
+        <ul>
+          3,7,10 - This will insert the HTML code in the 3, 7, and 10 positions.<br />
+          +5 - This will insert the HTML code every 5 positions.<br />
+          25 - This will insert the HTML code only once at position 25
+        </ul>
+
+        <br />
+
+        The max value can be used to stop the insertions after a specific position.  For example, if you wanted to insert code every 5 positions but want it to stop after the 30th position you would
+        set the location value to +5 and the max value to 30.  This would still insert the HTML code at the 30th position, but not at the 35th, 40th, etc.
+
+      </ul>
+
+
+
+      <div class="bold large mt">{capture}</div>
+      <ul>
+        <xmp>{capture var=$captured_code}
+  This code will be captured for use later in the template
+{/capture}</xmp>
+
+        The {capture} function allows you to store the code contained in this block function so it can be used later in the template.  The var attribute of this function specifies the name
+        of the variable that this HTML code will be stored in.  Every {capture} tag must be paired with a closing {/capture} tag.  All of the HTML code contained within the {capture} and {/capture}
+        tags will be stored in a variable.  In the example above the variable name is captured_code, so you could use {$captured_code} elsewhere in your template to display the code contained in
+        that section.
+
+      </ul>
+
+
+
+
+      <div class="bold large mt">{date}</div>
+      <ul>
+        <xmp>{date value="+1 day" format="m-d-Y" var=$tomorrow}</xmp>
+
+        The {date} function allows you to either display or store a date/datetime value.  If the var attribute is specified, the date value will be stored in that variable which can be used later in your
+        template to display the stored value.  If the var attribute is left out, the date will be displayed in the location where the {date} function appears in the template.  The {date} function
+        also accepts two other attributes:
+
+        <br />
+        <br />
+
+        <ul>
+          <b>value</b> - This specifies the value to use to calculate the date that should be displayed/stored<br />
+          <b>format</b> - This specifies the <a href="date-time-formats.html">date and time format</a> to use to display the date
+        </ul>
+
+        <br />
+
+        The value setting allows you to offset the date so that you can display any date relative to today's current date.  Some of the available offset values you can use are:
+
+        <br />
+        <br />
+
+        <ul>
+          <b>year</b> - Offset by years<br />
+          <b>month</b> - Offset by months<br />
+          <b>day</b> - Offset by days<br />
+          <b>hour</b> - Offset by hours<br />
+          <b>minute</b> - Offset by minutes<br />
+          <b>second</b> - Offset by seconds<br />
+        </ul>
+
+        <br />
+
+        Here are some examples of the settings you can use for the value attribute:
+
+        <br />
+        <br />
+
+        <ul>
+          <b>now</b> - Today's date<br />
+          <b>today</b> - Today's date<br />
+          <b>-1 day</b> - Yesterday's date<br />
+          <b>-5 day</b> - The date from 5 days ago<br />
+          <b>+2 day</b> - The date 2 days from now<br />
+          <b>-1 week</b> - The date 1 week ago<br />
+          <b>-1 week -2 day</b> - The date 1 week and 2 days ago<br />
+          <b>2 days ago</b> - The date 2 days ago<br />
+        </ul>
+      </ul>
+
+
+      <div class="bold large mt">{locale}</div>
+      <ul>
+        <xmp>{locale value="nl_NL"}</xmp>
+
+        The {locale} function allows you to set a specific locale to use for the {datelocale} function so that you can get weekday and month names in a specific language.  The value attribute
+        specifies the language that should be used for month and weekday names.  The setting you will use for the value attribute will depend on your server, since this uses the server's locale
+        information.  On some servers you can enter a literal string name of the language, for example value=swedish to get date values in Swedish.  Others require that you use the special
+        locale codes such as nl_NL for Dutch.  You can also view the documentation for the <a href="http://us.php.net/manual/en/function.setlocale.php" target="_blank">PHP setlocale() function</a>
+        which has more information on locale values.
+      </ul>
+
+
+
+
+      <div class="bold large mt">{datelocale}</div>
+      <ul>
+        <xmp>{datelocale value="-1 day" format="%A" var=$yesterday}</xmp>
+
+        The {datelocale} function is identical to the {date} function except that it takes into account your locale that has been set with the {locale} function and that it uses different format
+        values for the format attribute.  The <a href="date-time-formats.html#locale">date and time format</a> documentation covers the available format values you can use for the format setting
+        of this function.
+      </ul>
+
+
+
+
+      <div class="bold large mt">{nocache}</div>
+      <ul>
+        <xmp>{nocache}
+The current date and time is: {date value="now" format="r"}
+{/nocache}</xmp>
+
+        The {nocache} function allows you to specify sections of the template that should not be cached.  By default all of the site templates are cached to reduce the load on the server, however
+        if you need to leave portions of the page dynamic you can use this function.  Every {nocache} tag must be paired with a closing {/nocache} tag.  All of the HTML code contained with the {nocache}
+        and {/nocache} tags will not be cached with the rest of the page.  This is useful, for example, if you want to have some PHP code in your templates that updates the page everytime someone views
+        the page, rather than only when the page is re-cached.
+      </ul>
+
+
+
+
+      <div class="bold large mt">{literal}</div>
+      <ul>
+        <xmp>{literal}
+<script language="JavaScript">
+function checkForm(form)
+{
+    if( form.site_url == '' )
+    {
+        alert('The site URL field must be filled in');
+        return false;
+    }
+
+    return true;
+}
+</script>
+{/literal}</xmp>
+
+        Use the {literal} function to prevent template parsing from occurring within a section of template code.  Every {literal} tag must be paired with a closing {/literal} tag.  All of the HTML code
+        contained with the {literal} and {/literal} tags will not be parsed as template code.  This is useful, for example, if you want to use some JavaScript code on your page but need the template parser
+        to ignore the { and } characters contained within that code.
+      </ul>
+
+
+
+
+      <div class="bold large mt">{range}</div>
+      <ul>
+        <xmp>{range start=$start_variable end=$end_variable counter=$counter_variable}
+  Currently working on {$counter_variable}
+{/range}</xmp>
+
+        The {range} function is another looping function similar to the {foreach} function, however this function only loops over a range of numbers instead of over an array of values.
+        Every {range} tag must be paired with a closing {/range} tag.  All of the HTML code contained with the {range} and {/range} tags will be output for each iteration of the loop.
+        The {range} function has 3 avialable attributes (all are required):
+
+        <br />
+        <br />
+
+        <ul>
+          <b>start</b> - This specifies the starting point of the loop.  It can be an assigned template variable or a literal number<br />
+          <b>end</b> - This specifies ending point of the loop.  It can be an assigned template variable or a literal number<br />
+          <b>counter</b> - This specifies the variable name that will be incremented for each loop iteration
+        </ul>
+      </ul>
+
+
+      <div class="bold large mt">{php}</div>
+      <ul>
+        <xmp>{php}
+  echo "This is some PHP code";
+{/php}</xmp>
+
+        Use the {php} function to include some PHP code in your template.  Every {php} tag must be paired with a closing {/php} tag.  All of the code contained within the {php} and {/php} tags will
+        be processed as PHP code that is within &lt;?PHP and ?&gt; tags.
+      </ul>
+
+
+
+      <div class="bold large mt">{template}</div>
+      <ul>
+        <xmp>{template file="global-header.tpl"}</xmp>
+
+        Use the {template} function to include the contents of another template in the output of this template.  The file attribute should specify the filename only of the template you want to include.
+        The template file will be parsed as expected, and the parsed output of the template will replace the {template} function exactly where it appears in the template code.
+
+        <br />
+        <br />
+
+        In addition to the file attribute, you can also specify additional attributes which will then be accessible as template variables in the included template file.  For example:
+
+        <xmp>{template file="global-header.tpl" title="The Page Title"}</xmp>
+
+        This would make the template variable $title accessible in the global-header.tpl template with a value of "The Page Title"
+      </ul>
+
+
+
+
+      <div class="bold large mt">{include}</div>
+      <ul>
+        <xmp>{include file="/full/path/to/file.html"}</xmp>
+
+        Use the {include} function to include the complete contents of a file in the output of your template.  The file attribute should specify the full path and filename you want to read from.
+        The entire contents of that file will be read and placed in the output of your template in the location of the {include} template tag.
+      </ul>
+
+
+
+      <div class="bold large mt">{cycle}</div>
+      <ul>
+        <xmp>{cycle values="#FFFFFF,#777777"}</xmp>
+
+        Use the {cycle} function to cycle between two values within a loop (such as the {foreach} or {range} loop functions).  The values attribute specifies the two values to cycle between.
+        They should be enclosed in quotes and separated by a comma.  This function is useful, for example, to display alternating row colors in a table.
+      </ul>
+
+
+
+      <div class="bold large mt">{assign}</div>
+      <ul>
+        <xmp>{assign var=$new_variable value="variable value"}</xmp>
+
+        Use the {assign} function to assign a template value during the template parsing process.  The var attribute specifies the name of the template variable that you want to set, and the
+        value attribute specifies the value you want to assign to the variable.  Using the example above, you would be able to use {$new_variable} in your template to display the string "variable value" anywhere
+        in your template after the occurence of that {assign} tag.
+      </ul>
+
+    </ul>
+    </div>
+
+  </div>
+
+</body>
+</html>

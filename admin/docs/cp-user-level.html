@@ -1,0 +1,50 @@
+<html>
+<head>
+    <title>TubeX Documentation</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body>
+  <div class="main-content">
+    <div class="header-main">User Levels</div>
+
+    <div class="toc-link"><a href="index.html">Table of Contents</a></div>
+
+
+    <span class="header-section">Managing User Levels</span>
+    <div class="section">
+      Managing user levels is done by accessing the Settings &gt; User Levels &gt; Search User Levels function in the control panel menu.
+      From this interface you can add new user levels and search, edit, or delete the existing user levels.  For an overview of searching,
+      adding, editing, and deleting items, please see the <a href="cp-basics.html">Control Panel Basics</a> section of this software manual.
+    </div>
+
+
+    <span class="header-section">Database Fields</span>
+    <div class="section">
+      User Levels have the following fields associated with them:
+      <ul>
+        <b>Name -</b> <span>The friendly name assigned to this user level</span><br />
+
+        <b>View Limit -</b> <span>The number of videos that user accounts assigned to this user level are allowed to view each day</span><br />
+
+        <b>Bandwidth Limit -</b> <span>
+                                   The amount of bandwidth that user accounts assigned to this user level are allowed to consume each day.  This can either be a numerical
+                                   value (interpreted as bytes) or a numerical value followed by one of these suffixes: KB, MB, GB
+
+                                   <br /><br />
+                                   
+                                   <div class="message-notice">
+                                     Bandwidth limits apply only to locally hosted videos.  Videos that use embed code or are hotlinked will not count toward the bandwidth
+                                     limit.
+                                   </div>
+                                 </span><br />
+
+        <b>Use for guests -</b> <span>Check this box to use this user level for all guests (users viewing your site that are not logged in).  Only one
+                                user level can have this box checked.</span><br />
+
+        <b>Use as default -</b> <span>Check this box to use this user level for all newly created user accounts.  Only one
+                                user level can have this box checked.</span><br />
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

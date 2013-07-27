@@ -1,0 +1,23 @@
+# Any lines that begin with a # character are considered comments
+# and will be ignored by the cron and crontab system. You can use
+# comments to help you remember what the commands do and when they run
+
+# At the top of the file, place any existing crontab commands
+
+# Now you can put your TubeX crontab entries in.
+
+
+# Run database backup every day at 3am
+0 3 * * * /usr/local/bin/php /home/username/public_html/admin/cron.php --backup file=backup.sql
+
+
+# Run stats rollover at midnight
+0 0 * * * /usr/local/bin/php /home/username/public_html/admin/cron.php --stats-rollover
+
+
+# Run conversion queue check hourly at 15 past the hour
+15 * * * * /usr/local/bin/php /home/username/public_html/admin/cron.php --run-convert-queue
+
+
+# Run thumb queue check hourly at 30 past the hour
+30 * * * * /usr/local/bin/php /home/username/public_html/admin/cron.php --run-thumb-queue

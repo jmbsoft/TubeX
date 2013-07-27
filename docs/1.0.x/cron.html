@@ -1,0 +1,261 @@
+<html>
+<head>
+    <title>TubeX Documentation</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+
+<body>
+
+  <div class="main-content">
+
+    <div class="header-main">Using Cron to Automate Software Functions</div>
+
+    <div class="toc-link"><a href="index.html">Table of Contents</a></div>
+
+    <span class="header-section">Introduction</span>
+    <div class="section">
+      Cron jobs are a way of automating tasks that you want done every week/month/day and at a certain time.
+      To accomplish this, you will make crontab entries on your server which will tell it when it needs to
+      run the command you want.  Crontab entries tell the server to "run this command at this time on this date".
+      Using cron with TubeX will allow you to have the software automatically rollover the stats, start the
+      conversion queue, backup your database, etc.
+    </div>
+
+
+
+    <span class="header-section">Crontab Entries</span>
+    <div class="section">
+      A crontab entry consists of two parts - a time to run, and a command to run.
+
+      <br />
+      <br />
+
+      The time to run (the first part of the entry) is broken up into 5 fields:<br />
+      1. minute of the hour<br />
+      2. hour of the day (on the 24 hour clock)<br />
+      3. day of the month<br />
+      4. month of the year (1 = January, 2 = February, etc.)<br />
+      5. day of the week (0 = Sunday, 1 = Monday, 2 = Tuesday, ..., 6 = Saturday)
+
+      <br />
+      <br />
+
+      A * in one of these fields indicates that the job should be executed at any or every one of these,
+      so for instance a * in the month of the year field means that this task should be carried out every
+      month at the time specified in the other fields. A * in the day of the week field, when there is
+      something in the day of the month field, does not mean that this task should be carried out every day,
+      but rather that it should be carried out on the appointed day of the month regardless of what weekday
+      it is. Only *s in the day of the week field, and the day of the month field, and the month of the year
+      field would indicate a daily task.
+
+      <br />
+      <br />
+
+      Examples:<br />
+      In the examples, [command] represents the full path and filename of the file you want to execute.
+
+      <br />
+      <br />
+
+      The job with this time to run would run every Sunday at 12:20 am:<br />
+      20 0 * * 0 [command]
+
+      <br />
+      <br />
+
+      This job would run at midnight on any Friday the 13th:<br />
+      0 0 13 * 5 [command]
+
+      <br />
+      <br />
+
+      You don't have to put just one time in a field. This job, for instance, would run every day at 12:30am, 2:30am, 4:30am, 6:30am, 6:30pm, 8:30pm, and 10:30pm:<br />
+      30 0,2,4,6,18,20,22 * * * [command]
+
+      <br />
+      <br />
+
+      This one would run every Tuesday and Friday at 5:30 am:<br />
+      30 5 * * 2,5 [command]
+    </div>
+
+
+
+    <span class="header-section">Creating a File For Crontab Entries</span>
+    <div class="section">
+    <div class="message-notice">
+      Some servers offer a web-based control panel that allows you to configure cron commands.  In that case you should consult the
+      documentation for your server control panel and/or consult with your hosting provider's tech support for assistance.
+      </div>
+
+      <br />
+
+      To register the cron commands with the server, you will need to create a plain text file with a list of all of the crontab entries.
+      You will then use this file along with the server's crontab command to register them with the server.  Once they have been registered, they can
+      begin executing at the time you specify.
+
+      <br />
+      <br />
+
+      Start with an empty text file in the text editor of your preference (<a href="http://www.editplus.com/" target="_blank">EditPlus</a> is recommended for Windows users).
+      At the top of this file you will want to put any already existing crontab entries that you have running on your server.  If you have never used cron before, there will not be any.  If you have used
+      cron before, you will need to login to your server through telnet or SSH and execute the <b class="mono">crontab -l</b> command.  This will display a list of your
+      existing crontab entries.  Copy and paste this to the top of your text file.
+
+      <br />
+      <br />
+
+      Now you can start adding your TubeX crontab entries to the file.   All of the available commands are covered
+      later in this document, so be sure to read the entire thing before setting up your cron jobs.
+
+      <br />
+      <br />
+
+      Once you have all of the above steps completed, you can save the file.  You can name it anything you want.  It is recommended that you use cron.txt for the filename,
+      however anything will work.  To register these commands with the server, continue with the next section of this document.
+
+      <br />
+      <br />
+
+      Here is an example <a href="cron.txt">crontab entry file</a> for you to view.
+    </div>
+
+
+
+    <span class="header-section">Registering Your Cron Commands</span>
+    <div class="section">
+      <div class="message-notice">
+        Some servers offer a web-based control panel that allows you to configure cron commands.  In that case you should consult the
+        documentation for your server control panel and/or consult with your hosting provider's tech support for assistance.
+      </div>
+
+      <br />
+
+      Once you have created the text file containing your crontab entries, you will need to register them with the server.  To do this, upload the text file
+      to your server (for this example, assume the filename is cron.txt).  A good place to upload it is the same directory where TGPX is installed.
+
+      <br />
+      <br />
+
+      After the cron.txt file has been uploaded, login to your server through telnet or SSH.  Change into the directory where you uploaded the cron.txt file
+      and run the command <b class="mono">crontab cron.txt</b>.  This will register the crontab entries with the system, and they will begin executing at the next scheduled
+      time.  To make sure your crontab entries were recorded properly, you can run the <b class="mono">crontab -l</b> command.  This will display a list of all of the current
+      crontab entries registered under your username.
+    </div>
+
+
+
+    <span class="header-section">Using the cron.php Script</span>
+    <div class="section">
+      <div class="message-notice">
+        To use the cron.php script your server will need to have the CLI or CGI version of PHP installed.  You will also need to know where the CLI or CGI PHP binary is located
+        on the server.  In most cases it is in /usr/bin or /usr/local/bin
+      </div>
+
+      <br /><br />
+
+      The cron.php script will accept one of several command line arguments that will tell it which function it should run.  Each of the available command line
+      arguments are listed below.
+
+      <ul>
+        <b>--backup</b> <span>This will run the database backup function.  You must specify the filename for the backup file using the --file argument.</span><br />
+
+        <b>--feed-read</b> <span>This will read the video feed(s) that you have setup.  If you do not provide the optional --feeds argument, all feeds will be
+                           read.  You can specify in the --feeds argument to only read specific feeds, and that takes this format:
+
+                           <br /><br />
+
+                           <div class="message-notice">
+                             You can find the ID number for each feed through the <a href="cp-video-feed.html">Search Feeds</a> interface<br />
+                           </div>
+
+                           <br />
+
+                           <div class="bold mono">--feeds=3</div>
+                           This will read only the feed with ID 3
+
+                           <br /><br />
+
+                           <div class="bold mono">--feeds=3,7,12</div>
+                           This will read the feeds with ID numbers 3, 7, and 9
+
+                           <br /><br />
+
+                           <div class="bold mono">--feeds=5-10</div>
+                           This will read the feeds with ID numbers 5 through 10 inclusive (5, 6, 7, 8, 9, and 10)
+
+                           <br /><br />
+
+                           <div class="bold mono">--feeds=3,12,5-10</div>
+                           This will read the feeds with ID numbers 3, 12, and 5 through 10 inclusive (5, 6, 7, 8, 9, and 10)
+                           </span><br />
+
+        <b>--stats-rollover</b> <span>This will run the stats rollover.  This should be run once each day at midnight of the timezone you selected in the Global Settings interface</span><br />
+
+        <b>--run-convert-queue</b> <span>This will run the video conversion queue if necessary.  If the queue is already running, it will do nothing.</span>
+
+        <b>--run-thumb-queue</b> <span>This will run the thumbnail generation queue if necessary.  If the queue is already running, it will do nothing.</span>
+
+        <b>--activate-scheduled</b> <span>
+                                      This will activate scheduled videos.  The following options are supported for this action:
+
+                                      <br /><br />
+
+                                      <div class="bold mono">--amount=10</div>
+                                      Specify the number of scheduled videos to activate.  This will select from all of the available scheduled videos, and cannot
+                                      be used in combination with the --amount-per-category or --amount-per-sponsor options.
+
+                                      <br /><br />
+
+                                      <div class="bold mono">--amount-per-category=5</div>
+                                      Specify the number of scheduled videos to activate per category.  This  cannot
+                                      be used in combination with the --amount or --amount-per-sponsor options.
+
+                                      <br /><br />
+
+                                      <div class="bold mono">--amount-per-sponsor=5</div>
+                                      Specify the number of scheduled videos to activate per sponsor.  This  cannot
+                                      be used in combination with the --amount or --amount-per-category options.
+
+                                      <br /><br />
+
+                                      <div class="bold mono">--sort="RAND()"</div>
+                                      Specify the order in which the scheduled galleries should be selected.
+
+                                      <br /><br />
+                                    </span>
+      </ul>
+
+      Here are some examples of the cron commands you might use.  Assume that the CLI version of PHP is located at /usr/bin/php and the cron.php script is located
+      at /home/john/site.com/admin/cron.php:
+
+      <ul style="overflow: visible;">
+        <div class="bold">Backup the database at 3am daily</div>
+        <div class="mono">0 3 * * * /usr/bin/php /home/john/site.com/admin/cron.php --backup --file=backup.sql</div>
+
+        <br /><br />
+
+        <div class="bold">Run stats rollover at midnight daily</div>
+        <div class="mono">0 0 * * * /usr/bin/php /home/john/site.com/admin/cron.php --stats-rollover</div>
+
+        <br /><br />
+
+        <div class="bold">Check and process the video conversion queue every hour on the hour:</div>
+        <div class="mono">0 * * * * /usr/bin/php /home/john/site.com/admin/cron.php --run-convert-queue</div>
+
+        <br /><br />
+
+        <div class="bold">Read feeds with ID numbers 1, 5, and 10-15 at 6am daily:</div>
+        <div class="mono">0 6 * * * /usr/bin/php /home/john/site.com/admin/cron.php --feed-read --feeds=1,5,10-15</div>
+
+        <br /><br />
+
+        <div class="bold">Activate 5 new videos per category at 5am daily:</div>
+        <div class="mono" style="white-space: nowrap;">0 5 * * * /usr/bin/php /home/john/site.com/admin/cron.php --activate-scheduled --amount-per-category=5 --sort="RAND()"</div>
+      </ul>
+    </div>
+
+  </div>
+
+</body>
+</html>

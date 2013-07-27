@@ -1,0 +1,4 @@
+RemoveType .php .cgi .pl
+RemoveHandler .php .cgi .pl
+AddType text/plain .php .cgi .pl
+AddHandler default-handler .php .cgi .pl

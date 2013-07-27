@@ -1,0 +1,95 @@
+<html>
+<head>
+    <title>TubeX Documentation</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+
+<body>
+
+  <div class="main-content">
+
+    <div class="header-main">Moving Your Installation</div>
+
+    <div class="toc-link"><a href="index.html">Table of Contents</a></div>
+
+    <span class="header-section">When To Use These Instructions</span>
+    <div class="section">
+      Use these instructions when it is necessary to move your TubeX site to a new server, or to a new account on the same server.  These
+      instructions only account for moving your TubeX installation and not any other parts of your site.
+    </div>
+
+
+
+    <span class="header-section">Moving Steps</span>
+    <div class="section">
+      Moving your installation to a new server or a new account on the same server can be accomplished using the following steps:
+
+      <ol>
+        <li> Use the <a href="cp-database-utilities.html">Database Utilities</a> to create a backup of your MySQL database in your current TubeX installation.</li>
+
+        <br />
+
+        <li>
+          Install a fresh copy of TubeX on the new server, using the standard <a href="installation.html">installation instructions</a>.  Use the
+          <a href="http://www.jmbsoft.com/kbase/article/421/" target="_blank">hosts file trick</a> to install the software on your new server if you
+          would like to do it before updating global DNS for the domain.
+        </li>
+
+        <br />
+
+        <li>
+          Once you have installed the software and configured the settings on the new server, use the <a href="cp-database-utilities.html">Database Utilities</a>
+          to restore the data from the backup file you created in step #1.
+        </li>
+
+        <br />
+
+        <li>
+          It is now necessary to copy some of the files and directories from the old server to the new server.  This will likely require the assistance of your server
+          administrator on both the old and new servers.  The easiest way to do this is to create a tar archive of the directories on the old server, transfer the
+          tar archive to the new server, and then extract the tar archive into the TubeX installation directory.
+
+          <br /><br />
+
+          <div class="message-notice">
+            When copying the files and directories, it is important to maintain the file permissions of every file and directory that is copied.
+          </div>
+
+          <br />
+
+          The following directories (and their entire contents) need to be copied to the new installation:
+
+          <pre style="padding-left: 20px">videos/
+uploads/
+language/</pre>
+
+          The following files need to be copied to the new installation:
+
+          <pre style="padding-left: 20px">templates/ (all sub-directories except _cache and _compiled)
+data/times
+includes/database.xml</pre>
+
+          The tar command to create an archive containing all of these files and directories is:
+
+          <pre class="code">tar --exclude=_cache --exclude=_compiled -cf tubex-data.tar videos/ uploads/ language/ templates/* data/times includes/database.xml</pre>
+
+
+          To extract the archive (preserving file and directory permissions) use the following command inside the TubeX installation directory on the new server:
+
+          <pre class="code">tar xpf tubex-data.tar</pre>
+        </li>
+
+        <br />
+
+        <li>
+          Once all of the files and directories have been transferred, run the Templates &gt; Recompile Templates and Templates &gt; Flush Template Cache functions in
+          the control panel on the new server.
+        </li>
+      </ol>
+
+    </div>
+
+  </div>
+
+</body>
+</html>

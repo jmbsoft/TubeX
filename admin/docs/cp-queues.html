@@ -1,0 +1,79 @@
+<html>
+<head>
+    <title>TubeX Documentation</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body>
+  <div class="main-content">
+    <div class="header-main">Conversion and Thumbnail Generation Queues</div>
+
+    <div class="toc-link"><a href="index.html">Table of Contents</a></div>
+
+    <span class="header-section">Overview</span>
+    <div class="section">
+      TubeX uses a queue system to manage converting videos and generating thumbnails for videos.  This queue system
+      ensures that your server does not get overloaded by many video conversion or thumbnailing processes running at the same time.
+      Instead each video that needs to be converted or thumbnailed will be added to a queue and processed in the order it was added.
+    </div>
+
+
+    <span class="header-section">Queue Interfaces</span>
+    <div class="section">
+
+      Through the TubeX control panel you can view and manage the queues.  When you access either the Conversion Queue or Thumbnail Queue functions in the Videos menu, a dialog window
+      will appear that looks like this:
+
+      <br /><br />
+
+      <div class="centered">
+        <img src="images/cp-queues.png" title="Queue Interface" />
+      </div>
+
+      <br />
+
+      The Queue Details will include the following:
+
+      <ul>
+        <b>Queued Videos -</b> <span>The total number of items in the queue waiting to be processed</span><br />
+
+        <b>Queue Processor -</b> <span>The status of the queue processor, either Running or Stopped</span><br />
+
+        <b>Videos Processed -</b> <span>The total number of videos that have been successfully processed</span><br />
+
+        <b>Average Time -</b> <span>The average amount of time it takes to process a video in the queue</span><br />
+
+        <b>Estimated Time -</b> <span>The estimated amount of time remaining required to process all items in the queue</span><br />
+
+        <b>Last Started -</b> <span>The date and time the queue process was last started</span><br />
+
+        <b>Failed -</b> <span>The number of videos that were not able to be processed successfully</span><br />
+
+        <b>Average Wait -</b> <span>The average amount of time an item waits in the queue before being processed</span><br />
+      </ul>
+
+      The Control Buttons available at the bottom of the queue interfaces are:
+
+      <ul>
+        <b>Start -</b> <span>
+                         Press this button to start processing the items in the queue.  This button will only be available when the queue is not running.
+
+                         <br /><br />
+                         
+                         <div class="message-notice">
+                           It may not be possible to start the queue process through the control panel interfaces on all servers.  Your server will need to
+                           have PHP safe_mode disabled, the PHP shell_exec() function available, and the CLI or CGI version of PHP available on the server.
+                         </div>
+                       </span><br />
+
+        <b>Stop -</b> <span>Press this button to stop processing the items in the queue.  This button will only be available when the queue is already running.</span><br />
+
+        <b>Clear Queue -</b> <span>Press this button to remove all items from the queue.  This button will only be available when the queue is not running.</span><br />
+
+        <b>Close -</b> <span>Press this button to close the queue interface.  This will not have any affect on the operation of the queue (i.e. it will continue
+                       running even if you close this interface)</span><br />
+      </ul>
+    </div>
+  </div>
+
+</body>
+</html>

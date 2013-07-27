@@ -1,0 +1,68 @@
+<html>
+<head>
+    <title>TubeX Documentation</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body>
+  <div class="main-content">
+  
+    <div class="header-main">Categories</div>
+
+    <div class="toc-link"><a href="index.html">Table of Contents</a></div>
+
+
+    <span class="header-section">Managing Categories</span>
+    <div class="section">
+      Managing categories is done by accessing the Categories &gt; Search Categories function in the control panel menu.
+      From this interface you can add new categories and search, edit, or delete the existing categories.  For an overview of searching,
+      adding, editing, and deleting items, please see the <a href="cp-basics.html">Control Panel Basics</a> section of this software manual.
+    </div>
+
+
+    <span class="header-section">Database Fields</span>
+    <div class="section">
+      Categories have the following fields associated with them:
+
+      <ul>
+        <b>Name -</b> <span>The category's name.  Each category must have a unique name.</span><br />
+
+        <b>URL Name -</b> <span>The value to use in mod_rewrite URLs for this category.  The URL name can contain English letters, numbers, underscores (_), and dashes (-).
+                          Each category must have a unique URL name.</span><br />
+
+        <b>Description -</b> <span>The category's description</span><br />
+
+        <b>Meta Description -</b> <span>The category's description as it should appear in a meta tag</span><br />
+
+        <b>Meta Keywords -</b> <span>The category's keywords as they should appear in a meta tag</span><br />
+
+        <b>Auto Category Term -</b> <span>A comma separated list of keywords that should be used for automatic categorization (see below)</span>
+      </ul>
+    </div>
+
+
+    <a name="automatic-categorization" class="header-section">Automatic Categorization</a>
+    <div class="section">
+      Often when videos are imported (from XML feeds, YouTube, text files, etc) the import data will not include a category.  It is also possible that a category will be
+      included in the import data but it will not match one of the categories you have setup.  In this case, TubeX uses the <i class="bold">Auto Category Term</i> to try to
+      automatically categorize the videos for you.
+
+      <br /><br />
+
+      For each category that you create you should specify an Auto Category Term.  This will be a comma separated list of keywords that will be matched against the video
+      title and description to generate a score.  For example, assume you have a category named <i class="bold">Comedy</i>.  You might use something like this for the Auto Category Term:
+
+      <xmp style="margin-left: 20px;">comedy,funny,humor,laugh,joke,hilarious</xmp>
+
+      When a video is imported, TubeX will compare the video title and description with this string of keywords.  Scoring is based on the number of matches: the more matches there are, the
+      higher the score will be.  The category with the highest score will be selected as the category for the video.
+
+      <br /><br />
+
+      Matching is case-insensitive and it will match sub-strings.  So, for example, if the video title contained the word <i class="bold">humorous</i> this would match the example
+      because it contains <i class="bold">humor</i>.
+    </div>
+
+
+  </div>
+</body>
+</html>

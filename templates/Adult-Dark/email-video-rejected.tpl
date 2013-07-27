@@ -1,0 +1,1 @@
+a:2:{s:7:"subject";s:49:"[{$g_config.site_name}] Video Submission Rejected";s:7:"message";s:258:"Unfortunately your recent video submission to {$g_config.site_name} has been rejected.<br /><br /><strong>Video Title:</strong> {$g_video.title}<br /><br />{if $g_video.reject_reason}<br />The reason for rejection is:<br />{$g_video.reject_reason}<br />{/if}";}
