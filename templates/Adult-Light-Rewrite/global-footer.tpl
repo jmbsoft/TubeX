@@ -5,7 +5,6 @@
       <div id="footer-bar">
         <div class="fs95">
           &copy; 2009 {$g_config.site_name}<br />
-          %%Powered_By%%
         </div>
       </div>
     </div>
