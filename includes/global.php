@@ -65,12 +65,12 @@ function tbxAboutShow()
     <div id="dialog-panel">
       <div style="padding: 8px;">
         <span style="font-size: 130%; font-weight: bold;">
-          This is $product version 1.0.0-SS released on February 1st, 2011
+          This is $product version 1.0.1 released on August 4th, 2013
         </span>
 
         <div class="field">
           <label>Licensee:</label>
-          <span class="text-container">$licensee</span>
+          <span class="text-container">All</span>
         </div>
 
         <div class="field">
@@ -80,7 +80,7 @@ function tbxAboutShow()
 
         <div class="field">
           <label>Link Removal:</label>
-          <span class="text-container">$link_removal</span>
+          <span class="text-container">Yes</span>
         </div>
 
       </div>
